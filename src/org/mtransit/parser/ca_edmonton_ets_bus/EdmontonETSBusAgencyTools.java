@@ -347,26 +347,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return gStopId;
 	}
 
-	private String getLastStopId(GSpec gtfs, GTrip gTrip) {
-		int gStopMaxSequence = -1;
-		String gStopId = null;
-		for (GStopTime gStopTime : gtfs.stopTimes) {
-			if (!gStopTime.trip_id.equals(gTrip.getTripId())) {
-				continue;
-			}
-			if (gStopTime.stop_sequence < gStopMaxSequence) {
-				continue;
-			}
-			gStopMaxSequence = gStopTime.stop_sequence;
-			gStopId = gStopTime.stop_id;
-		}
-		if (StringUtils.isEmpty(gStopId)) {
-			System.out.println("Unexpected trip (no last stop) " + gTrip);
-			System.exit(-1);
-		}
-		return gStopId;
-	}
-
 	private Pair<String, String> getBeforeAfterStopId(GSpec gtfs, GTrip gTrip, GTripStop gTripStop, List<Pair<String, String>> stopIdsTowards2,
 			List<Pair<String, String>> stopIdsTowards1, List<Pair<String, String>> stopIdsTowardsBoth21, List<Pair<String, String>> stopIdsTowardsBoth12,
 			List<String> allBeforeAfterStopIds) {
