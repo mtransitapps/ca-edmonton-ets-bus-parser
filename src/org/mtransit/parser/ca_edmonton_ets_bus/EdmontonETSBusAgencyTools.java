@@ -563,6 +563,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (gStopTime.stop_sequence != 1) {
 				continue;
 			}
+			gStopId = gStopTime.stop_id;
+		}
 		if (StringUtils.isEmpty(gStopId)) {
 			System.out.println("Unexpected trip (no 1st stop) " + gTrip);
 			System.exit(-1);
