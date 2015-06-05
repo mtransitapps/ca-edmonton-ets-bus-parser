@@ -84,8 +84,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return Long.parseLong(gRoute.route_short_name); // using route short name as route ID
 	}
 
+	private static final String SLASH = " / ";
 	private static final String WEST_EDM_MALL = "West Edm. Mall";
-	private static final String WEM_LEWIS_FARMS = WEST_EDM_MALL + " / Lewis Farms";
+	private static final String WEM_LEWIS_FARMS = WEST_EDM_MALL + SLASH + "Lewis Farms";
 	private static final String CAPILANO = "Capilano"; // "Capilano Transit Ctr"
 	private static final String CLAREVIEW = "Clareview";
 	private static final String CROMDALE = "Cromdale";
@@ -99,16 +100,18 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String ABBOTTSFIELD = "Abbottsfield";
 	private static final String EAUX_CLAIRES = "Eaux Claires";
 	private static final String DOWNTOWN = "Downtown";
-	private static final String DOWNTOWN_JASPER_PLACE = DOWNTOWN + " / " + JASPER_PLACE;
+	private static final String MILLGATE = "Millgate";
+	private static final String MILLGATE_DOWNTOWN = MILLGATE + SLASH + DOWNTOWN;
+	private static final String DOWNTOWN_JASPER_PLACE = DOWNTOWN + SLASH + JASPER_PLACE;
 	private static final String GOV_CTR = "Gov Ctr";
 	private static final String CASTLE_DOWNS = "Castle Downs";
 	private static final String CENTURY_PK = "Century Pk";
 	private static final String YELLOWBIRD = "Yellowbird";
-	private static final String YELLOWBIRD_CENTURY_PK = YELLOWBIRD + "/" + CENTURY_PK;
-	private static final String MILL_WOODS_CENTURY_PK = MILL_WOODS + " / " + CENTURY_PK;
+	private static final String YELLOWBIRD_CENTURY_PK = YELLOWBIRD + SLASH + CENTURY_PK;
+	private static final String MILL_WOODS_CENTURY_PK = MILL_WOODS + SLASH + CENTURY_PK;
 	private static final String S_CAMPUS = "S Campus";
 	private static final String FORT_EDM = "Fort Edm.";
-	private static final String S_CAMPUS_FORT_EDM = S_CAMPUS + " / " + FORT_EDM;
+	private static final String S_CAMPUS_FORT_EDM = S_CAMPUS + SLASH + FORT_EDM;
 	private static final String LEGER = "Leger";
 	private static final String BRANDER_GDNS = "Brander Gdns";
 	private static final String MEADOWS_TC = "Meadows TC";
@@ -275,66 +278,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			} else if (STOP_1262.equals(ts1GStop.stop_code) && STOP_1425.equals(ts2GStop.stop_code)) {
 				return +1;
 			}
-		} else if (ts1.getTripId() == 6003l) { // 60 North to Downtown
-			if (STOP_2101.equals(ts1GStop.stop_code) && STOP_2104.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_2104.equals(ts1GStop.stop_code) && STOP_2101.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6103l) { // 61 North to Downtown
-			if (STOP_2104.equals(ts1GStop.stop_code) && STOP_2105.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_2105.equals(ts1GStop.stop_code) && STOP_2104.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6203l) { // 62 North to Downtown
-			if (STOP_3212.equals(ts1GStop.stop_code) && STOP_3203.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_3203.equals(ts1GStop.stop_code) && STOP_3212.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6303l) { // 63 North to Downtown
-			if (STOP_3212.equals(ts1GStop.stop_code) && STOP_3204.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_3204.equals(ts1GStop.stop_code) && STOP_3212.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6403l) { // 64 North to Downtown
-			if (STOP_3001.equals(ts1GStop.stop_code) && STOP_3006.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_3006.equals(ts1GStop.stop_code) && STOP_3001.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6404l) { // 64 South to Knottwood
-			if (STOP_3208.equals(ts1GStop.stop_code) && STOP_1383.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_1383.equals(ts1GStop.stop_code) && STOP_3208.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6503l) { // 65 North to Downtown
-			if (STOP_3001.equals(ts1GStop.stop_code) && STOP_3006.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_3006.equals(ts1GStop.stop_code) && STOP_3001.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6504l) { // 65 South to Knottwood
-			if (STOP_3208.equals(ts1GStop.stop_code) && STOP_1824.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_1824.equals(ts1GStop.stop_code) && STOP_3208.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6603l) { // 66 North to Mill Woods
-			if (STOP_2105.equals(ts1GStop.stop_code) && STOP_2101.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_2101.equals(ts1GStop.stop_code) && STOP_2105.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 6604l) { // 66 South to Mill Woods
-			if (STOP_3003.equals(ts1GStop.stop_code) && STOP_3011.equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if (STOP_3011.equals(ts1GStop.stop_code) && STOP_3003.equals(ts2GStop.stop_code)) {
-				return +1;
-			}
 		}
 		return super.compareEarly(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
 	}
@@ -374,11 +317,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		}
 		return super.splitTrip(mRoute, gTrip, gtfs);
 	}
-
-
-
-
-
 
 
 	private static final String DASH = "-";
@@ -932,88 +870,68 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addFromTo(MDirectionType.EAST.intValue(), STOP_3440, STOP_3209) //
 				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_3209, STOP_3209) // 3440
 		);
-		map.put(60l, new RouteTripSpec(60l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_3210, STOP_1780) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_1780, STOP_3210) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3210, STOP_2104) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_2104, STOP_3210) //
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_2104, STOP_2104) // 3210
-		);
-		map.put(61l, new RouteTripSpec(61l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_3211, STOP_1780) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_1780, STOP_3211) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3211, STOP_2105) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_2105, STOP_3211) //
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_2105, STOP_2105) // 3211
-		);
-		map.put(62l, new RouteTripSpec(62l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHWOOD) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3154, STOP_1780) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_1780, STOP_3154) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3154, STOP_3203) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_3203, STOP_3154) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_1804, STOP_3154) //
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3203, STOP_3203) // 3154
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3203, STOP_1780) // 3154
-		);
-		map.put(63l, new RouteTripSpec(63l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHWOOD) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_3143, STOP_1383) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_1383, STOP_3143) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3143, STOP_3204) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_3204, STOP_3143) //
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3204, STOP_3204) // 3143
-		);
-		map.put(64l, new RouteTripSpec(64l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KNOTTWOOD) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_3026, STOP_1383) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_1383, STOP_3026) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3026, STOP_3006) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3026, STOP_3001) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_3009, STOP_3026) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_3208, STOP_3009) //
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3009, STOP_3006) // 3026
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3208, STOP_3001) // 3026
-		);
-		map.put(65l, new RouteTripSpec(65l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KNOTTWOOD) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3023, STOP_1989) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3023, STOP_3208) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3023, STOP_3006) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_1824, STOP_3023) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_3208, STOP_3023) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_3009, STOP_3023) //
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3208, STOP_3208) // 3023
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3208, STOP_1989) // 3023
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_1824, STOP_3006) // 3023
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3009, STOP_3006) // 3023
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_3009, STOP_1989) // 3023
-		);
-		map.put(66l, new RouteTripSpec(66l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_3213, STOP_1358) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_1358, STOP_3213) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3213, STOP_2101) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_3011, STOP_2101) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_2101, STOP_3213) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_2101, STOP_3011) //
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_2101, STOP_2101) // 3213
-		);
 		ALL_ROUTE_TRIPS = map;
 	}
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
+		map2.put(60l, new RouteTripSpec(60l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3210", "3585", "2104", "2101", "1780" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1780", "2104", "3233", "3210" })) //
+				.compileBothTripSort());
+		map2.put(61l, new RouteTripSpec(61l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3211", "3585", "2105", "2104", "1780" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1780", "2105", "3529", "3211" })) //
+				.compileBothTripSort());
+		map2.put(62l, new RouteTripSpec(62l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHWOOD) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3154", "3161", "3203", "3212", "1780", /* + */"1804"/* + */})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1804", "1780", "3203", "3139", "3154" })) //
+				.compileBothTripSort());
+		map2.put(63l, new RouteTripSpec(63l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHWOOD) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3143", "3067", "3204", "3212", "1383" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1383", "3204", "3080", "3143" })) //
+				.compileBothTripSort());
+		map2.put(64l, new RouteTripSpec(64l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KNOTTWOOD) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3026", "3006", "3001", "3208", "2111", "1383" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1383", "2112", "3208", "3009", "3026" })) //
+				.compileBothTripSort());
+		map2.put(65l, new RouteTripSpec(65l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KNOTTWOOD) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3023", "3006", "3001", "3208", "2111", "1989" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1824", "2112", "3208", "3009", "3023" })) //
+				.compileBothTripSort());
+		map2.put(66l, new RouteTripSpec(66l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3213", "3011", /* + */"3224"/* + */, "2101", "2105", "1358" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1358", "2101", /* + */"3371"/* + */, "3011", "3003", "3213" })) //
+				.compileBothTripSort());
 		map2.put(67l, new RouteTripSpec(67l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MEADOWS_TC, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
@@ -1033,6 +951,62 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
 				.addTripSort(MDirectionType.NORTH.intValue(), Arrays.asList(new String[] { "3214", "3702", "2110", "2107", "1989" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), Arrays.asList(new String[] { "1824", "2110", "3710", "3214" })) //
+				.compileBothTripSort());
+		map2.put(70l, new RouteTripSpec(70l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3201", "3012", "3093", "2685", /* + */"2840"/* + */, /* + */"2659"/* + */, "2824", "2659", "1780" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1780", "2840", "2245", "3497", "3004", "3201" })) //
+				.compileBothTripSort());
+		map2.put(71l, new RouteTripSpec(71l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, GOV_CTR, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3216", /* + */"3224"/* + */, "2111", /* + */"1153"/* + */, "1303" }))
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1303", /* + */"1993"/* + */, "2103", /* + */"3370"/* + */, "3216" }))
+				.compileBothTripSort());
+		map2.put(72l, new RouteTripSpec(72l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILLGATE_DOWNTOWN, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "3206", "3255", "3796", "3491", "2106", "2106", "2110", "1989" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1989", "2110", "2106", "3355", "3748", "3185", "3206" })) //
+				.compileBothTripSort());
+		map2.put(73l, new RouteTripSpec(73l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "2203", "2888", "2102", "3002", "3205" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "3205", "3010", "2109", "2203" })) //
+				.compileBothTripSort());
+		map2.put(74l, new RouteTripSpec(74l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "2204", "4202",/* + */"3671"/* + */, "3107", "3559", "3209" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "3209", "3007", "3430", "3110", "4202", "4212", "2204" })) //
+				.compileBothTripSort());
+		map2.put(78l, new RouteTripSpec(78l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "4205", "3675", "9384", "9725", "3215" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "3215", "9147", "9387", "3865", "4205" })) //
+				.compileBothTripSort());
+		map2.put(79l, new RouteTripSpec(79l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "4207", "3319", "9260", "9139", "3214" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "3214", "9287", "9671", "3513", "4207" })) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
