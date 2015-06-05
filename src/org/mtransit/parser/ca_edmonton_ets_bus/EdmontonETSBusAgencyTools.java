@@ -86,7 +86,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	private static final String SLASH = " / ";
 	private static final String WEST_EDM_MALL = "West Edm. Mall";
-	private static final String WEM_LEWIS_FARMS = WEST_EDM_MALL + SLASH + "Lewis Farms";
+	private static final String LEWIS_FARMS = "Lewis Farms";
+	private static final String WEM_LEWIS_FARMS = WEST_EDM_MALL + SLASH + LEWIS_FARMS;
 	private static final String CAPILANO = "Capilano"; // "Capilano Transit Ctr"
 	private static final String CLAREVIEW = "Clareview";
 	private static final String CROMDALE = "Cromdale";
@@ -130,6 +131,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String LAUREL = "Laurel";
 	private static final String PLYPOW = "Plypow";
 	private static final String TAMARACK = "Tamarack";
+	private static final String BRECKENRIDGE_GRNS = "Breckenridge Grns";
+	private static final String WESTRIDGE = "Westridge";
+	private static final String LESSARD = "Lessard";
+	private static final String CAMERON_HTS = "Cameron Hts";
+	private static final String LYMBURN = "Lymburn";
+	private static final String WEDGEWOOD_HTS = "Wedgewood Hts";
 
 	private static final String RLN_SPLIT = " - ";
 
@@ -345,7 +352,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String STOP_1305 = "1305";
 	private static final String STOP_1310 = "1310";
 	private static final String STOP_1336 = "1336";
-	private static final String STOP_1358 = "1358";
 	private static final String STOP_1369 = "1369";
 	private static final String STOP_1383 = "1383";
 	private static final String STOP_1407 = "1407";
@@ -357,16 +363,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String STOP_1561 = "1561";
 	private static final String STOP_1728 = "1728";
 	private static final String STOP_1730 = "1730";
-	private static final String STOP_1780 = "1780";
-	private static final String STOP_1804 = "1804";
-	private static final String STOP_1824 = "1824";
 	private static final String STOP_1989 = "1989";
 	private static final String STOP_1999 = "1999";
 	private static final String STOP_2001 = "2001";
 	private static final String STOP_2002 = "2002";
-	private static final String STOP_2101 = "2101";
-	private static final String STOP_2104 = "2104";
-	private static final String STOP_2105 = "2105";
 	private static final String STOP_2202 = "2202";
 	private static final String STOP_2204 = "2204";
 	private static final String STOP_2205 = "2205";
@@ -407,25 +407,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String STOP_2821 = "2821";
 	private static final String STOP_2849 = "2849";
 	private static final String STOP_2888 = "2888";
-	private static final String STOP_3001 = "3001";
-	private static final String STOP_3003 = "3003";
-	private static final String STOP_3006 = "3006";
 	private static final String STOP_3008 = "3008";
-	private static final String STOP_3009 = "3009";
-	private static final String STOP_3011 = "3011";
-	private static final String STOP_3023 = "3023";
-	private static final String STOP_3026 = "3026";
-	private static final String STOP_3143 = "3143";
-	private static final String STOP_3154 = "3154";
-	private static final String STOP_3203 = "3203";
-	private static final String STOP_3204 = "3204";
 	private static final String STOP_3207 = "3207";
 	private static final String STOP_3209 = "3209";
 	private static final String STOP_3208 = "3208";
-	private static final String STOP_3210 = "3210";
-	private static final String STOP_3211 = "3211";
-	private static final String STOP_3212 = "3212";
-	private static final String STOP_3213 = "3213";
 	private static final String STOP_3215 = "3215";
 	private static final String STOP_3217 = "3217";
 	private static final String STOP_3440 = "3440";
@@ -1150,6 +1135,86 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "2304", "1206", "7211" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { "7211", "1207", "2304" })) //
+				.compileBothTripSort());
+		map2.put(100l, new RouteTripSpec(100l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEWIS_FARMS, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "1243", "1812", /* + */"5449"/* + */, /* + */"5001"/* + */, "5010", "8610" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "8610", "5001", /* + */"5054"/* + */, "1083", "1256", "1243" })) //
+				.compileBothTripSort());
+		map2.put(101l, new RouteTripSpec(101l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEDGEWOOD_HTS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { /* + */"5968"/* + */, "5908", "5821", "5002" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "5002", "5979", "5660", /* + */"5968"/* + */})) //
+				.compileBothTripSort());
+		map2.put(102l, new RouteTripSpec(102l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LYMBURN) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "5828", "5725", "5004" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "5004", "5755", "5828" })) //
+				.compileBothTripSort());
+		map2.put(103l, new RouteTripSpec(103l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CAMERON_HTS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "5752", "5695", "5821", "5002" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "5002", "5979", "5623", "5752" })) //
+				.compileBothTripSort());
+		map2.put(104l, new RouteTripSpec(104l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, S_CAMPUS_FORT_EDM, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LYMBURN) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { /*-"5755",-*/"5828", /* + */"5725"/* + */, "5821", "2706" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "2706", /*-"5725"-,*//* + */"5755"/* + */,/* + */"5828"/* + */})) //
+				.compileBothTripSort());
+		map2.put(105l, new RouteTripSpec(105l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, S_CAMPUS_FORT_EDM, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LESSARD) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { /* + */"5017"/* + */, /* + */"5932"/* + */, /* "-5634-", */"5733", "5821", "2706" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "2706", /* "-5932-", *//* + */"5634"/* + */,/* + */"5017"/* + */})) //
+				.compileBothTripSort());
+		map2.put(106l, new RouteTripSpec(106l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LESSARD) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "5733", /* + */"5722"/* + */, "5004", "5007", "2713", "2001" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "2001", "2701", "5004",/* + */"5699"/* + */, "5733" })) //
+				.compileBothTripSort());
+		map2.put(107l, new RouteTripSpec(107l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WESTRIDGE) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "5747", "5657", "5005" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "5005", "5877", "5747" })) //
+				.compileBothTripSort());
+		map2.put(108l, new RouteTripSpec(108l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEWIS_FARMS, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, BRECKENRIDGE_GRNS) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "8670", "8279", "8608" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "8608", "8999", "8670" })) //
+				.compileBothTripSort());
+		map2.put(109l, new RouteTripSpec(109l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "5012", "5874", /* + */"5366"/* + */, "5111", /* + */"5250"/* + */, "5344", "1496" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "1571", "5132", "5111", "5903", "5012" })) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
