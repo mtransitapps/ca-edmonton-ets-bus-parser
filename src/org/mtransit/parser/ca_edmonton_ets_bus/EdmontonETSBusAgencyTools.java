@@ -1002,6 +1002,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "1383", /* + */"2835"/* + */, //
 								/* + */"2878"/* + */, /* ? */"2659"/* ? */, "2840", //
 								"2385", "2106", "2104", "3216" })) //
+				.compileBothTripSort());
 		map2.put(82l, new RouteTripSpec(82l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
