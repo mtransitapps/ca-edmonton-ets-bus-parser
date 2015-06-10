@@ -109,6 +109,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String MILLGATE_DOWNTOWN = MILLGATE + SLASH + DOWNTOWN;
 	private static final String DOWNTOWN_JASPER_PLACE = DOWNTOWN + SLASH + JASPER_PLACE;
 	private static final String GOV_CTR = "Gov Ctr";
+	private static final String MAC_EWAN = "MacEwan";
+	private static final String MAC_EWAN_GOV_CTR = MAC_EWAN + SLASH + GOV_CTR;
 	private static final String CASTLE_DOWNS = "Castle Downs";
 	private static final String CENTURY_PK = "Century Pk";
 	private static final String YELLOWBIRD = "Yellowbird";
@@ -152,6 +154,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String KINGSWAY_RAH = "Kingsway RAH";
 	private static final String KING_EDWARD_PK = "King Edward Pk";
 	private static final String RAPPERSWILL = "Rapperswill";
+	private static final String OXFORD = "Oxford";
+	private static final String _100_ST_160_AVE = "100 St / 160 Ave";
+	private static final String _95_ST_132_AVE = "95 St / 132 Ave";
+	private static final String CANOSSA = "Canossa";
+	private static final String CHAMBERY = "Chambery";
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
@@ -304,6 +311,17 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		}
 		if (ALL_ROUTE_TRIPS.containsKey(mRoute.id)) {
 			return; // split
+		}
+		if (mRoute.id == 167l) {
+			String firstStopId = getFirstStopId(gtfs, gTrip);
+			String lastStopId = getLastStopId(gtfs, gTrip);
+			if ("7496".equals(firstStopId) && "6447".equals(lastStopId)) {
+				mTrip.setHeadsignString(_100_ST_160_AVE, MDirectionType.NORTH.intValue());
+				return;
+			} else if ("6039".equals(firstStopId) && "7060".equals(lastStopId)) {
+				mTrip.setHeadsignString(_95_ST_132_AVE, MDirectionType.SOUTH.intValue());
+				return;
+			}
 		}
 		System.out.println("Unexpected trip " + gTrip);
 		System.exit(-1);
@@ -1513,6 +1531,105 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { "6313", /* + */"6078"/* + */, "6823" })) //
 				.compileBothTripSort());
+		map2.put(160l, new RouteTripSpec(160l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, OXFORD, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, GOV_CTR) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "1304", "1820", "6348", "6243", "6835", "6676" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "6835", "6676", "6442", "6594", "1304" })) //
+				.compileBothTripSort());
+		map2.put(
+				161l,
+				new RouteTripSpec(161l, // like 162 // TODO not perfect, 2 different trip ending, different trip summer/winter
+						MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
+						MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MAC_EWAN_GOV_CTR) //
+						.addTripSort(
+								MDirectionType.NORTH.intValue(), //
+								Arrays.asList(new String[] { "1309", /* + */"1711"/* + */, /* + */"1035"/* + */, /* + */"1903"/* + */, /* + */"1871"/* + */,
+										"1824", "1829", /* + */"1983"/* + */, /* + */"1680"/* + */, /* + */"1783"/* + */, "1820", /* + */"1707"/* + */, /* + */
+										"1845"/* + */, /* + */"1271"/* + */, /* + */"1571"/* + */, /* + */"1253"/* + */, /* + */"1555"/* + */,//
+										"7009", "6580", "6007" })) //
+						.addTripSort(MDirectionType.SOUTH.intValue(), //
+								Arrays.asList(new String[] { "6007", "6396", /* + */"7009"/* + */, "7003", //
+										/* + */"1221"/* + */, /* + */"1280"/* + */, /* + */
+										"1721"/* + */, /* + */"1496"/* + */, /* + */"1673"/* + */, /* + */"1622"/* + */, /* + */"1740"/* + */, /* + */
+										"1756"/* + */, /* + */"1655"/* + */, "1868", /* + */"1837"/* + */, /* + */"1718"/* + */, /* + */"1626"/* + */, "1703", /* + */
+										"1850"/* + */, "1989", /* + */"1643"/* + */, /* + */"1964"/* + */, "1309" })) //
+						.compileBothTripSort());
+		map2.put(162l, new RouteTripSpec(162l, // like 161 // TODO not perfect, 2 different trip ending, different trip summer/winter
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MAC_EWAN_GOV_CTR) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] {
+								// "1309", "1829", "1820", //
+								"1309", /* + */"1711"/* + */, /* + */"1035"/* + */, /* + */"1903"/* + */, /* + */"1871"/* + */, "1824", "1829", /* + */
+								"1983"/* + */, /* + */"1680"/* + */, /* + */"1783"/* + */, "1820", /* + */"1707"/* + */, /* + */
+								"1845"/* + */, /* + */"1271"/* + */, /* + */"1571"/* + */, /* + */"1253"/* + */, /* + */"1555"/* + */,//
+								"6311", "6033", "6008" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "6008", "6340", /* + */"6311"/* + */, "6310",//
+								/* + */"1221"/* + */, /* + */"1280"/* + */, /* + */
+								"1721"/* + */, /* + */"1496"/* + */, /* + */"1673"/* + */, /* + */"1622"/* + */, /* + */"1740"/* + */, /* + */
+								"1756"/* + */, /* + */"1655"/* + */, "1868", /* + */"1837"/* + */, /* + */"1718"/* + */, /* + */"1626"/* + */, "1703", /* + */
+								"1850"/* + */, "1989", /* + */"1643"/* + */, /* + */"1964"/* + */, "1309"
+						})) //
+				.compileBothTripSort());
+		map2.put(163l, new RouteTripSpec(163l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CHAMBERY, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"6312", /* + */"7463"/* + */, /* + */"7748"/* + */, //
+								/* + */"7381"/* + */, "6194", /* + */"6767"/* + */})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						/* + */"6767"/* + */, "6598", /* + */"6854"/* + */, /* + */"6147"/* + */, /* + */"6362"/* + */, //
+								/* + */"6074"/* + */, /* + */"6076"/* + */, "6236", /* + */"7482"/* + */, "6312" })) //
+				.compileBothTripSort());
+		map2.put(164l, new RouteTripSpec(164l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CANOSSA, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "7015", "6001", "6166" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "6166", /* + */"6582"/* + */, /* + */"6077"/* + */, "6236", /* + */"6021"/* + */,
+						/* + */"6080"/* + */, /* + */"6225"/* + */, "6010", "7015" })) //
+				.compileBothTripSort());
+		map2.put(165l, new RouteTripSpec(165l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.id, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.id) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "7496", "6130", "6522", "6011", "6127" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "6074", "6010", "6396", "6579", "7299" })) //
+				.compileBothTripSort());
+		map2.put(168l, new RouteTripSpec(168l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "7011", "6243", "6619", "6835", //
+								"6725",
+								"6003", "6305" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "6305", "6011", //
+								/* + */"6228"/* + */, //
+								/* + */"6698"/* + */, //
+								/* + */"6725"/* + */, //
+								/* + */"6256"/* + */, //
+								/* + */"6566"/* + */, //
+								/* + */"6261"/* + */, //
+								/* + */"6114"/* + */, //
+								"6676", "6853", "6442", "7011" })) //
+				.compileBothTripSort());
+		map2.put(169l, new RouteTripSpec(169l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.id, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.id) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "7015", "6001", "6166", "6194" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "6194", "6456", "6010", "7015" })) //
+				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
@@ -1686,7 +1803,47 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return beforeAfterStopIdCandidate == null ? null : beforeAfterStopIdCandidate.second;
 	}
 
+	private String getFirstStopId(GSpec gtfs, GTrip gTrip) {
+		int gStopMaxSequence = -1;
+		String gStopId = null;
+		for (GStopTime gStopTime : gtfs.stopTimes) {
+			if (!gStopTime.trip_id.equals(gTrip.getTripId())) {
+				continue;
+			}
+			if (gStopTime.stop_sequence > gStopMaxSequence) {
+				gStopMaxSequence = gStopTime.stop_sequence;
+			}
+			if (gStopTime.stop_sequence != 1) {
+				continue;
+			}
+			gStopId = gStopTime.stop_id;
+		}
+		if (StringUtils.isEmpty(gStopId)) {
+			System.out.println("Unexpected trip (no 1st stop) " + gTrip);
+			System.exit(-1);
+		}
+		return gStopId;
+	}
 
+	private String getLastStopId(GSpec gtfs, GTrip gTrip) {
+		int gStopMaxSequence = -1;
+		String gStopId = null;
+		for (GStopTime gStopTime : gtfs.stopTimes) {
+			if (!gStopTime.trip_id.equals(gTrip.getTripId())) {
+				continue;
+			}
+			if (gStopTime.stop_sequence < gStopMaxSequence) {
+				continue;
+			}
+			gStopMaxSequence = gStopTime.stop_sequence;
+			gStopId = gStopTime.stop_id;
+		}
+		if (StringUtils.isEmpty(gStopId)) {
+			System.out.println("Unexpected trip (no last stop) " + gTrip);
+			System.exit(-1);
+		}
+		return gStopId;
+	}
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
@@ -1859,7 +2016,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			List<String> sortedStopIds = this.allSortedStopIds.get(directionId);
 			if (!sortedStopIds.contains(ts1GStop.stop_code) || !sortedStopIds.contains(ts2GStop.stop_code)) {
 				System.out.println("Unexpected stop IDs " + ts1GStop.stop_code + " AND/OR " + ts2GStop.stop_code);
-				System.out.println("Not in sorted list " + sortedStopIds);
+				System.out.println("Not in sorted list: " + sortedStopIds);
 				System.exit(-1);
 				return 0;
 			}
