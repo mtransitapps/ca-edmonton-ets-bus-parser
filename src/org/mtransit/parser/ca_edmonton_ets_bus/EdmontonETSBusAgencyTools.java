@@ -917,9 +917,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KNOTTWOOD) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "3026", "3006", "3001", "3208", "2111", "1383" })) //
+						Arrays.asList(new String[] { "3026", "3006",
+						/* + */"3599"/* + */, //
+								"3001", "3208", "2111", "1358", "1383" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "1383", "2112", "3208", "3009", "3026" })) //
+						Arrays.asList(new String[] { "1383", "1358", "2112", "3208", "3009", "3026" })) //
 				.compileBothTripSort());
 		map2.put(65l, new RouteTripSpec(65l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
