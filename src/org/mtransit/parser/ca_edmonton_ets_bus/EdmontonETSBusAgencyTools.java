@@ -1,14 +1,15 @@
 package org.mtransit.parser.ca_edmonton_ets_bus;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
+import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.Pair;
+import org.mtransit.parser.SplitUtils;
+import org.mtransit.parser.SplitUtils.RouteTripSpec;
 import org.mtransit.parser.Utils;
 import org.mtransit.parser.gtfs.data.GCalendar;
 import org.mtransit.parser.gtfs.data.GCalendarDate;
@@ -21,7 +22,6 @@ import org.mtransit.parser.gtfs.data.GTripStop;
 import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MDirectionType;
 import org.mtransit.parser.mt.data.MRoute;
-import org.mtransit.parser.mt.data.MSpec;
 import org.mtransit.parser.mt.data.MTrip;
 import org.mtransit.parser.mt.data.MTripStop;
 
@@ -180,8 +180,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
 		String gRouteLongName = gRoute.route_long_name;
-		gRouteLongName = MSpec.cleanStreetTypes(gRouteLongName);
-		return MSpec.cleanLabel(gRouteLongName);
+		gRouteLongName = CleanUtils.cleanStreetTypes(gRouteLongName);
+		return CleanUtils.cleanLabel(gRouteLongName);
 	}
 
 	private static final String AGENCY_COLOR_BLUE = "2D3092"; // BLUE (from Wikipedia SVG)
@@ -199,98 +199,98 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			return ALL_ROUTE_TRIPS2.get(routeId).compare(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
 		}
 		if (ts1.getTripId() == 201l) { // 2 East
-			if (STOP_1454.equals(ts1GStop.stop_code) && STOP_1561.equals(ts2GStop.stop_code)) {
+			if ("1454".equals(ts1GStop.stop_code) && "1561".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_1561.equals(ts1GStop.stop_code) && STOP_1454.equals(ts2GStop.stop_code)) {
+			} else if ("1561".equals(ts1GStop.stop_code) && "1454".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 401l) { // 2 East to Capilano
-			if (STOP_2447.equals(ts1GStop.stop_code) && STOP_2549.equals(ts2GStop.stop_code)) {
+			if ("2447".equals(ts1GStop.stop_code) && "2549".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_2549.equals(ts1GStop.stop_code) && STOP_2447.equals(ts2GStop.stop_code)) {
+			} else if ("2549".equals(ts1GStop.stop_code) && "2447".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 402l) { // 2 West to Lewis
-			if (STOP_5003.equals(ts1GStop.stop_code) && STOP_5006.equals(ts2GStop.stop_code)) {
+			if ("5003".equals(ts1GStop.stop_code) && "5006".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_5006.equals(ts1GStop.stop_code) && STOP_5003.equals(ts2GStop.stop_code)) {
+			} else if ("5006".equals(ts1GStop.stop_code) && "5003".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 601l) { // 6 East to Mill Woods
-			if (STOP_2102.equals(ts1GStop.stop_code) && STOP_2109.equals(ts2GStop.stop_code)) {
+			if ("2102".equals(ts1GStop.stop_code) && "2109".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_2109.equals(ts1GStop.stop_code) && STOP_2102.equals(ts2GStop.stop_code)) {
+			} else if ("2109".equals(ts1GStop.stop_code) && "2102".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 602l) { // 6 West to Southgate
-			if (STOP_2630.equals(ts1GStop.stop_code) && STOP_2888.equals(ts2GStop.stop_code)) {
+			if ("2630".equals(ts1GStop.stop_code) && "2888".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_2888.equals(ts1GStop.stop_code) && STOP_2630.equals(ts2GStop.stop_code)) {
+			} else if ("2888".equals(ts1GStop.stop_code) && "2630".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1102l) { // 11 West to Northgate
-			if (STOP_7007.equals(ts1GStop.stop_code) && STOP_7008.equals(ts2GStop.stop_code)) {
+			if ("7007".equals(ts1GStop.stop_code) && "7008".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_7008.equals(ts1GStop.stop_code) && STOP_7007.equals(ts2GStop.stop_code)) {
+			} else if ("7008".equals(ts1GStop.stop_code) && "7007".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1203l) { // 12 North to Northgate
-			if (STOP_1369.equals(ts1GStop.stop_code) && STOP_1128.equals(ts2GStop.stop_code)) {
+			if ("1369".equals(ts1GStop.stop_code) && "1128".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_1128.equals(ts1GStop.stop_code) && STOP_1369.equals(ts2GStop.stop_code)) {
+			} else if ("1128".equals(ts1GStop.stop_code) && "1369".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
-			if (STOP_1059.equals(ts1GStop.stop_code) && STOP_1730.equals(ts2GStop.stop_code)) {
+			if ("1059".equals(ts1GStop.stop_code) && "1730".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_1730.equals(ts1GStop.stop_code) && STOP_1059.equals(ts2GStop.stop_code)) {
+			} else if ("1730".equals(ts1GStop.stop_code) && "1059".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1204l) { // 12 South to Downtown
-			if (STOP_1113.equals(ts1GStop.stop_code) && STOP_1109.equals(ts2GStop.stop_code)) {
+			if ("1113".equals(ts1GStop.stop_code) && "1109".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_1109.equals(ts1GStop.stop_code) && STOP_1113.equals(ts2GStop.stop_code)) {
+			} else if ("1109".equals(ts1GStop.stop_code) && "1113".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1401l) { // 14 East to WEM
-			if (STOP_5293.equals(ts1GStop.stop_code) && STOP_5103.equals(ts2GStop.stop_code)) {
+			if ("5293".equals(ts1GStop.stop_code) && "5103".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_5103.equals(ts1GStop.stop_code) && STOP_5293.equals(ts2GStop.stop_code)) {
+			} else if ("5103".equals(ts1GStop.stop_code) && "5293".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1503l) { // 15 North to Eaux Claire
-			if (STOP_1476.equals(ts1GStop.stop_code) && STOP_1532.equals(ts2GStop.stop_code)) {
+			if ("1476".equals(ts1GStop.stop_code) && "1532".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_1532.equals(ts1GStop.stop_code) && STOP_1476.equals(ts2GStop.stop_code)) {
+			} else if ("1532".equals(ts1GStop.stop_code) && "1476".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1604l) { // 16 South to Gov Ctr
-			if (STOP_7003.equals(ts1GStop.stop_code) && STOP_7011.equals(ts2GStop.stop_code)) {
+			if ("7003".equals(ts1GStop.stop_code) && "7011".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_7011.equals(ts1GStop.stop_code) && STOP_7003.equals(ts2GStop.stop_code)) {
+			} else if ("7011".equals(ts1GStop.stop_code) && "7003".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 3301l) { // 33 East to Meadows
-			if (STOP_2215.equals(ts1GStop.stop_code) && STOP_2205.equals(ts2GStop.stop_code)) {
+			if ("2215".equals(ts1GStop.stop_code) && "2205".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_2205.equals(ts1GStop.stop_code) && STOP_2215.equals(ts2GStop.stop_code)) {
+			} else if ("2205".equals(ts1GStop.stop_code) && "2215".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 3801l) { // 38 East to Southgate
-			if (STOP_4938.equals(ts1GStop.stop_code) && STOP_4519.equals(ts2GStop.stop_code)) {
+			if ("4938".equals(ts1GStop.stop_code) && "4519".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_4519.equals(ts1GStop.stop_code) && STOP_4938.equals(ts2GStop.stop_code)) {
+			} else if ("4519".equals(ts1GStop.stop_code) && "4938".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 3802l) { // 38 West to Leger
-			if (STOP_4320.equals(ts1GStop.stop_code) && STOP_4373.equals(ts2GStop.stop_code)) {
+			if ("4320".equals(ts1GStop.stop_code) && "4373".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_4373.equals(ts1GStop.stop_code) && STOP_4320.equals(ts2GStop.stop_code)) {
+			} else if ("4373".equals(ts1GStop.stop_code) && "4320".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 4403l) { // 44 North to Southgate
-			if (STOP_4210.equals(ts1GStop.stop_code) && STOP_4204.equals(ts2GStop.stop_code)) {
+			if ("4210".equals(ts1GStop.stop_code) && "4204".equals(ts2GStop.stop_code)) {
 				return -1;
-			} else if (STOP_4204.equals(ts1GStop.stop_code) && STOP_4210.equals(ts2GStop.stop_code)) {
+			} else if ("4204".equals(ts1GStop.stop_code) && "4210".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
 		}
@@ -302,7 +302,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return super.compare(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
 	}
 
-
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
@@ -312,8 +311,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			return; // split
 		}
 		if (mRoute.id == 167l) {
-			String firstStopId = getFirstStopId(gtfs, gTrip);
-			String lastStopId = getLastStopId(gtfs, gTrip);
+			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
+			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("7496".equals(firstStopId) && "6447".equals(lastStopId)) {
 				mTrip.setHeadsignString(_100_ST_160_AVE, MDirectionType.NORTH.intValue());
 				return;
@@ -337,281 +336,187 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return super.splitTrip(mRoute, gTrip, gtfs);
 	}
 
-
-	private static final String DASH = "-";
-	private static final String ALL = "*";
-
-	private static final String STOP_1059 = "1059";
-	private static final String STOP_1109 = "1109";
-	private static final String STOP_1113 = "1113";
-	private static final String STOP_1123 = "1123";
-	private static final String STOP_1128 = "1128";
-	private static final String STOP_1147 = "1147";
-	private static final String STOP_1202 = "1202";
-	private static final String STOP_1203 = "1203";
-	private static final String STOP_1256 = "1256";
-	private static final String STOP_1266 = "1266";
-	private static final String STOP_1310 = "1310";
-	private static final String STOP_1336 = "1336";
-	private static final String STOP_1369 = "1369";
-	private static final String STOP_1407 = "1407";
-	private static final String STOP_1476 = "1476";
-	private static final String STOP_1532 = "1532";
-	private static final String STOP_1454 = "1454";
-	private static final String STOP_1561 = "1561";
-	private static final String STOP_1730 = "1730";
-	private static final String STOP_1999 = "1999";
-	private static final String STOP_2001 = "2001";
-	private static final String STOP_2002 = "2002";
-	private static final String STOP_2205 = "2205";
-	private static final String STOP_2206 = "2206";
-	private static final String STOP_2208 = "2208";
-	private static final String STOP_2209 = "2209";
-	private static final String STOP_2102 = "2102";
-	private static final String STOP_2109 = "2109";
-	private static final String STOP_2215 = "2215";
-	private static final String STOP_2117 = "2117";
-	private static final String STOP_2118 = "2118";
-	private static final String STOP_2159 = "2159";
-	private static final String STOP_2203 = "2203";
-	private static final String STOP_2207 = "2207";
-	private static final String STOP_2306 = "2306";
-	private static final String STOP_2447 = "2447";
-	private static final String STOP_2549 = "2549";
-	private static final String STOP_2630 = "2630";
-	private static final String STOP_2703 = "2703";
-	private static final String STOP_2705 = "2705";
-	private static final String STOP_2888 = "2888";
-	private static final String STOP_3208 = "3208";
-	private static final String STOP_3215 = "3215";
-	private static final String STOP_3217 = "3217";
-	private static final String STOP_3713 = "3713";
-	private static final String STOP_4025 = "4025";
-	private static final String STOP_4201 = "4201";
-	private static final String STOP_4203 = "4203";
-	private static final String STOP_4204 = "4204";
-	private static final String STOP_4210 = "4210";
-	private static final String STOP_4211 = "4211";
-	private static final String STOP_4213 = "4213";
-	private static final String STOP_4215 = "4215";
-	private static final String STOP_4320 = "4320";
-	private static final String STOP_4373 = "4373";
-	private static final String STOP_4519 = "4519";
-	private static final String STOP_4802 = "4802";
-	private static final String STOP_4805 = "4805";
-	private static final String STOP_4806 = "4806";
-	private static final String STOP_4809 = "4809";
-	private static final String STOP_4812 = "4812";
-	private static final String STOP_4813 = "4813";
-	private static final String STOP_4938 = "4938";
-	private static final String STOP_5001 = "5001";
-	private static final String STOP_5003 = "5003";
-	private static final String STOP_5006 = "5006";
-	private static final String STOP_5008 = "5008";
-	private static final String STOP_5011 = "5011";
-	private static final String STOP_5103 = "5103";
-	private static final String STOP_5106 = "5106";
-	private static final String STOP_5108 = "5108";
-	private static final String STOP_5210 = "5210";
-	private static final String STOP_5293 = "5293";
-	private static final String STOP_5723 = "5723";
-	private static final String STOP_6005 = "6005";
-	private static final String STOP_6009 = "6009";
-	private static final String STOP_6124 = "6124";
-	private static final String STOP_6314 = "6314";
-	private static final String STOP_6317 = "6317";
-	private static final String STOP_7003 = "7003";
-	private static final String STOP_7007 = "7007";
-	private static final String STOP_7008 = "7008";
-	private static final String STOP_7011 = "7011";
-	private static final String STOP_7101 = "7101";
-	private static final String STOP_7106 = "7106";
-	private static final String STOP_7902 = "7902";
-	private static final String STOP_8601 = "8601";
-	private static final String STOP_9242 = "9242";
-
-
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS;
 	static {
 		HashMap<Long, RouteTripSpec> map = new HashMap<Long, RouteTripSpec>();
 		map.put(2l, new RouteTripSpec(2l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.id, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.id) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_7902, STOP_5723) //
-				.addFromTo(MDirectionType.WEST.intValue(), STOP_1266, STOP_5003) //
-				.addFromTo(MDirectionType.WEST.intValue(), STOP_1407, STOP_5003) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_5723, STOP_7902) //
-				.addFromTo(MDirectionType.EAST.intValue(), STOP_5008, STOP_1256) //
-				.addFromTo(MDirectionType.EAST.intValue(), STOP_5008, STOP_1336) //
-				.addFromTo(MDirectionType.EAST.intValue(), STOP_5008, STOP_1561) //
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_7902, STOP_7902) // 5723
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_1561, STOP_1336) // 5723
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_1561, STOP_5008) // 5723
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_5003, STOP_1561) // 5723
+				.addALLFromTo(MDirectionType.WEST.intValue(), "7902", "5723") //
+				.addFromTo(MDirectionType.WEST.intValue(), "1266", "5003") //
+				.addFromTo(MDirectionType.WEST.intValue(), "1407", "5003") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "5723", "7902") //
+				.addFromTo(MDirectionType.EAST.intValue(), "5008", "1256") //
+				.addFromTo(MDirectionType.EAST.intValue(), "5008", "1336") //
+				.addFromTo(MDirectionType.EAST.intValue(), "5008", "1561") //
+				.addBothFromTo(MDirectionType.WEST.intValue(), "7902", "7902") // 5723
+				.addBothFromTo(MDirectionType.WEST.intValue(), "1561", "1336") // 5723
+				.addBothFromTo(MDirectionType.WEST.intValue(), "1561", "5008") // 5723
+				.addBothFromTo(MDirectionType.WEST.intValue(), "5003", "1561") // 5723
 		);
 		map.put(3l, new RouteTripSpec(3l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CROMDALE) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_1147, STOP_5106) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_5106, STOP_1147) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "1147", "5106") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "5106", "1147") //
 		);
 		map.put(4l, new RouteTripSpec(4l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEM_LEWIS_FARMS, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CAPILANO) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_2306, STOP_8601) //
-				.addFromTo(MDirectionType.WEST.intValue(), STOP_2159, STOP_5006) //
-				.addFromTo(MDirectionType.WEST.intValue(), STOP_2002, STOP_5006) //
-				.addFromTo(MDirectionType.WEST.intValue(), STOP_2159, STOP_2001) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_8601, STOP_2306) //
-				.addFromTo(MDirectionType.EAST.intValue(), STOP_5006, STOP_2447) //
-				.addFromTo(MDirectionType.EAST.intValue(), STOP_5006, STOP_2002) //
-				.addFromTo(MDirectionType.EAST.intValue(), STOP_5006, STOP_2549) //
-				.addBothFromTo(MDirectionType.EAST.intValue(), STOP_5006, STOP_5006) //
-				.addBothFromTo(MDirectionType.EAST.intValue(), STOP_5006, STOP_5003) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "2306", "8601") //
+				.addFromTo(MDirectionType.WEST.intValue(), "2159", "5006") //
+				.addFromTo(MDirectionType.WEST.intValue(), "2002", "5006") //
+				.addFromTo(MDirectionType.WEST.intValue(), "2159", "2001") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "8601", "2306") //
+				.addFromTo(MDirectionType.EAST.intValue(), "5006", "2447") //
+				.addFromTo(MDirectionType.EAST.intValue(), "5006", "2002") //
+				.addFromTo(MDirectionType.EAST.intValue(), "5006", "2549") //
+				.addBothFromTo(MDirectionType.EAST.intValue(), "5006", "5006") //
+				.addBothFromTo(MDirectionType.EAST.intValue(), "5006", "5003") //
 		);
 		map.put(5l, new RouteTripSpec(5l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WESTMOUNT, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLISEUM) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_1202, STOP_5210) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_5210, STOP_1202) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "1202", "5210") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "5210", "1202") //
 		);
 		map.put(6l, new RouteTripSpec(6l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_3215, STOP_2203) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_2203, STOP_3215) //
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_2109, STOP_2109) // 2203
+				.addALLFromTo(MDirectionType.WEST.intValue(), "3215", "2203") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "2203", "3215") //
+				.addBothFromTo(MDirectionType.WEST.intValue(), "2109", "2109") // 2203
 		);
 		map.put(7l, new RouteTripSpec(7l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_2002, STOP_5108) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_5108, STOP_2002) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "2002", "5108") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "5108", "2002") //
 		);
 		map.put(10l, new RouteTripSpec(10l, //
 				0, MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW, //
 				1, MTrip.HEADSIGN_TYPE_STRING, COLISEUM) //
-				.addALLFromTo(0, STOP_1203, STOP_7101) //
-				.addALLFromTo(1, STOP_7101, STOP_1203) //
+				.addALLFromTo(0, "1203", "7101") //
+				.addALLFromTo(1, "7101", "1203") //
 		);
 		map.put(11l, new RouteTripSpec(11l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_7106, STOP_7007) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_7007, STOP_7106) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "7106", "7007") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "7007", "7106") //
 		);
 		map.put(13l, new RouteTripSpec(13l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_7011, STOP_6005) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_6005, STOP_7011) //
+				.addALLFromTo(MDirectionType.NORTH.intValue(), "7011", "6005") //
+				.addALLFromTo(MDirectionType.SOUTH.intValue(), "6005", "7011") //
 		);
 		map.put(14l, new RouteTripSpec(14l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN_JASPER_PLACE) //
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_5103, STOP_5103) // 5011
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_1123, STOP_5011) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_5011, STOP_1999) //
+				.addBothFromTo(MDirectionType.WEST.intValue(), "5103", "5103") // 5011
+				.addALLFromTo(MDirectionType.WEST.intValue(), "1123", "5011") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "5011", "1999") //
 		);
 		map.put(15l, new RouteTripSpec(15l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_3208, STOP_6317) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_2117, STOP_1532) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_6317, STOP_3208) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_1532, STOP_2118) //
+				.addALLFromTo(MDirectionType.NORTH.intValue(), "3208", "6317") //
+				.addFromTo(MDirectionType.NORTH.intValue(), "2117", "1532") //
+				.addALLFromTo(MDirectionType.SOUTH.intValue(), "6317", "3208") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "1532", "2118") //
 		);
 		map.put(16l, new RouteTripSpec(16l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, GOV_CTR) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_1310, STOP_7011) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_6314, STOP_6009) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_7011, STOP_6009) //
-				.addFromTo(MDirectionType.NORTH.intValue(), STOP_1310, STOP_6009) // 7011
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_6124, STOP_7003) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_6009, STOP_7011) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_6009, STOP_6317) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_6009, STOP_7003) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_6009, STOP_6124) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_6124, STOP_7003) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_7003, STOP_1310) //
-				.addFromTo(MDirectionType.SOUTH.intValue(), STOP_6009, STOP_1310) // 7003
-				.addBothFromTo(MDirectionType.SOUTH.intValue(), STOP_6009, STOP_6009) // 7011
+				.addFromTo(MDirectionType.NORTH.intValue(), "1310", "7011") //
+				.addFromTo(MDirectionType.NORTH.intValue(), "6314", "6009") //
+				.addFromTo(MDirectionType.NORTH.intValue(), "7011", "6009") //
+				.addFromTo(MDirectionType.NORTH.intValue(), "1310", "6009") // 7011
+				.addFromTo(MDirectionType.SOUTH.intValue(), "6124", "7003") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "6009", "7011") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "6009", "6317") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "6009", "7003") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "6009", "6124") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "6124", "7003") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "7003", "1310") //
+				.addFromTo(MDirectionType.SOUTH.intValue(), "6009", "1310") // 7003
+				.addBothFromTo(MDirectionType.SOUTH.intValue(), "6009", "6009") // 7011
 		);
 		map.put(17l, new RouteTripSpec(17l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_4203, STOP_2206) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_2206, STOP_4203) //
+				.addALLFromTo(MDirectionType.NORTH.intValue(), "4203", "2206") //
+				.addALLFromTo(MDirectionType.SOUTH.intValue(), "2206", "4203") //
 		);
 		map.put(23l, new RouteTripSpec(23l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_3217, STOP_5001) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_5001, STOP_3217) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "3217", "5001") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "5001", "3217") //
 		);
 		map.put(24l, new RouteTripSpec(24l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_4201, STOP_4806) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_4806, STOP_4201) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "4201", "4806") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "4806", "4201") //
 		);
 		map.put(31l, new RouteTripSpec(31l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_4813, STOP_2208) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_2208, STOP_4813) //
+				.addALLFromTo(MDirectionType.NORTH.intValue(), "4813", "2208") //
+				.addALLFromTo(MDirectionType.SOUTH.intValue(), "2208", "4813") //
 		);
 		map.put(32l, new RouteTripSpec(32l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, BRANDER_GDNS, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, S_CAMPUS_FT_EDM) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_2705, STOP_4025) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_4025, STOP_2705) //
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_2705, STOP_2705) // 4025
+				.addALLFromTo(MDirectionType.WEST.intValue(), "2705", "4025") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "4025", "2705") //
+				.addBothFromTo(MDirectionType.WEST.intValue(), "2705", "2705") // 4025
 		);
 		map.put(33l, new RouteTripSpec(33l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MEADOWS) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_3713, STOP_5001) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_5001, STOP_3713) //
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_2205, STOP_2205) // 5001
-				.addBothFromTo(MDirectionType.WEST.intValue(), STOP_2205, STOP_2215) // 5001
+				.addALLFromTo(MDirectionType.WEST.intValue(), "3713", "5001") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "5001", "3713") //
+				.addBothFromTo(MDirectionType.WEST.intValue(), "2205", "2205") // 5001
+				.addBothFromTo(MDirectionType.WEST.intValue(), "2205", "2215") // 5001
 		);
 		map.put(34l, new RouteTripSpec(34l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_2209, STOP_4809) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_4809, STOP_2209) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "2209", "4809") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "4809", "2209") //
 		);
 		map.put(35l, new RouteTripSpec(35l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_4215, STOP_4812) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_4812, STOP_4215) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "4215", "4812") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "4812", "4215") //
 		);
 		map.put(36l, new RouteTripSpec(36l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, S_CAMPUS_FT_EDM, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_4211, STOP_2703) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_2703, STOP_4211) //
+				.addALLFromTo(MDirectionType.NORTH.intValue(), "4211", "2703") //
+				.addALLFromTo(MDirectionType.SOUTH.intValue(), "2703", "4211") //
 		);
 		map.put(37l, new RouteTripSpec(37l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_4215, STOP_4802) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_4802, STOP_4215) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "4215", "4802") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "4802", "4215") //
 		);
 		map.put(38l, new RouteTripSpec(38l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), STOP_2207, STOP_4805) //
-				.addALLFromTo(MDirectionType.EAST.intValue(), STOP_4805, STOP_2207) //
+				.addALLFromTo(MDirectionType.WEST.intValue(), "2207", "4805") //
+				.addALLFromTo(MDirectionType.EAST.intValue(), "4805", "2207") //
 		);
 		map.put(39l, new RouteTripSpec(39l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, RUTHERFORD) //
-				.addALLFromTo(MDirectionType.NORTH.intValue(), STOP_9242, STOP_4213) //
-				.addALLFromTo(MDirectionType.SOUTH.intValue(), STOP_4213, STOP_9242) //
+				.addALLFromTo(MDirectionType.NORTH.intValue(), "9242", "4213") //
+				.addALLFromTo(MDirectionType.SOUTH.intValue(), "4213", "9242") //
 		);
 		ALL_ROUTE_TRIPS = map;
 	}
@@ -1945,10 +1850,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, HashSet<MTrip> splitTrips, GSpec gtfs) {
+	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, HashSet<MTrip> splitTrips, GSpec routeGTFS) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
 			RouteTripSpec rts = ALL_ROUTE_TRIPS2.get(mRoute.id);
-			return splitTripStop(gTrip, gTripStop, gtfs, //
+			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, //
 					rts.getBeforeAfterStopIds(0), //
 					rts.getBeforeAfterStopIds(1), //
 					rts.getBeforeAfterBothStopIds(0), //
@@ -1959,7 +1864,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		}
 		if (ALL_ROUTE_TRIPS.containsKey(mRoute.id)) {
 			RouteTripSpec rts = ALL_ROUTE_TRIPS.get(mRoute.id);
-			return splitTripStop(gTrip, gTripStop, gtfs, //
+			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, //
 					rts.getBeforeAfterStopIds(0), //
 					rts.getBeforeAfterStopIds(1), //
 					rts.getBeforeAfterBothStopIds(0), //
@@ -1968,433 +1873,19 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					rts.getTripId(1), //
 					rts.getAllBeforeAfterStopIds());
 		}
-		return super.splitTripStop(mRoute, gTrip, gTripStop, splitTrips, gtfs);
-	}
-
-	private Pair<Long[], Integer[]> splitTripStop(GTrip gTrip, GTripStop gTripStop, GSpec gtfs, List<String> stopIdsTowards1, List<String> stopIdsTowards2,
-			List<String> stopIdsTowardsBoth21, List<String> stopIdsTowardsBoth12, long tidTowardsStop1, long tidTowardsStop2, List<String> allBeforeAfterStopIds) {
-		String beforeAfter = getBeforeAfterStopId(gtfs, gTrip, gTripStop, stopIdsTowards1, stopIdsTowards2, stopIdsTowardsBoth21, stopIdsTowardsBoth12,
-				allBeforeAfterStopIds);
-		if (stopIdsTowards1.contains(beforeAfter)) {
-			return new Pair<Long[], Integer[]>(new Long[] { tidTowardsStop1 }, new Integer[] { gTripStop.getStopSequence() });
-		} else if (stopIdsTowards2.contains(beforeAfter)) {
-			return new Pair<Long[], Integer[]>(new Long[] { tidTowardsStop2 }, new Integer[] { gTripStop.getStopSequence() });
-		} else if (stopIdsTowardsBoth21.contains(beforeAfter)) {
-			return new Pair<Long[], Integer[]>(new Long[] { tidTowardsStop2, tidTowardsStop1 }, new Integer[] { 1, gTripStop.getStopSequence() });
-		} else if (stopIdsTowardsBoth12.contains(beforeAfter)) {
-			return new Pair<Long[], Integer[]>(new Long[] { tidTowardsStop1, tidTowardsStop2 }, new Integer[] { 1, gTripStop.getStopSequence() });
-		}
-		System.out.printf("\n%s: Unexptected trip stop to split %s.\n", gTrip.getRouteId(), gTripStop);
-		System.exit(-1);
-		return null;
-	}
-
-	private String getBeforeAfterStopId(GSpec gtfs, GTrip gTrip, GTripStop gTripStop, List<String> stopIdsTowards1, List<String> stopIdsTowards2,
-			List<String> stopIdsTowardsBoth21, List<String> stopIdsTowardsBoth12, List<String> allBeforeAfterStopIds) {
-		int gStopMaxSequence = -1;
-		ArrayList<String> afterStopIds = new ArrayList<String>();
-		ArrayList<Integer> afterStopSequence = new ArrayList<Integer>();
-		ArrayList<String> beforeStopIds = new ArrayList<String>();
-		ArrayList<Integer> beforeStopSequence = new ArrayList<Integer>();
-		ArrayList<Pair<String, Integer>> gTripStops = new ArrayList<Pair<String, Integer>>(); // DEBUG
-		for (GStopTime gStopTime : gtfs.getStopTimes(gTrip.getTripId(), null, null)) {
-			if (!gStopTime.trip_id.equals(gTrip.getTripId())) {
-				continue;
-			}
-			gTripStops.add(new Pair<String, Integer>(gStopTime.getStopId(), gStopTime.getStopSequence())); // DEBUG
-			if (allBeforeAfterStopIds.contains(gStopTime.getStopId())) {
-				if (gStopTime.getStopSequence() < gTripStop.getStopSequence()) {
-					beforeStopIds.add(gStopTime.getStopId());
-					beforeStopSequence.add(gStopTime.getStopSequence());
-				}
-				if (gStopTime.getStopSequence() > gTripStop.getStopSequence()) {
-					afterStopIds.add(gStopTime.getStopId());
-					afterStopSequence.add(gStopTime.getStopSequence());
-				}
-			}
-			if (gStopTime.getStopSequence() > gStopMaxSequence) {
-				gStopMaxSequence = gStopTime.getStopSequence();
-			}
-		}
-		if (allBeforeAfterStopIds.contains(gTripStop.getStopId())) {
-			if (gTripStop.getStopSequence() == 1) {
-				beforeStopIds.add(gTripStop.getStopId());
-				beforeStopSequence.add(gTripStop.getStopSequence());
-			}
-			if (gTripStop.getStopSequence() == gStopMaxSequence) {
-				afterStopIds.add(gTripStop.getStopId());
-				afterStopSequence.add(gTripStop.getStopSequence());
-			}
-		}
-		String beforeAfterStopIdCandidate = findBeforeAfterStopIdCandidate(gTripStop, stopIdsTowards1, stopIdsTowards2, stopIdsTowardsBoth21,
-				stopIdsTowardsBoth12, afterStopIds, afterStopSequence, beforeStopIds, beforeStopSequence);
-		if (beforeAfterStopIdCandidate != null) {
-			return beforeAfterStopIdCandidate;
-		}
-		System.out.printf("\n%s: Unexpected trip (befores:%s|afters:%s) %s.\n", gTrip.getRouteId(), beforeStopIds, afterStopIds, gTrip);
-		System.exit(-1);
-		return null;
-	}
-
-	private String findBeforeAfterStopIdCandidate(GTripStop gTripStop, List<String> stopIdsTowards1, List<String> stopIdsTowards2,
-			List<String> stopIdsTowardsBoth21, List<String> stopIdsTowardsBoth12, ArrayList<String> afterStopIds, ArrayList<Integer> afterStopSequence,
-			ArrayList<String> beforeStopIds, ArrayList<Integer> beforeStopSequence) {
-		String beforeAfterStopIdCurrent;
-		Pair<Integer, String> beforeAfterStopIdCandidate = null;
-		String beforeStopId, afterStopId;
-		for (int b = 0; b < beforeStopIds.size(); b++) {
-			beforeStopId = beforeStopIds.get(b);
-			for (int a = 0; a < afterStopIds.size(); a++) {
-				afterStopId = afterStopIds.get(a);
-				beforeAfterStopIdCurrent = beforeStopId + DASH + afterStopId;
-				if (stopIdsTowards1.contains(beforeAfterStopIdCurrent) || stopIdsTowards2.contains(beforeAfterStopIdCurrent)) {
-					int size = Math.max(afterStopSequence.get(a) - gTripStop.getStopSequence(), gTripStop.getStopSequence() - beforeStopSequence.get(b));
-					if (beforeAfterStopIdCandidate == null || size < beforeAfterStopIdCandidate.first) {
-						beforeAfterStopIdCandidate = new Pair<Integer, String>(size, beforeAfterStopIdCurrent);
-					}
-				}
-			}
-		}
-		for (int b = 0; b < beforeStopIds.size(); b++) {
-			beforeStopId = beforeStopIds.get(b);
-			beforeAfterStopIdCurrent = beforeStopId + DASH + ALL;
-			if (stopIdsTowards1.contains(beforeAfterStopIdCurrent) || stopIdsTowards2.contains(beforeAfterStopIdCurrent)) {
-				int size = gTripStop.getStopSequence() - beforeStopSequence.get(b);
-				if (beforeAfterStopIdCandidate == null || size < beforeAfterStopIdCandidate.first) {
-					beforeAfterStopIdCandidate = new Pair<Integer, String>(size, beforeAfterStopIdCurrent);
-				}
-			}
-		}
-		for (int a = 0; a < afterStopIds.size(); a++) {
-			afterStopId = afterStopIds.get(a);
-			beforeAfterStopIdCurrent = ALL + DASH + afterStopId;
-			if (stopIdsTowards1.contains(beforeAfterStopIdCurrent) || stopIdsTowards2.contains(beforeAfterStopIdCurrent)) {
-				int size = afterStopSequence.get(a) - gTripStop.getStopSequence();
-				if (beforeAfterStopIdCandidate == null || size < beforeAfterStopIdCandidate.first) {
-					beforeAfterStopIdCandidate = new Pair<Integer, String>(size, beforeAfterStopIdCurrent);
-				}
-			}
-		}
-		for (int b = 0; b < beforeStopIds.size(); b++) {
-			beforeStopId = beforeStopIds.get(b);
-			for (int a = 0; a < afterStopIds.size(); a++) {
-				afterStopId = afterStopIds.get(a);
-				if (gTripStop.getStopId().equals(beforeStopId) && gTripStop.getStopId().equals(afterStopId)) {
-					continue;
-				}
-				beforeAfterStopIdCurrent = beforeStopId + DASH + afterStopId;
-				if (stopIdsTowardsBoth21.contains(beforeAfterStopIdCurrent) || stopIdsTowardsBoth12.contains(beforeAfterStopIdCurrent)) {
-					int size = Math.max(afterStopSequence.get(a) - gTripStop.getStopSequence(), gTripStop.getStopSequence() - beforeStopSequence.get(b));
-					if (beforeAfterStopIdCandidate == null || size < beforeAfterStopIdCandidate.first) {
-						beforeAfterStopIdCandidate = new Pair<Integer, String>(size, beforeAfterStopIdCurrent);
-					}
-				}
-			}
-		}
-		for (int b = 0; b < beforeStopIds.size(); b++) {
-			beforeStopId = beforeStopIds.get(b);
-			beforeAfterStopIdCurrent = beforeStopId + DASH + ALL;
-			if (stopIdsTowardsBoth21.contains(beforeAfterStopIdCurrent) || stopIdsTowardsBoth12.contains(beforeAfterStopIdCurrent)) {
-				int size = gTripStop.getStopSequence() - beforeStopSequence.get(b);
-				if (beforeAfterStopIdCandidate == null || size < beforeAfterStopIdCandidate.first) {
-					beforeAfterStopIdCandidate = new Pair<Integer, String>(size, beforeAfterStopIdCurrent);
-				}
-			}
-		}
-		for (int a = 0; a < afterStopIds.size(); a++) {
-			afterStopId = afterStopIds.get(a);
-			beforeAfterStopIdCurrent = ALL + DASH + afterStopId;
-			if (stopIdsTowardsBoth21.contains(beforeAfterStopIdCurrent) || stopIdsTowardsBoth12.contains(beforeAfterStopIdCurrent)) {
-				int size = afterStopSequence.get(a) - gTripStop.getStopSequence();
-				if (beforeAfterStopIdCandidate == null || size < beforeAfterStopIdCandidate.first) {
-					beforeAfterStopIdCandidate = new Pair<Integer, String>(size, beforeAfterStopIdCurrent);
-				}
-			}
-		}
-		return beforeAfterStopIdCandidate == null ? null : beforeAfterStopIdCandidate.second;
-	}
-
-	private String getFirstStopId(GSpec gtfs, GTrip gTrip) {
-		int gStopMaxSequence = -1;
-		String gStopId = null;
-		for (GStopTime gStopTime : gtfs.getStopTimes(gTrip.getTripId(), null, null)) {
-			if (!gStopTime.trip_id.equals(gTrip.getTripId())) {
-				continue;
-			}
-			if (gStopTime.getStopSequence() > gStopMaxSequence) {
-				gStopMaxSequence = gStopTime.getStopSequence();
-			}
-			if (gStopTime.getStopSequence() != 1) {
-				continue;
-			}
-			gStopId = gStopTime.getStopId();
-		}
-		if (StringUtils.isEmpty(gStopId)) {
-			System.out.printf("\n%s: Unexpected trip (no 1st stop) %s.\n", gTrip.getRouteId(), gTrip);
-			System.exit(-1);
-		}
-		return gStopId;
-	}
-
-	private String getLastStopId(GSpec gtfs, GTrip gTrip) {
-		int gStopMaxSequence = -1;
-		String gStopId = null;
-		for (GStopTime gStopTime : gtfs.getStopTimes(gTrip.getTripId(), null, null)) {
-			if (!gStopTime.trip_id.equals(gTrip.getTripId())) {
-				continue;
-			}
-			if (gStopTime.getStopSequence() < gStopMaxSequence) {
-				continue;
-			}
-			gStopMaxSequence = gStopTime.getStopSequence();
-			gStopId = gStopTime.getStopId();
-		}
-		if (StringUtils.isEmpty(gStopId)) {
-			System.out.printf("\n%s: Unexpected trip (no last stop) %s.\n", gTrip.getRouteId(), gTrip);
-			System.exit(-1);
-		}
-		return gStopId;
+		return super.splitTripStop(mRoute, gTrip, gTripStop, splitTrips, routeGTFS);
 	}
 
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
-		return MSpec.cleanLabel(tripHeadsign);
+		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
 	@Override
 	public String cleanStopName(String gStopName) {
-		gStopName = MSpec.cleanStreetTypes(gStopName);
-		gStopName = MSpec.cleanNumbers(gStopName);
-		return MSpec.cleanLabel(gStopName);
+		gStopName = CleanUtils.cleanStreetTypes(gStopName);
+		gStopName = CleanUtils.cleanNumbers(gStopName);
+		return CleanUtils.cleanLabel(gStopName);
 	}
 
-	private static class RouteTripSpec {
-
-		private long routeId;
-		private int directionId0;
-		private int headsignType0;
-		private String headsignString0;
-		private int directionId1;
-		private int headsignType1;
-		private String headsignString1;
-
-		public RouteTripSpec(long routeId, int directionId0, int headsignType0, String headsignString0, int directionId1, int headsignType1,
-				String headsignString1) {
-			this.routeId = routeId;
-			this.directionId0 = directionId0;
-			this.headsignType0 = headsignType0;
-			this.headsignString0 = headsignString0;
-			this.directionId1 = directionId1;
-			this.headsignType1 = headsignType1;
-			this.headsignString1 = headsignString1;
-		}
-
-		private ArrayList<String> allBeforeAfterStopIds = new ArrayList<String>();
-
-		public ArrayList<String> getAllBeforeAfterStopIds() {
-			return this.allBeforeAfterStopIds;
-		}
-
-		public long getTripId(int directionIndex) {
-			switch (directionIndex) {
-			case 0:
-				return MTrip.getNewId(this.routeId, this.directionId0);
-			case 1:
-				return MTrip.getNewId(this.routeId, this.directionId1);
-			default:
-				System.out.printf("\n%s: getTripId() > Unexpected direction index: %s.\n", this.routeId, directionIndex);
-				System.exit(-1);
-				return -1l;
-			}
-		}
-
-		private HashMap<Integer, ArrayList<String>> beforeAfterStopIds = new HashMap<Integer, ArrayList<String>>();
-
-		public ArrayList<String> getBeforeAfterStopIds(int directionIndex) {
-			switch (directionIndex) {
-			case 0:
-				if (!this.beforeAfterStopIds.containsKey(this.directionId0)) {
-					this.beforeAfterStopIds.put(this.directionId0, new ArrayList<String>());
-				}
-				return this.beforeAfterStopIds.get(this.directionId0);
-			case 1:
-				if (!this.beforeAfterStopIds.containsKey(this.directionId1)) {
-					this.beforeAfterStopIds.put(this.directionId1, new ArrayList<String>());
-				}
-				return this.beforeAfterStopIds.get(this.directionId1);
-			default:
-				System.out.printf("\n%s: getBeforeAfterStopIds() > Unexpected direction index: %s.\n", this.routeId, directionIndex);
-				System.exit(-1);
-				return null;
-			}
-		}
-
-		private HashMap<Integer, ArrayList<String>> beforeAfterBothStopIds = new HashMap<Integer, ArrayList<String>>();
-
-		public ArrayList<String> getBeforeAfterBothStopIds(int directionIndex) {
-			switch (directionIndex) {
-			case 0:
-				if (!this.beforeAfterBothStopIds.containsKey(this.directionId0)) {
-					this.beforeAfterBothStopIds.put(this.directionId0, new ArrayList<String>());
-				}
-				return this.beforeAfterBothStopIds.get(this.directionId0);
-			case 1:
-				if (!this.beforeAfterBothStopIds.containsKey(this.directionId1)) {
-					this.beforeAfterBothStopIds.put(this.directionId1, new ArrayList<String>());
-				}
-				return this.beforeAfterBothStopIds.get(this.directionId1);
-			default:
-				System.out.printf("\n%s: getBeforeAfterBothStopIds() > Unexpected direction index: %s.\n", this.routeId, directionIndex);
-				System.exit(-1);
-				return null;
-			}
-		}
-
-		private HashSet<MTrip> allTrips = null;
-
-		public HashSet<MTrip> getAllTrips() {
-			if (this.allTrips == null) {
-				initAllTrips();
-			}
-			return this.allTrips;
-		}
-
-		private void initAllTrips() {
-			this.allTrips = new HashSet<MTrip>();
-			if (this.headsignType0 == MTrip.HEADSIGN_TYPE_STRING) {
-				this.allTrips.add(new MTrip(this.routeId).setHeadsignString(this.headsignString0, this.directionId0));
-			} else if (this.headsignType0 == MTrip.HEADSIGN_TYPE_DIRECTION) {
-				this.allTrips.add(new MTrip(this.routeId).setHeadsignDirection(MDirectionType.parse(this.headsignString0)));
-			} else {
-				System.out.printf("\n%s: Unexpected trip type %s for %s.\n", this.routeId, this.headsignType0, this.routeId);
-				System.exit(-1);
-			}
-			if (this.headsignType1 == MTrip.HEADSIGN_TYPE_STRING) {
-				this.allTrips.add(new MTrip(this.routeId).setHeadsignString(this.headsignString1, this.directionId1));
-			} else if (this.headsignType1 == MTrip.HEADSIGN_TYPE_DIRECTION) {
-				this.allTrips.add(new MTrip(this.routeId).setHeadsignDirection(MDirectionType.parse(this.headsignString1)));
-			} else {
-				System.out.printf("\n%s: Unexpected trip type %s for %s\n.", this.routeId, this.headsignType1, this.routeId);
-				System.exit(-1);
-			}
-		}
-
-		public RouteTripSpec addTripSort(int directionId, List<String> sortedStopIds) {
-			this.allSortedStopIds.put(directionId, sortedStopIds);
-			ArrayList<String> beforeStopIds = new ArrayList<String>();
-			String currentStopId = null;
-			for (int i = 0; i < sortedStopIds.size(); i++) {
-				currentStopId = sortedStopIds.get(i);
-				for (int b = beforeStopIds.size() - 1; b >= 0; b--) {
-					addFromTo(directionId, beforeStopIds.get(b), currentStopId);
-				}
-				beforeStopIds.add(currentStopId);
-			}
-			return this;
-		}
-
-		private HashMap<Integer, List<String>> allSortedStopIds = new HashMap<Integer, List<String>>();
-
-		public RouteTripSpec compileBothTripSort() {
-			List<String> sortedStopIds0 = this.allSortedStopIds.get(this.directionId0);
-			List<String> sortedStopIds1 = this.allSortedStopIds.get(this.directionId1);
-			for (int i0 = 0; i0 < sortedStopIds0.size(); i0++) {
-				String stopId0 = sortedStopIds0.get(i0);
-				for (int i1 = 0; i1 < sortedStopIds1.size(); i1++) {
-					String stopId1 = sortedStopIds1.get(i1);
-					if (stopId0.equals(stopId1) || //
-							sortedStopIds0.contains(stopId1) || sortedStopIds1.contains(stopId0)) {
-						continue;
-					}
-					addBothFromTo(this.directionId0, stopId0, stopId1);
-					addBothFromTo(this.directionId1, stopId1, stopId0);
-				}
-			}
-			return this;
-		}
-
-		public int compare(long routeId, List<MTripStop> list1, List<MTripStop> list2, MTripStop ts1, MTripStop ts2, GStop ts1GStop, GStop ts2GStop) {
-			int directionId;
-			if (MTrip.getNewId(this.routeId, this.directionId0) == ts1.getTripId()) {
-				directionId = this.directionId0;
-			} else if (MTrip.getNewId(this.routeId, this.directionId1) == ts1.getTripId()) {
-				directionId = this.directionId1;
-			} else {
-				System.out.printf("\n%s: Unexpected trip ID %s", routeId, ts1.getTripId());
-				System.exit(-1);
-				return 0;
-			}
-			List<String> sortedStopIds = this.allSortedStopIds.get(directionId);
-			if (!sortedStopIds.contains(ts1GStop.stop_code) || !sortedStopIds.contains(ts2GStop.stop_code)) {
-				System.out.printf("\n%s: Unexpected stop IDs %s AND/OR %s", routeId, ts1GStop.stop_code, ts2GStop.stop_code);
-				System.out.printf("\n%s: Not in sorted list: %s", routeId, sortedStopIds);
-				System.exit(-1);
-				return 0;
-			}
-			int ts1StopIndex = sortedStopIds.indexOf(ts1GStop.stop_code);
-			int ts2StopIndex = sortedStopIds.indexOf(ts2GStop.stop_code);
-			return ts2StopIndex - ts1StopIndex;
-		}
-
-		public RouteTripSpec addALLFromTo(int directionId, String stopIdFrom, String stopIdTo) {
-			addBeforeAfter(directionId, stopIdFrom + DASH + ALL);
-			addBeforeAfter(directionId, ALL + DASH + stopIdTo);
-			addBeforeAfter(directionId, stopIdFrom + DASH + stopIdTo);
-			this.allBeforeAfterStopIds.add(stopIdFrom);
-			this.allBeforeAfterStopIds.add(stopIdTo);
-			return this;
-		}
-
-		public RouteTripSpec addAllFrom(int directionId, String stopIdFrom) {
-			addBeforeAfter(directionId, stopIdFrom + DASH + ALL);
-			this.allBeforeAfterStopIds.add(stopIdFrom);
-			return this;
-		}
-
-		public RouteTripSpec addAllTo(int directionId, String stopIdTo) {
-			addBeforeAfter(directionId, ALL + DASH + stopIdTo);
-			this.allBeforeAfterStopIds.add(stopIdTo);
-			return this;
-		}
-
-		public RouteTripSpec addFromTo(int directionId, String stopIdFrom, String stopIdTo) {
-			addBeforeAfter(directionId, stopIdFrom + DASH + stopIdTo);
-			this.allBeforeAfterStopIds.add(stopIdFrom);
-			this.allBeforeAfterStopIds.add(stopIdTo);
-			return this;
-		}
-
-		private void addBeforeAfter(int directionId, String beforeAfterStopId) {
-			if (!this.beforeAfterStopIds.containsKey(directionId)) {
-				this.beforeAfterStopIds.put(directionId, new ArrayList<String>());
-			}
-			this.beforeAfterStopIds.get(directionId).add(beforeAfterStopId);
-		}
-
-		public RouteTripSpec addAllBothFrom(int directionId, String stopIdFrom) {
-			addBeforeAfterBoth(directionId, stopIdFrom + DASH + ALL);
-			this.allBeforeAfterStopIds.add(stopIdFrom);
-			return this;
-		}
-
-		public RouteTripSpec addAllBothTo(int directionId, String stopIdTo) {
-			addBeforeAfterBoth(directionId, ALL + DASH + stopIdTo);
-			this.allBeforeAfterStopIds.add(stopIdTo);
-			return this;
-		}
-
-		public RouteTripSpec addBothFromTo(int directionId, String stopIdFrom, String stopIdTo) {
-			addBeforeAfterBoth(directionId, stopIdFrom + DASH + stopIdTo);
-			this.allBeforeAfterStopIds.add(stopIdFrom);
-			this.allBeforeAfterStopIds.add(stopIdTo);
-			return this;
-		}
-
-		private void addBeforeAfterBoth(int directionId, String beforeAfterStopId) {
-			if (!this.beforeAfterBothStopIds.containsKey(directionId)) {
-				this.beforeAfterBothStopIds.put(directionId, new ArrayList<String>());
-			}
-			this.beforeAfterBothStopIds.get(directionId).add(beforeAfterStopId);
-		}
-	}
 }
