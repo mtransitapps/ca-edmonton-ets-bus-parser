@@ -203,18 +203,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			} else if ("1561".equals(ts1GStop.stop_code) && "1454".equals(ts2GStop.stop_code)) {
 				return +1;
 			}
-		} else if (ts1.getTripId() == 401l) { // 2 East to Capilano
-			if ("2447".equals(ts1GStop.stop_code) && "2549".equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if ("2549".equals(ts1GStop.stop_code) && "2447".equals(ts2GStop.stop_code)) {
-				return +1;
-			}
-		} else if (ts1.getTripId() == 402l) { // 2 West to Lewis
-			if ("5003".equals(ts1GStop.stop_code) && "5006".equals(ts2GStop.stop_code)) {
-				return -1;
-			} else if ("5006".equals(ts1GStop.stop_code) && "5003".equals(ts2GStop.stop_code)) {
-				return +1;
-			}
 		} else if (ts1.getTripId() == 601l) { // 6 East to Mill Woods
 			if ("2102".equals(ts1GStop.stop_code) && "2109".equals(ts2GStop.stop_code)) {
 				return -1;
@@ -358,20 +346,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CROMDALE) //
 				.addALLFromTo(MDirectionType.WEST.intValue(), "1147", "5106") //
 				.addALLFromTo(MDirectionType.EAST.intValue(), "5106", "1147") //
-		);
-		map.put(4l, new RouteTripSpec(4l, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEM_LEWIS_FARMS, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CAPILANO) //
-				.addALLFromTo(MDirectionType.WEST.intValue(), "2306", "8601") //
-				.addFromTo(MDirectionType.WEST.intValue(), "2159", "5006") //
-				.addFromTo(MDirectionType.WEST.intValue(), "2002", "5006") //
-				.addFromTo(MDirectionType.WEST.intValue(), "2159", "2001") //
-				.addALLFromTo(MDirectionType.EAST.intValue(), "8601", "2306") //
-				.addFromTo(MDirectionType.EAST.intValue(), "5006", "2447") //
-				.addFromTo(MDirectionType.EAST.intValue(), "5006", "2002") //
-				.addFromTo(MDirectionType.EAST.intValue(), "5006", "2549") //
-				.addBothFromTo(MDirectionType.EAST.intValue(), "5006", "5006") //
-				.addBothFromTo(MDirectionType.EAST.intValue(), "5006", "5003") //
 		);
 		map.put(5l, new RouteTripSpec(5l, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WESTMOUNT, //
@@ -531,6 +505,26 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { "2301", "2267", "1620", "5101", "5301", "5009" })) //
 				.compileBothTripSort());
+		map2.put(4l, new RouteTripSpec(4l, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEM_LEWIS_FARMS, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CAPILANO) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "2306", "2159", "2891", "2001",
+						/* + */"2660"/* + */, //
+								"2702",
+								/* + */"5006"/* + */, //
+								"5003", "8601" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "8601", "5006", "2714", "2002",
+						/* + */"2834"/* + */, //
+								/* + */"2065"/* + */, //
+								/* + */"2196"/* + */, //
+								/* + */"2159"/* + */, //
+								/* + */"2593"/* + */, //
+								/* + */"2549"/* + */, //
+								"2447", "2306" })) //
+				.compileBothTripSort());
+		//
 		map2.put(5l, new RouteTripSpec(5l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLISEUM, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WESTMOUNT) //
@@ -735,6 +729,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "2216", "2973", "2712" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { "2712", "2511", "2216" })) //
+				.compileBothTripSort());
+		map2.put(54l, new RouteTripSpec(54l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, S_CAMPUS_FT_EDM) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "2710", "2001" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "2001", "2710" })) //
 				.compileBothTripSort());
 		map2.put(55l, new RouteTripSpec(55l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, S_CAMPUS_FT_EDM, //
