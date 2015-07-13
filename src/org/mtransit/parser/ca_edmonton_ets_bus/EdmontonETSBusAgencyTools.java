@@ -1,9 +1,11 @@
 package org.mtransit.parser.ca_edmonton_ets_bus;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
@@ -313,7 +315,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public HashSet<MTrip> splitTrip(MRoute mRoute, GTrip gTrip, GSpec gtfs) {
+	public ArrayList<MTrip> splitTrip(MRoute mRoute, GTrip gTrip, GSpec gtfs) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
 			return ALL_ROUTE_TRIPS2.get(mRoute.id).getAllTrips();
 		}
@@ -1851,7 +1853,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
-	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, HashSet<MTrip> splitTrips, GSpec routeGTFS) {
+	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, ArrayList<MTrip> splitTrips, GSpec routeGTFS) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
 			RouteTripSpec rts = ALL_ROUTE_TRIPS2.get(mRoute.id);
 			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, //
@@ -1882,8 +1884,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
+	private static final Pattern TRANSIT_CENTER = Pattern.compile("((^|\\W){1}(transit center)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String TRANSIT_CENTER_REPLACEMENT = "TC";
+
 	@Override
 	public String cleanStopName(String gStopName) {
+		gStopName = TRANSIT_CENTER.matcher(gStopName).replaceAll(TRANSIT_CENTER_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		gStopName = CleanUtils.cleanNumbers(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
