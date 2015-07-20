@@ -182,6 +182,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String HAWKS_RDG = "Hawks Rdg";
 	private static final String WINTERBURN = "Winterburn";
 	private static final String WINTERBURN_IND = WINTERBURN + " Ind";
+	private static final String HOLYROOD = "Holyrood";
+	private static final String STRATHCONA_IND = "Strathcona Ind";
+	private static final String RITCHIE = "Ritchie";
+	private static final String AMBLESIDE = "Ambleside";
+	private static final String WINDERMERE = "Windermere";
+	private static final String _104_82 = "104 / 82";
+	private static final String BELGRAVIA = "Belgravia";
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
@@ -1921,6 +1928,66 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "1208", "1070", "1001", "1491", "1002" })) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { "1002", "1340", "1208" })) //
+				.compileBothTripSort());
+		map2.put(321l, new RouteTripSpec(321l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILLGATE, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, STRATHCONA_IND) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "3733", "3744", "2106" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "2106",
+						/* + */"3481"/* + */, //
+								"3733" })) //
+				.compileBothTripSort());
+		map2.put(322l, new RouteTripSpec(322l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, HOLYROOD, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, BONNIE_DOON) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "2808", "2585", "2841",
+						/* + */"2246"/* + */, //
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] {
+						/* + */"2246"/* + */, //
+								"2613", "2808" })) //
+				.compileBothTripSort());
+		map2.put(323l, new RouteTripSpec(323l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, BONNIE_DOON, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, RITCHIE) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "2419", "2313", "2808" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "2808",
+						/* + */"2294"/* + */, //
+								"2419" })) //
+				.compileBothTripSort());
+		map2.put(324l, new RouteTripSpec(324l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, AMBLESIDE) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "9092", "9630", "4201" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "4201", "9635", "9092" })) //
+				.compileBothTripSort());
+		map2.put(325l, new RouteTripSpec(325l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WINDERMERE) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "9632", "9526", "4801" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "4801",
+						/* + */"4938"/* + */, //
+								"9632" })) //
+				.compileBothTripSort());
+		map2.put(327l, new RouteTripSpec(327l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, _104_82, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, BELGRAVIA) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { "2765", "2680", "2821" })) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { "2821",
+						/* + */"2648"/* + */, //
+								"2765" })) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
