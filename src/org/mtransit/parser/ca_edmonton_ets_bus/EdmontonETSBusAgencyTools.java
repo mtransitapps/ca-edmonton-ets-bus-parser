@@ -1991,10 +1991,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"8989", "8967", "8943", "8975", "8927", "8163", "8846", "8975", "8945", //
 								"8941", "5105"
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"5105", "8904", //
 								"8694", "8927", "8163", "8846", "8975", "8927", "8163", "8955", "8938", "8989"
+						})) //
 				.compileBothTripSort());
 		map2.put(318l, new RouteTripSpec(318l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ABBOTTSFIELD, //
