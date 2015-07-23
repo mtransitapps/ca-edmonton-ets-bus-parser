@@ -82,7 +82,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public long getRouteId(GRoute gRoute) {
-		return Long.parseLong(gRoute.route_short_name); // using route short name as route ID
+		return Long.parseLong(gRoute.getRouteShortName()); // using route short name as route ID
 	}
 
 	private static final String SLASH = " / ";
@@ -200,11 +200,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String _84_111 = "84 / 111";
 	private static final String VLY_ZOO_FT_EDM = VLY_ZOO + SLASH + FT_EDM;
 	private static final String ALL_WEATHER_WINDOWS = "All Weather Windows";
-	private static final String AIRPORT = "YEG Airport";
+	private static final String AIRPORT = "Int Airport";
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
-		String gRouteLongName = gRoute.route_long_name;
+		String gRouteLongName = gRoute.getRouteLongName();
 		gRouteLongName = CleanUtils.cleanStreetTypes(gRouteLongName);
 		return CleanUtils.cleanLabel(gRouteLongName);
 	}
@@ -224,86 +224,86 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			return ALL_ROUTE_TRIPS2.get(routeId).compare(routeId, list1, list2, ts1, ts2, ts1GStop, ts2GStop);
 		}
 		if (ts1.getTripId() == 201l) { // 2 East
-			if ("1454".equals(ts1GStop.stop_code) && "1561".equals(ts2GStop.stop_code)) {
+			if ("1454".equals(ts1GStop.getStopCode()) && "1561".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("1561".equals(ts1GStop.stop_code) && "1454".equals(ts2GStop.stop_code)) {
+			} else if ("1561".equals(ts1GStop.getStopCode()) && "1454".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 601l) { // 6 East to Mill Woods
-			if ("2102".equals(ts1GStop.stop_code) && "2109".equals(ts2GStop.stop_code)) {
+			if ("2102".equals(ts1GStop.getStopCode()) && "2109".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("2109".equals(ts1GStop.stop_code) && "2102".equals(ts2GStop.stop_code)) {
+			} else if ("2109".equals(ts1GStop.getStopCode()) && "2102".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 602l) { // 6 West to Southgate
-			if ("2630".equals(ts1GStop.stop_code) && "2888".equals(ts2GStop.stop_code)) {
+			if ("2630".equals(ts1GStop.getStopCode()) && "2888".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("2888".equals(ts1GStop.stop_code) && "2630".equals(ts2GStop.stop_code)) {
+			} else if ("2888".equals(ts1GStop.getStopCode()) && "2630".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1102l) { // 11 West to Northgate
-			if ("7007".equals(ts1GStop.stop_code) && "7008".equals(ts2GStop.stop_code)) {
+			if ("7007".equals(ts1GStop.getStopCode()) && "7008".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("7008".equals(ts1GStop.stop_code) && "7007".equals(ts2GStop.stop_code)) {
+			} else if ("7008".equals(ts1GStop.getStopCode()) && "7007".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1203l) { // 12 North to Northgate
-			if ("1369".equals(ts1GStop.stop_code) && "1128".equals(ts2GStop.stop_code)) {
+			if ("1369".equals(ts1GStop.getStopCode()) && "1128".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("1128".equals(ts1GStop.stop_code) && "1369".equals(ts2GStop.stop_code)) {
+			} else if ("1128".equals(ts1GStop.getStopCode()) && "1369".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
-			if ("1059".equals(ts1GStop.stop_code) && "1730".equals(ts2GStop.stop_code)) {
+			if ("1059".equals(ts1GStop.getStopCode()) && "1730".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("1730".equals(ts1GStop.stop_code) && "1059".equals(ts2GStop.stop_code)) {
+			} else if ("1730".equals(ts1GStop.getStopCode()) && "1059".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1204l) { // 12 South to Downtown
-			if ("1113".equals(ts1GStop.stop_code) && "1109".equals(ts2GStop.stop_code)) {
+			if ("1113".equals(ts1GStop.getStopCode()) && "1109".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("1109".equals(ts1GStop.stop_code) && "1113".equals(ts2GStop.stop_code)) {
+			} else if ("1109".equals(ts1GStop.getStopCode()) && "1113".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1401l) { // 14 East to WEM
-			if ("5293".equals(ts1GStop.stop_code) && "5103".equals(ts2GStop.stop_code)) {
+			if ("5293".equals(ts1GStop.getStopCode()) && "5103".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("5103".equals(ts1GStop.stop_code) && "5293".equals(ts2GStop.stop_code)) {
+			} else if ("5103".equals(ts1GStop.getStopCode()) && "5293".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1503l) { // 15 North to Eaux Claire
-			if ("1476".equals(ts1GStop.stop_code) && "1532".equals(ts2GStop.stop_code)) {
+			if ("1476".equals(ts1GStop.getStopCode()) && "1532".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("1532".equals(ts1GStop.stop_code) && "1476".equals(ts2GStop.stop_code)) {
+			} else if ("1532".equals(ts1GStop.getStopCode()) && "1476".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 1604l) { // 16 South to Gov Ctr
-			if ("7003".equals(ts1GStop.stop_code) && "7011".equals(ts2GStop.stop_code)) {
+			if ("7003".equals(ts1GStop.getStopCode()) && "7011".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("7011".equals(ts1GStop.stop_code) && "7003".equals(ts2GStop.stop_code)) {
+			} else if ("7011".equals(ts1GStop.getStopCode()) && "7003".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 3301l) { // 33 East to Meadows
-			if ("2215".equals(ts1GStop.stop_code) && "2205".equals(ts2GStop.stop_code)) {
+			if ("2215".equals(ts1GStop.getStopCode()) && "2205".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("2205".equals(ts1GStop.stop_code) && "2215".equals(ts2GStop.stop_code)) {
+			} else if ("2205".equals(ts1GStop.getStopCode()) && "2215".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 3801l) { // 38 East to Southgate
-			if ("4938".equals(ts1GStop.stop_code) && "4519".equals(ts2GStop.stop_code)) {
+			if ("4938".equals(ts1GStop.getStopCode()) && "4519".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("4519".equals(ts1GStop.stop_code) && "4938".equals(ts2GStop.stop_code)) {
+			} else if ("4519".equals(ts1GStop.getStopCode()) && "4938".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 3802l) { // 38 West to Leger
-			if ("4320".equals(ts1GStop.stop_code) && "4373".equals(ts2GStop.stop_code)) {
+			if ("4320".equals(ts1GStop.getStopCode()) && "4373".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("4373".equals(ts1GStop.stop_code) && "4320".equals(ts2GStop.stop_code)) {
+			} else if ("4373".equals(ts1GStop.getStopCode()) && "4320".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		} else if (ts1.getTripId() == 4403l) { // 44 North to Southgate
-			if ("4210".equals(ts1GStop.stop_code) && "4204".equals(ts2GStop.stop_code)) {
+			if ("4210".equals(ts1GStop.getStopCode()) && "4204".equals(ts2GStop.getStopCode())) {
 				return -1;
-			} else if ("4204".equals(ts1GStop.stop_code) && "4210".equals(ts2GStop.stop_code)) {
+			} else if ("4204".equals(ts1GStop.getStopCode()) && "4210".equals(ts2GStop.getStopCode())) {
 				return +1;
 			}
 		}
@@ -368,10 +368,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(UNIVERSITY, MDirectionType.NORTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 747l) {
-			// TODO better (2 stops impossible to split w/ current algorithm)
-			mTrip.setHeadsignString(AIRPORT, MDirectionType.SOUTH.intValue());
-			return;
 		} else if (mRoute.id == 757l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
@@ -2290,32 +2286,26 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { "2706", "4476", "5015" })) //
 				.compileBothTripSort());
+		map2.put(747l, new RouteTripSpec(747l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, AIRPORT) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "9747", "4216" })) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "4216", "9747" })) //
+				.compileBothTripSort() //
+				.addBothFromTo(MDirectionType.SOUTH.intValue(), "4216", "4216") //
+				.addBothFromTo(MDirectionType.NORTH.intValue(), "9747", "9747")); //
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
 	@Override
 	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, ArrayList<MTrip> splitTrips, GSpec routeGTFS) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
-			RouteTripSpec rts = ALL_ROUTE_TRIPS2.get(mRoute.id);
-			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, //
-					rts.getBeforeAfterStopIds(0), //
-					rts.getBeforeAfterStopIds(1), //
-					rts.getBeforeAfterBothStopIds(0), //
-					rts.getBeforeAfterBothStopIds(1), //
-					rts.getTripId(0), //
-					rts.getTripId(1), //
-					rts.getAllBeforeAfterStopIds());
+			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS2.get(mRoute.id));
 		}
 		if (ALL_ROUTE_TRIPS.containsKey(mRoute.id)) {
-			RouteTripSpec rts = ALL_ROUTE_TRIPS.get(mRoute.id);
-			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, //
-					rts.getBeforeAfterStopIds(0), //
-					rts.getBeforeAfterStopIds(1), //
-					rts.getBeforeAfterBothStopIds(0), //
-					rts.getBeforeAfterBothStopIds(1), //
-					rts.getTripId(0), //
-					rts.getTripId(1), //
-					rts.getAllBeforeAfterStopIds());
+			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS.get(mRoute.id));
 		}
 		return super.splitTripStop(mRoute, gTrip, gTripStop, splitTrips, routeGTFS);
 	}
@@ -2325,12 +2315,16 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
-	private static final Pattern TRANSIT_CENTER = Pattern.compile("((^|\\W){1}(transit center)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String TRANSIT_CENTER_REPLACEMENT = "TC";
+	private static final Pattern TRANSIT_CENTER = Pattern.compile("((^|\\W){1}(transit center|transit centre)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String TRANSIT_CENTER_REPLACEMENT = "$2TC$4";
+
+	private static final Pattern INTERNATIONAL = Pattern.compile("((^|\\W){1}(international)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String INTERNATIONAL_REPLACEMENT = "$2Int$4";
 
 	@Override
 	public String cleanStopName(String gStopName) {
 		gStopName = TRANSIT_CENTER.matcher(gStopName).replaceAll(TRANSIT_CENTER_REPLACEMENT);
+		gStopName = INTERNATIONAL.matcher(gStopName).replaceAll(INTERNATIONAL_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		gStopName = CleanUtils.cleanNumbers(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
