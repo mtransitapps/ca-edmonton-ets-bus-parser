@@ -212,6 +212,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(gRouteLongName);
 	}
 
+	@Override
+	public String getRouteShortName(GRoute gRoute) {
+		return super.getRouteShortName(gRoute); // do not change, used by real-time API
+	}
+
 	private static final String AGENCY_COLOR_BLUE = "2D3092"; // BLUE (from Wikipedia SVG)
 
 	private static final String AGENCY_COLOR = AGENCY_COLOR_BLUE;
@@ -2256,4 +2261,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(gStopName);
 	}
 
+	@Override
+	public String getStopCode(GStop gStop) {
+		return super.getStopCode(gStop); // do not change, used by real-time API
+	}
 }
