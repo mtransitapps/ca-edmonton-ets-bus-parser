@@ -2252,10 +2252,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern INTERNATIONAL = Pattern.compile("((^|\\W){1}(international)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String INTERNATIONAL_REPLACEMENT = "$2Int$4";
 
+	private static final Pattern EDMONTON_ = Pattern.compile("((^|\\W){1}(edmonton)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String EDMONTON_REPLACEMENT = "$2" + EDMONTON + "$4";
+
 	@Override
 	public String cleanStopName(String gStopName) {
 		gStopName = TRANSIT_CENTER.matcher(gStopName).replaceAll(TRANSIT_CENTER_REPLACEMENT);
 		gStopName = INTERNATIONAL.matcher(gStopName).replaceAll(INTERNATIONAL_REPLACEMENT);
+		gStopName = EDMONTON_.matcher(gStopName).replaceAll(EDMONTON_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		gStopName = CleanUtils.cleanNumbers(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
