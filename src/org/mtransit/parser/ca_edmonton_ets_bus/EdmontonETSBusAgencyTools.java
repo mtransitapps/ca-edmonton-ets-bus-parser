@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.Pair;
@@ -89,9 +91,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String FORT = "Ft";
 	private static final String _AVE = " Ave";
 	private static final String _ST = " St";
-	private static final String EDMONTON = "Edm";
-	private static final String EDM_GARRISON = EDMONTON + " Garrison";
-	private static final String WEST_EDM_MALL = "WEM"; // "West " + EDMONTON + " Mall";
+	private static final String EDM = "Edm";
+	private static final String EDM_GARRISON = EDM + " Garrison";
+	private static final String WEST_EDM_MALL = "WEM"; // "West " + EDM + " Mall";
 	private static final String LEWIS_FARMS = "Lewis Farms";
 	private static final String WEM_LEWIS_FARMS = WEST_EDM_MALL + SLASH + LEWIS_FARMS;
 	private static final String CAPILANO = "Capilano"; // "Capilano Transit Ctr"
@@ -109,7 +111,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String _82_ST_132_AVE = "82" + _ST + " / 132" + _AVE;
 	private static final String _82_ST_132_AVE_EAUX_CLAIRES = _82_ST_132_AVE + SLASH + EAUX_CLAIRES;
 	private static final String DOWNTOWN = "Downtown";
-	private static final String DOWNTOWN_NORTHGATE = DOWNTOWN + SLASH + NORTHGATE;
 	private static final String MILLGATE = "Millgate";
 	private static final String MILLGATE_DOWNTOWN = MILLGATE + SLASH + DOWNTOWN;
 	private static final String DOWNTOWN_JASPER_PLACE = DOWNTOWN + SLASH + JASPER_PLACE;
@@ -122,7 +123,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String YELLOWBIRD_CENTURY_PK = YELLOWBIRD + SLASH + CENTURY_PK;
 	private static final String MILL_WOODS_CENTURY_PK = MILL_WOODS + SLASH + CENTURY_PK;
 	private static final String S_CAMPUS = "S Campus";
-	private static final String FT_EDM = FORT + " " + EDMONTON;
+	private static final String FT_EDM = FORT + " " + EDM;
 	private static final String S_CAMPUS_FT_EDM = S_CAMPUS + SLASH + FT_EDM;
 	private static final String LEGER = "Leger";
 	private static final String BRANDER_GDNS = "Brander Gdns";
@@ -135,7 +136,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String RUTHERFORD = "Rutherford";
 	private static final String RUTHERFORD_BLACKBURN = RUTHERFORD + SLASH + BLACKBURN;
 	private static final String SOUTHWOOD = "Southwood";
-	private static final String S_EDM_COMMON = "S " + EDMONTON + " Common";
+	private static final String S_EDM_COMMON = "S " + EDM + " Common";
 	private static final String PARKALLEN = "Parkallen";
 	private static final String WINDSOR_PK = "Windsor Pk";
 	private static final String PARKALLEN_WINDSOR_PK = PARKALLEN + SLASH + WINDSOR_PK;
@@ -160,7 +161,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String STADIUM = "Stadium";
 	private static final String LAGO_LINDO = "Lago Lindo";
 	private static final String MONTROSE = "Montrose";
-	private static final String KINGSWAY_RAH = "Kingsway RAH";
+	private static final String KINGSWAY = "Kingsway";
 	private static final String KING_EDWARD_PK = "King Edward Pk";
 	private static final String RAPPERSWILL = "Rapperswill";
 	private static final String OXFORD = "Oxford";
@@ -198,7 +199,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String ORCHARDS = "Orchards";
 	private static final String QUARRY_RDG = "Quarry Rdg";
 	private static final String HOLLICK_KENYON = "Hollick Kenyon";
-	private static final String EDM_WASTE_MGT_CTR = EDMONTON + " Waste Mgt Ctr";
+	private static final String EDM_WASTE_MGT_CTR = EDM + " Waste Mgt Ctr";
 	private static final String VLY_ZOO = "Vly Zoo";
 	private static final String _84_ST_111_AVE = "84" + _ST + " / 111" + _AVE;
 	private static final String VLY_ZOO_FT_EDM = VLY_ZOO + SLASH + FT_EDM;
@@ -316,7 +317,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("1814".equals(firstStopId) && "1110".equals(lastStopId)) {
-				mTrip.setHeadsignString(KINGSWAY_RAH, MDirectionType.WEST.intValue());
+				mTrip.setHeadsignString(KINGSWAY, MDirectionType.WEST.intValue());
 				return;
 			}
 		} else if (mRoute.id == 853l) {
@@ -562,7 +563,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "7003", "6369", "1109", "1113", "1251" })) //
 				.compileBothTripSort());
 		map2.put(14l, new RouteTripSpec(14l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN_JASPER_PLACE, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { "5011", "5024",
@@ -1379,7 +1380,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(140l, new RouteTripSpec(140l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LAGO_LINDO, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN_NORTHGATE) //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { "1251", "1040", "7003", "7010", "7377" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
@@ -1403,7 +1404,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(143l, new RouteTripSpec(143l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MONTROSE, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, KINGSWAY_RAH) //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, KINGSWAY) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { "1111", "1476", "1441", "1205", "1260" })) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
@@ -1737,7 +1738,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"7907" })) //
 				.compileBothTripSort());
 		map2.put(197l, new RouteTripSpec(197l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, EDM, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { "8737", "8785", "8761", "5415", //
@@ -1858,7 +1859,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(309l, new RouteTripSpec(309l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KINGSWAY_RAH, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KINGSWAY, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, RIVERDALE) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { "1254", "1620", "1960", "1746", "1978", "1104", "1366" })) //
@@ -2241,8 +2242,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return super.splitTripStop(mRoute, gTrip, gTripStop, splitTrips, routeGTFS);
 	}
 
+	private static final Pattern N_A_I_T = Pattern.compile("((^|\\W){1}(n a i t)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String N_A_I_T_REPLACEMENT = "$2NAIT$4";
+
+	private static final Pattern SUPER_EXPRESS = Pattern.compile("((^|\\W){1}(super express)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+
+	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[\\d]+\\s)", Pattern.CASE_INSENSITIVE);
+
+	private static final String VIA = " via ";
+
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
+		int indexOfVIA = tripHeadsign.toLowerCase(Locale.ENGLISH).indexOf(VIA);
+		if (indexOfVIA >= 0) {
+			tripHeadsign = tripHeadsign.substring(indexOfVIA); // remove trip head sign from stop head sign
+		}
+		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
+		tripHeadsign = TRANSIT_CENTER.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
+		tripHeadsign = SUPER_EXPRESS.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
+		tripHeadsign = EDMONTON.matcher(tripHeadsign).replaceAll(EDMONTON_REPLACEMENT);
+		tripHeadsign = N_A_I_T.matcher(tripHeadsign).replaceAll(N_A_I_T_REPLACEMENT);
+		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
+		tripHeadsign = CleanUtils.cleanNumbers(tripHeadsign);
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
@@ -2252,14 +2273,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern INTERNATIONAL = Pattern.compile("((^|\\W){1}(international)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String INTERNATIONAL_REPLACEMENT = "$2Int$4";
 
-	private static final Pattern EDMONTON_ = Pattern.compile("((^|\\W){1}(edmonton)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String EDMONTON_REPLACEMENT = "$2" + EDMONTON + "$4";
+	private static final Pattern EDMONTON = Pattern.compile("((^|\\W){1}(edmonton)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String EDMONTON_REPLACEMENT = "$2" + EDM + "$4";
 
 	@Override
 	public String cleanStopName(String gStopName) {
 		gStopName = TRANSIT_CENTER.matcher(gStopName).replaceAll(TRANSIT_CENTER_REPLACEMENT);
 		gStopName = INTERNATIONAL.matcher(gStopName).replaceAll(INTERNATIONAL_REPLACEMENT);
-		gStopName = EDMONTON_.matcher(gStopName).replaceAll(EDMONTON_REPLACEMENT);
+		gStopName = EDMONTON.matcher(gStopName).replaceAll(EDMONTON_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		gStopName = CleanUtils.cleanNumbers(gStopName);
 		return CleanUtils.cleanLabel(gStopName);
