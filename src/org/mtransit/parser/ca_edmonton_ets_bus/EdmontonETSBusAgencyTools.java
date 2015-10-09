@@ -316,6 +316,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(SOUTH_CAMPUS, MDirectionType.NORTH.intValue());
 				return;
 			}
+		} else if (mRoute.getId() == 725l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("1111".equals(firstStopId) && "2002".equals(lastStopId)) {
