@@ -286,13 +286,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void setTripHeadsign(MRoute mRoute, MTrip mTrip, GTrip gTrip, GSpec gtfs) {
-		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
+		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (ALL_ROUTE_TRIPS.containsKey(mRoute.id)) {
+		if (ALL_ROUTE_TRIPS.containsKey(mRoute.getId())) {
 			return; // split
 		}
-		if (mRoute.id == 167l) {
+		if (mRoute.getId() == 167l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("7496".equals(firstStopId) && "6447".equals(lastStopId)) {
@@ -302,84 +302,83 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(_95_ST_132_AVE, MDirectionType.SOUTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 597l) {
+		} else if (mRoute.getId() == 597l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("5208".equals(firstStopId) && "8740".equals(lastStopId)) {
 				mTrip.setHeadsignString(ALL_WEATHER_WINDOWS, MDirectionType.WEST.intValue());
 				return;
 			}
-		} else if (mRoute.id == 697l) {
+		} else if (mRoute.getId() == 697l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("4810".equals(firstStopId) && "2703".equals(lastStopId)) {
 				mTrip.setHeadsignString(SOUTH_CAMPUS, MDirectionType.NORTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 725l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("1111".equals(firstStopId) && "2002".equals(lastStopId)) {
 				mTrip.setHeadsignString(UNIVERSITY, MDirectionType.SOUTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 738l) {
+		} else if (mRoute.getId() == 738l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("4815".equals(firstStopId) && "2709".equals(lastStopId)) {
 				mTrip.setHeadsignString(LEGER, MDirectionType.SOUTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 739l) {
+		} else if (mRoute.getId() == 739l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("2745".equals(firstStopId) && "2002".equals(lastStopId)) {
 				mTrip.setHeadsignString(UNIVERSITY, MDirectionType.NORTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 757l) {
+		} else if (mRoute.getId() == 757l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if (("6369".equals(firstStopId) || "5201".equals(firstStopId)) && "2002".equals(lastStopId)) {
 				mTrip.setHeadsignString(UNIVERSITY, MDirectionType.SOUTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 837l) {
+		} else if (mRoute.getId() == 837l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("1814".equals(firstStopId) && "1110".equals(lastStopId)) {
 				mTrip.setHeadsignString(KINGSWAY, MDirectionType.WEST.intValue());
 				return;
 			}
-		} else if (mRoute.id == 853l) {
+		} else if (mRoute.getId() == 853l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("7496".equals(firstStopId) && "7008".equals(lastStopId)) {
 				mTrip.setHeadsignString(NORTHGATE, MDirectionType.WEST.intValue());
 				return;
 			}
-		} else if (mRoute.id == 862l) {
+		} else if (mRoute.getId() == 862l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if (("2487".equals(firstStopId) || "2915".equals(firstStopId)) && "3185".equals(lastStopId)) {
 				mTrip.setHeadsignString(BURNEWOOD, MDirectionType.SOUTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 869l) {
+		} else if (mRoute.getId() == 869l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if (("2487".equals(firstStopId) || "2915".equals(firstStopId)) && "3217".equals(lastStopId)) {
 				mTrip.setHeadsignString(MILL_WOODS, MDirectionType.SOUTH.intValue());
 				return;
 			}
-		} else if (mRoute.id == 926l) {
+		} else if (mRoute.getId() == 926l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if ("2001".equals(firstStopId) && "5006".equals(lastStopId)) {
 				mTrip.setHeadsignString(WEST_EDM_MALL, MDirectionType.WEST.intValue());
 				return;
 			}
-		} else if (mRoute.id == 966l) {
+		} else if (mRoute.getId() == 966l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
 			if (("2487".equals(firstStopId) || "2915".equals(firstStopId)) && "3217".equals(lastStopId)) {
@@ -392,7 +391,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			tripHeadsign = null;
 		}
 		if (StringUtils.isEmpty(tripHeadsign)) {
-			if (mRoute.id >= 600l && mRoute.id <= 999l) {
+			if (mRoute.getId() >= 600l && mRoute.getId() <= 999l) {
 				tripHeadsign = "School Special";
 			} else {
 				System.out.printf("\nUnexpected trip to split %s\n", gTrip);
@@ -404,11 +403,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public ArrayList<MTrip> splitTrip(MRoute mRoute, GTrip gTrip, GSpec gtfs) {
-		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
-			return ALL_ROUTE_TRIPS2.get(mRoute.id).getAllTrips();
+		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
+			return ALL_ROUTE_TRIPS2.get(mRoute.getId()).getAllTrips();
 		}
-		if (ALL_ROUTE_TRIPS.containsKey(mRoute.id)) {
-			return ALL_ROUTE_TRIPS.get(mRoute.id).getAllTrips();
+		if (ALL_ROUTE_TRIPS.containsKey(mRoute.getId())) {
+			return ALL_ROUTE_TRIPS.get(mRoute.getId()).getAllTrips();
 		}
 		return super.splitTrip(mRoute, gTrip, gtfs);
 	}
@@ -1809,8 +1808,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"6676", "6853", "6442", "7011" })) //
 				.compileBothTripSort());
 		map2.put(169l, new RouteTripSpec(169l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.id, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.id) //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.NORTH.getId(), //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.SOUTH.getId()) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { "7015", "6001", "6166", "6194" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
@@ -2556,11 +2555,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public Pair<Long[], Integer[]> splitTripStop(MRoute mRoute, GTrip gTrip, GTripStop gTripStop, ArrayList<MTrip> splitTrips, GSpec routeGTFS) {
-		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.id)) {
-			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS2.get(mRoute.id));
+		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
+			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS2.get(mRoute.getId()));
 		}
-		if (ALL_ROUTE_TRIPS.containsKey(mRoute.id)) {
-			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS.get(mRoute.id));
+		if (ALL_ROUTE_TRIPS.containsKey(mRoute.getId())) {
+			return SplitUtils.splitTripStop(mRoute, gTrip, gTripStop, routeGTFS, ALL_ROUTE_TRIPS.get(mRoute.getId()));
 		}
 		return super.splitTripStop(mRoute, gTrip, gTripStop, splitTrips, routeGTFS);
 	}
