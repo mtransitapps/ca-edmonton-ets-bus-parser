@@ -659,7 +659,16 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "3208", "2117", "2551", "1457", "1532", "1476", "6317" })) //
+						Arrays.asList(new String[] { "3208", "2117", "2551", "1457",
+						/* + */"1986"/* + */, //
+								/* + */"1626"/* + */, //
+								/* + */"1713"/* + */, //
+								/* + */"1850"/* + */, //
+								/* + */"1989"/* + */, //
+								"6317",
+								/* + */"1227"/* + */, //
+								/* + */"1532"/* + */, //
+								"1476", "6317" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { "6317", "1532", "1542", "2188", "2118", "3208" })) //
 				.compileBothTripSort());
@@ -1432,16 +1441,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WESTMOUNT, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE) // MISTATIM_IND
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "5106", "6231", //
-								"6844",
-								/* + */"5385"/* + */, //
-								"5207" })) //
+						Arrays.asList(new String[] { "5106", "6231", "5207" })) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "5207", "6345", //
-								"6727", //
-								"6639",
-								/* + */"6844"/* + */, //
-								"5106" })) //
+						Arrays.asList(new String[] { "5207",
+						/* + */"6113"/* + */, //
+								/* + */"6137"/* + */, //
+								/* + */"66137"/* + */, //
+								/* + */"6765"/* + */, //
+								"6781", "5106" })) //
 				.compileBothTripSort());
 		map2.put(125l, new RouteTripSpec(125l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
