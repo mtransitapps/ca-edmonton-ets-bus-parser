@@ -395,13 +395,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(SOUTH_CAMPUS, MDirectionType.NORTH.intValue());
 				return;
 			}
-		} else if (mRoute.getId() == 725l) {
-			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
-			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
-			if ("1111".equals(firstStopId) && "2002".equals(lastStopId)) {
-				mTrip.setHeadsignString(UNIVERSITY, MDirectionType.SOUTH.intValue());
-				return;
-			}
 		} else if (mRoute.getId() == 739l) {
 			String firstStopId = SplitUtils.getFirstStopId(mRoute, gtfs, gTrip);
 			String lastStopId = SplitUtils.getLastStopId(mRoute, gtfs, gTrip);
@@ -2838,6 +2831,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "4941", "4319", "4815", "4069", "2974" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
+				.compileBothTripSort());
+		map2.put(725l, new RouteTripSpec(725l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KINGSWAY, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { "" })) // NO STOPS
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { "1111", "1857", "1939", "2002" })) //
 				.compileBothTripSort());
 		map2.put(726l, new RouteTripSpec(726l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ROSS_SHEPPARD, //
