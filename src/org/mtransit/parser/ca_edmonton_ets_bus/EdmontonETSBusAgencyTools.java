@@ -637,26 +637,38 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(9l, new RouteTripSpec(9l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) // CENTURY_PK
-				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "4216", "2218", "2623", //
-								"2658", //
-								"2830", "2657", //
-								"2852", "2875", "1591", "1108",
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) // SOUTHGATE
+				.addTripSort(MDirectionType.NORTH.intValue(), // CENTURY_PK / SOUTHGATE => EAUX_CLAIRES
+						Arrays.asList(new String[] { //
+						"4216", // Century Park Transit Centre
+								/* + */"4491", "4054"/* + */, //
+								"2218", // Southgate Transit Centre
+								/* + */"2623"/* + */, //
+								/* + */"2658"/* + */, //
+								/* + */"2830", "2657"/* + */, //
+								/* + */"2852"/* + */, //
+								"2875", "1591", "1108", //
 								/* + */"1476"/* + */, //
-								"7016",
-								"6317" })) //
-				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "6317",
-								"7001",
+								"7016", //
+								"6317"
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), // EAUX_CLAIRES => CENTURY_PK / SOUTHGATE
+						Arrays.asList(new String[] { //
+						"6317", //
+								"7001", //
 								/* + */"1532"/* + */, //
 								"1104", "1142", "2690", //
-								"2784", //
-								"2631", "2833", //
-								"-22352", //
-								"2773", //
-								/* + */"2218"/* + */, //
-								"2206", "4216" })) //
+								/* + */"2784"/* + */, // ==
+								/* + */"2631"/* + */,// ==
+								/* + */"2895"/* + */, /* + */"2833"/* + */, // !=
+								/* + */"-22352"/* + */, // !=
+								/* + */"2773"/* + */, // ==
+								/* + */"2639"/* + */, //
+								"2218", // Southgate Transit Centre
+								"2206", // Southgate Transit Centre
+								/* + */"4490", "4444"/* + */, //
+								"4216" // Century Park Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(11l, new RouteTripSpec(11l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW, //
