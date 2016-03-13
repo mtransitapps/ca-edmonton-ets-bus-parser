@@ -1751,19 +1751,82 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { "6303", "7011", "6369", "5203", "5102", "5007" })) //
 				.compileBothTripSort());
-		map2.put(
-				151l, // TODO not perfect but close enough
-				new RouteTripSpec(151l, MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
-						MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KING_EDWARD_PK)
-						.addTripSort(
-								MDirectionType.NORTH.intValue(), //
-								Arrays.asList(new String[] { "2253", "2432", "1251", "1591", "1966", "1262", "1346", "1128", "1237", "1043", "6496", "6421",
-										"6571", "6328", "6222", "6132", "6333", "6553", "6020", "6487", "6251", "6004" })) //
-						.addTripSort(
-								MDirectionType.SOUTH.intValue(), //
-								Arrays.asList(new String[] { "6004", "6426", "6020", "6224", "6234", "6349", "6542", "6434", "6568", "6366", "6292", "6123",
-										"6383", "6116", "6266", "6496", "6280", "1372", "1064", "1966", "1262", "1243", "1142", "1251", "2079", "2253" })) //
-						.compileBothTripSort());
+		map2.put(151l, new RouteTripSpec(151l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KING_EDWARD_PK) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { // CASTLE_DOWNS
+						"2253", // 71 Street & 77 Avenue
+								"2581", // ++ Argyll Road & 76 Avenue
+								"2325", // 73 Street & 76 Avenue
+								"2025", "2538", "2234", "2473", "2546", "2582", "2166", "2548", "2520", "2087", //
+								"2432", // 91 Street & 82 Avenue
+								"2036", "2089", "2031", "2596", "2384", "2133", "2382", "1648", "1544", "1495", //
+								"1591", // 101 Street & MacDonald Drive
+								"1251", // both direction // 102 Street & MacDonald Drive
+								"1346", // 101 Street & 101A Avenue
+								"1128", // ?? 101 Street & 102 Avenue
+								"1492", // 101 Street & 103A Avenue nearside
+								"1019", // 101 Street & 104 Avenue
+								"1587", // 101 Street & 105A Avenue
+								"1554", "1477", "1529", "1233", "1484", "1348", //
+								"1594", // 101 Street & 115 Avenue
+								"1237", // 101 Street & 117 Avenue
+								"1040", // 97 Street & 118 Avenue
+								"1126", "1523", "1559", //
+								"1043", // != 97 St & Yellowhead Tr Nearside
+								"6496", // both direction // 97 Street & 128 Avenue
+								"6421", // != 102 Street & 127 Avenue
+								"6250", //
+								"6284", "6221", "6181", "6363", "6295", "6193", "6167", "6581", "6253", "6555", "6454", //
+								"6571", // == 125 Street & 129 Avenue
+								"6333", // 127 Street & 129 Avenue
+								"6328", // s 127 Street & 129 Avenue
+								"6222", // != 129 Street & 129 Avenue
+								"6132", // != 129 Street & 132 Avenue
+								"6487", // != 127 Street & 132 Avenue
+								"6251", "6142", //
+								"6243", // == 127 Street & 137 Avenue
+								"6625", // != 127 Street & 140 Avenue
+								"6474", // == 123A Street & 137 Avenue
+								"6462", // both direction // 127 Street & 137 Avenue
+								"6360", // both direction // 127 Street & 135 Avenue
+								"6426", // both direction // 127 Street & 133 Avenue
+								"6553", // ++ 127 Street & 131 Avenue
+								"6020", // == 127 Street & 132 Avenue
+								"6434", // != 129 Street & 129 Avenue
+								"6292", // both direction // 127 Street & 129 Avenue
+								"6179", // != 127 Street & 142 Avenue
+								"6856", // 139 Street & 153 Avenue
+								"6445", // ++ Castle Downs Road & 153 Avenue
+								"6004" // Castle Downs Transit Centre
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { // KING_EDWARD_PK
+						"6004", // Castle Downs Transit Centre
+								"6766", // Castle Downs Road & 153 Avenue
+								"6111", // ++ 137 Street & 153 Avenue
+								"6563", // == 127 Street & 140 Avenue
+								"6462", // both direction // 127 Street & 137 Avenue
+								"6360", // both direction // 127 Street & 135 Avenue
+								"6426", // both direction // 127 Street & 133 Avenue
+								"6568", // == 127 Street & 132 Avenue
+								"6366", // != 127 Street & 131 Avenue
+								"6292", // both direction // 127 Street & 129 Avenue
+								"6123", // != 125 Street & 129 Avenue
+								"6116", // != 103 Street & 127 Avenue
+								"6496", // both direction // 97 Street & 128 Avenue
+								"6266", // 101 Street & 128 Avenue
+								"1372", // 101 Street & 117 Avenue
+								"1243", // == 101 Street & 101A Avenue
+								"1142", // != 101 Street & MacDonald Drive nearside
+								"1251", // != // both direction // 102 Street & MacDonald Drive
+								"2079", // 91 Street & 83 Avenue
+								"2349", // 83 Street & 76 Avenue
+								"2555", // ++ 71 Street & 80 Avenue
+								"2253" // 71 Street & 77 Avenue
+						})) //
+				.compileBothTripSort());
 		map2.put(152l, new RouteTripSpec(152l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, BELVEDERE, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE) //
