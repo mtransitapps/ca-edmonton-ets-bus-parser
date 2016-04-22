@@ -693,7 +693,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1032", // !=
 								"1109", // ==
 								"1886", // !=
-								"-11329", //
+								"11307", //
 								"1821", //
 								"1669", //
 								"6122", //
@@ -706,6 +706,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"6289", //
 								"6372", //
 								"-11330", //
+								"1932", "1847", //
 								"1778", //
 								"1847", "1951", //
 								"1109", "1533", "1476", //
@@ -2689,6 +2690,18 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "7151",
 						/* + */"7808"/* + */, //
 								"7905" })) //
+				.compileBothTripSort());
+		map2.put(398l, new RouteTripSpec(398l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.EAST.getId(), //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_DIRECTION, MDirectionType.WEST.getId()) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"1867", "1672", "1669" //
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"1669", "1066", "1867" //
+						})) //
 				.compileBothTripSort());
 		map2.put(399l, new RouteTripSpec(399l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLISEUM, //
