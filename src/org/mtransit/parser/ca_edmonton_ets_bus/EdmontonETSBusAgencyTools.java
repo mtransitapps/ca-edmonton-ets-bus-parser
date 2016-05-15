@@ -2728,15 +2728,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"8730", "8743", "8737", "8785", "8761", //
-								"8169", //
+						"5389", //
+								"8730", "8743", "8737", "8785", //
+								"8761", //
 								/* + */"5415"/* + */, //
-								"1890", "1983", "1479" //
+								"8169", //
+								"-5473", //
+								"-5575", //
+								"5210", // ==
+								"-11330", //
+								"1890", //
+								"-1372", //
+								"1366", //
+								"1983", "1479" //
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"1570", "1679", "1860",
-						/* + */"5389"/* + */, //
+						"1570", "1679", "1915", //
+								"-1237", //
+								"1860", //
+								"-11307", //
+								"5210", //
+								"-5164", //
 								"8169", //
 								"8730" //
 						})) //
