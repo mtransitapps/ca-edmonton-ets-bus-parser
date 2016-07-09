@@ -1606,8 +1606,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5202", // Westmount Transit Centre
 								"1107", // END // Kingsway RAH Transit Centre // 1129
 								"1110", // "1024", "1377", // Kingsway RAH Transit Centre // 1129
-								"1113", "1024", "1377", // Kingsway RAH Transit Centre // 1366
-								"1366", "1251", // Downtown
+								"1024", "1377", // Kingsway RAH Transit Centre // 1366
 								"1129", "1401",
 								"1044", // ==
 								"1209", // != Coliseum Transit Centre
@@ -1620,10 +1619,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1209", // Coliseum Transit Centre
 								"1402", // Stadium Transit Centre
 								"1023", // !=
-								"1251", // 102 Street & MacDonald Drive #Downtown
 								"1529", // !=
 								"1553", // ==
 								"1107", // Kingsway RAH Transit Centre
+								"1395", //
+								"5202", // Westmount Transit Centre #END
 								"5209", // Westmount Transit Centre
 								"5150", //
 								"5101" // Jasper Place Transit Centre
@@ -1657,6 +1657,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1759", // !=
 								"6122", // ==
 								"6333", // 127 Street & 129 Avenue
+								"-6435", // !=
 								"6435", // !=
 								"6553", // !=
 								"6002", // Castle Downs Transit Centre
@@ -1667,6 +1668,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"6047", //
 								"6006", // Castle Downs Transit Centre
+								"-6435", // !=
 								"6435", // !=
 								"6369", // 127 Street & 129 Avenue
 								"6289", // ==
