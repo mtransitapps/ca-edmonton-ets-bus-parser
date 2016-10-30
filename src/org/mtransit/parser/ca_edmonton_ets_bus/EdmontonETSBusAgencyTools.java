@@ -436,6 +436,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
+	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
+		return super.mergeHeadsign(mTrip, mTripToMerge);
+	}
+
+	@Override
 	public ArrayList<MTrip> splitTrip(MRoute mRoute, GTrip gTrip, GSpec gtfs) {
 		if (ALL_ROUTE_TRIPS2.containsKey(mRoute.getId())) {
 			return ALL_ROUTE_TRIPS2.get(mRoute.getId()).getAllTrips();
@@ -2472,44 +2477,24 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, BONNIE_DOON) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2196", //
-								"2910", //
-								"2808", //
+								"2808", // Bonnie Doon Safeway
+								"2805", // ++ Girard Road & 76 Avenue
 								"2415", // !=
-								"2693", // ==
-								"2815", // ++
-								"2912", // ++
-								"2914", // ++
-								"2809", // ++
-								"2907", // ++
-								"2801", // ++
-								"2906", // ++
-								"2370", // ++
+								"2693", // == 17 Street & Oak Ridge Drive
 								"2259", // ==
 								"22189", // !=
-								"22350", // ++
-								"3706" //
+								"3706" // Meadows Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"3706", //
-								"22349", // ++
+						"3706", // Meadows Transit Centre
 								"22188", // !=
-								"2693", // ==
-								"2815", // ++
-								"2912", // ++
-								"2914", // ++
-								"2809", // ++
-								"2907", // ++
-								"2801", // ++
-								"2906", // ++
-								"2370", // ++
+								"2693", // == 17 Street & Oak Ridge Drive
 								"2259", // ==
 								"22178", // !=
-								"2804", //
-								"2551", //
-								"2329", //
-								"2196" //
+								"2804", // ++
+								"2159", // ++
+								"2808", // Bonnie Doon Safeway
 						})) //
 				.compileBothTripSort());
 		map2.put(307l, new RouteTripSpec(307l, //
@@ -2983,11 +2968,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW_WEST_TC) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"7908", "-77868", "77162" //
+						"7908", // West Clareview Transit Centre
+								"77162", // Southfort Drive & South Point Shopping Fort Sask
+								"7405", // Dow Centennial Centre Fort Sask
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"77162", "77174", "7908" //
+								"7405", // Dow Centennial Centre Fort Sask
+								"7926", // 95 Street & 96 Avenue Fort Sask
+								"7908" // West Clareview Transit Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(589l, new RouteTripSpec(589l, //
@@ -3061,6 +3050,16 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { "6603", "6853", "6293", "6369", "5211", "5548" })) //
+				.compileBothTripSort());
+		map2.put(607l, new RouteTripSpec(607l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ARCH_MAC) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { /* no stops */})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"6822", "6293", "6369", "5211", "5548" //
+						})) //
 				.compileBothTripSort());
 		map2.put(608l, new RouteTripSpec(608l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, BEAUMARIS, //
@@ -3138,7 +3137,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "1002", "2915" })) //
+						Arrays.asList(new String[] { "1002", "2553" })) //
 				.compileBothTripSort());
 		map2.put(635l, new RouteTripSpec(635l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
@@ -3160,7 +3159,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MC_PHERSON, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JACKSON_HTS) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "3230", "3400", "3603" })) //
+						Arrays.asList(new String[] { "3230", "3964" })) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.compileBothTripSort());
@@ -3330,7 +3329,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "1105", "5204" })) //
+						Arrays.asList(new String[] { "1107", "5204" })) //
 				.compileBothTripSort());
 		map2.put(733l, new RouteTripSpec(733l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
