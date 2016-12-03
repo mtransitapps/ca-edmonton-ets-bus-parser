@@ -86,7 +86,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public long getRouteId(GRoute gRoute) {
-		return Long.parseLong(gRoute.getRouteShortName()); // using route short name as route ID
+		return Long.parseLong(gRoute.getRouteId()); // using route short name as route ID
 	}
 
 	private static final String DASH = " - ";
@@ -600,26 +600,44 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEWIS_FARMS, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CAPILANO) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "8601", "5006",
-						/* + */"4425"/* + */, //
-								/* + */"2702"/* + */, //
-								"2714", "2002",
-								/* + */"2834"/* + */, //
-								/* + */"2065"/* + */, //
-								/* + */"2196"/* + */, //
-								/* + */"2159"/* + */, //
-								/* + */"2593"/* + */, //
-								/* + */"2549"/* + */, //
-								"2159", //
-								"2447", "2306"
+						Arrays.asList(new String[] { //
+						"8601", // Lewis Farms Transit Centre
+								"5463", // !=
+								"5006", // West Edmonton Mall Transit Centre
+								"5054", // !=
+								"22159", // !=
+								"2702", // South Campus Transit Centre Fort Edmonton Park
+								"2714", // South Campus Transit Centre Fort Edmonton Park
+								"2002", // University Transit Centre
+								"2860", // 104 Street & 82 Avenue
+								"2848", // ??
+								"2065", // !=
+								"-22336", // ??
+								"2952", // !=
+								"2593", // ==
+								"2549", // 83 Street & 82 Avenue
+								"2159", // 83 Street & 82 Avenue
+								"2447", // 83 Street & 82 Avenue
+								"2222", // ==
+								"2306" // Capilano Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "2306", "2159", "2891", "2001",
-						/* + */"2660"/* + */, //
-								"2702",
-								/* + */"4846"/* + */, //
-								/* + */"5006"/* + */, //
-								"5003", "8601" })) //
+						Arrays.asList(new String[] { //
+						"2306", // Capilano Transit Centre
+								"2037", // !=
+								"2159", // 83 Street & 82 Avenue
+								"2590", // !=
+								"2891", //
+								"2001", // University Transit Centre
+								"22156", // !=
+								"2702", // South Campus Transit Centre Fort Edmonton Park
+								"22160", // !=
+								"5449", // !=
+								"5006", // West Edmonton Mall Transit Centre
+								"5003", // West Edmonton Mall Transit Centre
+								"5042", // !=
+								"8601" // Lewis Farms Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(5l, new RouteTripSpec(5l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, COLISEUM, //
@@ -2175,13 +2193,17 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, GRIESBACH) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "6112",
-						/* + */"6612"/* + */, //
-								"7003" })) //
+						Arrays.asList(new String[] { //
+						"6112", // Pegasus Boulevard & Stan Walters Avenue
+								/* + */"6612"/* + */, //
+								"7015" // Northgate Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "7003",
-						/* + */"6260"/* + */, //
-								"6112" })) //
+						Arrays.asList(new String[] { //
+						"7015", // Northgate Transit Centre
+								/* + */"6260"/* + */, //
+								"6112" // Pegasus Boulevard & Stan Walters Avenue
+						})) //
 				.compileBothTripSort());
 		map2.put(168l, new RouteTripSpec(168l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES, //
@@ -3027,6 +3049,32 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { "2706", "4476", "5015" })) //
 				.compileBothTripSort());
+		map2.put(599l, new RouteTripSpec(599l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EDM_GARRISON, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"6316", // Eaux Claires Transit Centre
+								"7991", // 97 Street & 176 Avenue
+								//
+								"7873", // C Ortona Road & Churchill Avenue Garrison
+								"7681", // Ortona Road & Ubique Avenue Garrison
+								//
+								"7412", // Korea Road & Ortona Road Garrison
+								"7895" // B Hindenburg Line Road & Churchill Avenue Garrison
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"7895", // B Hindenburg Line Road & Churchill Avenue Garrison
+								"7406", // Highway 28A & Mons Avenue Garrison
+								//
+								"7873", // C Ortona Road & Churchill Avenue Garrison
+								"7681", // Ortona Road & Ubique Avenue Garrison
+								//
+								"6854", // 97 Street & 176 Avenue
+								"6316" // Eaux Claires Transit Centre
+						})) //
+				.compileBothTripSort());
 		map2.put(601l, new RouteTripSpec(601l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ROSS_SHEPPARD, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEDGEWOOD) //
@@ -3106,6 +3154,20 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { "6410", "6695", "5211", "5548" })) //
+				.compileBothTripSort());
+		map2.put(613l, new RouteTripSpec(613l, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, RUTHERFORD) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"9356", // 125 Street & 20 Avenue SW
+								"4213" // Century Park Transit Centre
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"4213", // Century Park Transit Centre
+								"9356" // 125 Street & 20 Avenue SW
+						})) //
 				.compileBothTripSort());
 		map2.put(617l, new RouteTripSpec(617l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KLARVATTEN, //
@@ -3327,9 +3389,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, KINGSWAY, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WESTMOUNT) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { /* no stops */})) //
+						Arrays.asList(new String[] { //
+						"5204", // Westmount Transit Centre
+								"1105" // Kingsway RAH Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "1107", "5204" })) //
+						Arrays.asList(new String[] { //
+						"1105", // Kingsway RAH Transit Centre
+								"5204" // Westmount Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(733l, new RouteTripSpec(733l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
