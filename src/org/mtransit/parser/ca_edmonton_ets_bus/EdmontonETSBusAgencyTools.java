@@ -691,33 +691,31 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), // CENTURY_PK / SOUTHGATE => EAUX_CLAIRES
 						Arrays.asList(new String[] { //
 						"4216", // Century Park Transit Centre
-								/* + */"4491", "4054"/* + */, //
-								"2218", // Southgate Transit Centre
-								/* + */"2623"/* + */, //
-								/* + */"2658"/* + */, //
-								/* + */"2830", "2657"/* + */, //
-								/* + */"2852"/* + */, //
-								"2875", "1591", "1108", //
-								/* + */"1476"/* + */, //
-								"7001", //
-								"7016", //
+								"2218", // == Southgate Transit Centre
+								"2623", // ==
+								"2658", // !=
+								"2830", "2657", // !=
+								"2852", // ==
+								"1591", // 101 Street & MacDonald Drive
+								"1108", // 101 Street & MacDonald Drive
+								"1476", // 106 Street & 118 Avenue
+								"7016", // Northgate Transit Centre
 								"6317" // Eaux Claires Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), // EAUX_CLAIRES => CENTURY_PK / SOUTHGATE
 						Arrays.asList(new String[] { //
 						"6317", // Eaux Claires Transit Centre
-								"7001", //
-								/* + */"1532"/* + */, //
-								"1104", "1142", "2690", //
-								/* + */"2784"/* + */, // ==
-								/* + */"2631"/* + */,// ==
-								/* + */"2895"/* + */, /* + */"2833"/* + */, // !=
-								/* + */"-22352"/* + */, // !=
-								/* + */"2773"/* + */, // ==
-								/* + */"2639"/* + */, //
-								"2218", // Southgate Transit Centre
+								"7001", // Northgate Transit Centre
+								"1532", // 106 Street & 118 Avenue Loop
+								"1142", // 101 Street & MacDonald Drive nearside
+								"2631",// ==
+								"2895", "2833", // !=
+								"-22352", // !=
+								"2773", // ==
+								"2639", // ==
+								"-22223", // !=
+								"2218", // == Southgate Transit Centre
 								"2206", // Southgate Transit Centre
-								/* + */"4490", "4444"/* + */, //
 								"4216" // Century Park Transit Centre
 						})) //
 				.compileBothTripSort());
