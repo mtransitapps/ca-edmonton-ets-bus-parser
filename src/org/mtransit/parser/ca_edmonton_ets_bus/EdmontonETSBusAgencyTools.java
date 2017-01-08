@@ -602,40 +602,66 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"8601", // Lewis Farms Transit Centre
+								"5783", // !=
 								"5463", // !=
 								"5006", // West Edmonton Mall Transit Centre
 								"5054", // !=
 								"22159", // !=
-								"2702", // South Campus Transit Centre Fort Edmonton Park
-								"2714", // South Campus Transit Centre Fort Edmonton Park
+								"2702", // South Campus Transit Centre Fort Edmonton Park // LAST
+								"2714", // South Campus Transit Centre Fort Edmonton Park // CONTINUE
+								"2885", // !=
+								"2748", // !=
+								"22354", // ==
+								"2638", // ==
+								"2625", // ==
+								"2890", // ==
 								"2002", // University Transit Centre
-								"2860", // 104 Street & 82 Avenue
-								"2848", // ??
-								"2065", // !=
-								"-22336", // ??
+								"2641", // ==
+								"2410", // ==
+								"2834", // !=
+								"2860", // ?????
+								"2065", // ?????
+								"2196", // XXX
+								"2952", // XXX
+								"2593", // !=
 								"2952", // !=
-								"2593", // ==
-								"2549", // 83 Street & 82 Avenue
-								"2159", // 83 Street & 82 Avenue
-								"2447", // 83 Street & 82 Avenue
-								"2222", // ==
-								"2306" // Capilano Transit Centre
+								"2159", // 83 Street & 82 Avenue // LAST
+								"2549", // 83 Street & 82 Avenue // LAST
+								"2447", // 83 Street & 82 Avenue // CONTINUE
+								"2222", // !=
+								"2372", // !=
+								"2306", // Capilano Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2306", // Capilano Transit Centre
+								"2532", // !=
+								"2476", // ???
+								"2568", "2050", "2462", "2161", "2287", "2288", "2494", "2376", "2231", "2015", "2615", "2608", "2167", // ???
+								"2193", // ???
 								"2037", // !=
-								"2159", // 83 Street & 82 Avenue
+								"2159", // 83 Street & 82 Avenue // CONTINUE
 								"2590", // !=
-								"2891", //
+								"2340", // ????
+								"2087", "2131", "2294", "2236", "2033", "2659", "2853", "2723", "2891", "2845", "2683", "2893", "2788", "2689", // ????
+								"2733", // ????
+								"2752", // !=
+								"22354", // ==
+								"2638", // ==
+								"2625", // ==
+								"2890", // ==
 								"2001", // University Transit Centre
+								"2641", // ==
+								"2410", // ==
+								"2660", // !=
 								"22156", // !=
 								"2702", // South Campus Transit Centre Fort Edmonton Park
 								"22160", // !=
-								"5449", // !=
-								"5006", // West Edmonton Mall Transit Centre
-								"5003", // West Edmonton Mall Transit Centre
+								"5449", // !-
+								"5006", // West Edmonton Mall Transit Centre // LAST
+								"5003", // West Edmonton Mall Transit Centre // CONTINUE
 								"5042", // !=
+								"5819", // !=
 								"8601" // Lewis Farms Transit Centre
 						})) //
 				.compileBothTripSort());
