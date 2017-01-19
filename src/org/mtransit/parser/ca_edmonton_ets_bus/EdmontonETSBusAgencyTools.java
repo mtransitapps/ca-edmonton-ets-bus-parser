@@ -1023,29 +1023,37 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2212", //
-								"2849", //
-								/* + */"2632"/* + */, //
-								/* + */"2290"/* + */, //
-								"1425",
-								/* + */"1728"/* + */, //
-								/* + */"1991"/* + */, //
-								"1308", "1777", "1292",
-								/* + */"1262"/* + *///
+						"2212", // Southgate Transit Centre
+								"2887", //
+								"2849", // 104 Street & 81 Avenue
+								"2632", //
+								"2162", // ==
+								"1425", // >>>>>>
+								"-1425", // !=
+								"1728", //
+								"1991", //
+								"1308", // Government Transit Centre
+								"1777", // 103 Street & Jasper Avenue
+								"11321", //
+								"1292", // 100 Street & 102A Avenue
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						/* + */"1262"/* + */, //
-								"1292", "1305", //
-								/* + */"1792"/* + */, //
-								/* + */"1629"/* + */, //
-								/* + */"1993"/* + */, //
-								/* + */"1425"/* + */, //
-								/* + */"1567"/* + */, //
-								/* + */"2768"/* + */, //
-								"2821", //
-								/* + */"2665"/* + */, //
-								"2212" })) //
+						"1292", // 100 Street & 102A Avenue
+								"1262", //
+								"1305", // Government Transit Centre
+								"1792", //
+								"1629", //
+								"1993", //
+								"-1425", // !=
+								"1425", // <<<<<<<
+								"1567", // ==
+								"2768", //
+								"2899", //
+								"2821", // 104 Street & 82 Avenue
+								"2665", //
+								"2212" // Southgate Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(53l, new RouteTripSpec(53l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTH_CAMPUS, //
@@ -1112,9 +1120,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHWOOD) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "3154", "3161", "3203", "3212", "1780", /* + */"1804"/* + */, "1989" })) //
+						Arrays.asList(new String[] { //
+						"3154", // Mill Woods Road E & 20 Avenue
+								"3128", // !=
+								"3126", // ==
+								"3212", // Mill Woods Transit Centre
+								"3127", // ==
+								"3087", // !=
+								"1989", // 108 Street & 104 Avenue
+						// "3154", "3161", "3203", "3212", "1780", /* + */"1804"/* + */, "1989" //
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "1824", "1804", "1780", "3203", "3139", "3154" })) //
+						Arrays.asList(new String[] { //
+						"1824", // 108 Street & 104 Avenue
+								"3090", // !=
+								"3126", // ==
+								"-33219", // !=
+								"3203", // Mill Woods Transit Centre
+								"3127", // ==
+								"3129", // !=
+								"3154", // Mill Woods Road E & 20 Avenue
+						// "1824", "1804", "1780", "3203", "3139", "3154" //
+						})) //
 				.compileBothTripSort());
 		map2.put(63l, new RouteTripSpec(63l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
@@ -2419,13 +2446,22 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MC_CONACHIE, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "7907",
-						/* + */"7879"/* + */, //
-								"7308" })) //
+						Arrays.asList(new String[] { //
+						"7907", // West Clareview Transit Centre
+								"7879", // ++
+								"7308" // 59A Street & McConachie Way
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "7308",
-						/* + */"77436"/* + */, //
-								"7907" })) //
+						Arrays.asList(new String[] { //
+						"7308", // 59A Street & McConachie Way
+								"77335", // ==
+								"77428", // !=
+								"7018", // McConachie Boulevard & 176 Avenue
+								"77607", // !=
+								"77424", // ==
+								"77436", // ==
+								"7907", // West Clareview Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(197l, new RouteTripSpec(197l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, EDM, //
