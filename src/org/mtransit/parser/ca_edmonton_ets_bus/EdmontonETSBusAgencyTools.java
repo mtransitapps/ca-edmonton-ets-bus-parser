@@ -191,6 +191,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String _34_ST_35A_AVE = "34" + _ST + SLASH + "35A" + _AVE;
 	private static final String _82_ST_132_AVE = "82" + _ST + SLASH + "132" + _AVE;
 	private static final String _84_ST_105_AVE = "84" + _ST + SLASH + "105" + _AVE;
+	private static final String _84_ST_111_AVE = "84" + _ST + SLASH + " 111" + _AVE;
 	private static final String _85_ST_132_AVE = "85" + _ST + DASH + "132" + _AVE;
 	private static final String _88_ST_132_AVE = "88" + _ST + SLASH + "132" + _AVE;
 	private static final String _95_ST_132_AVE = "95" + _ST + SLASH + "132" + _AVE;
