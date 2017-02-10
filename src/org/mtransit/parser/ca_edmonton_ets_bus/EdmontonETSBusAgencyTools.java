@@ -677,14 +677,31 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "1202", "1328", "1620", "5210" })) //
 				.compileBothTripSort());
 		map2.put(6l, new RouteTripSpec(6l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "2203", "2270", "2109", "2102", "3006", "3215" })) //
+						Arrays.asList(new String[] { //
+						"2203", // Southgate Transit Centre
+								"2211", // Southgate Transit Centre
+								"2085", // ++
+								"2024", // ++
+								"2109", // Millgate Transit Centre
+								"2102", // Millgate Transit Centre
+								"3281", // ++
+								"3121", // ++
+								"3215", // Mill Woods Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "3215", "3010", "2109", "2266", "2888",
-						/* + */"2630"/* + */, // ?
-								"2203" })) //
+						Arrays.asList(new String[] { //
+						"3215", // Mill Woods Transit Centre
+								"3127", // ++
+								"3347", // ++
+								"2109", // Millgate Transit Centre
+								"2273", // ++
+								"2179", // ++
+								"2211", // Southgate Transit Centre
+								"2203", // Southgate Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(7l, new RouteTripSpec(7l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
@@ -905,9 +922,25 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, YELLOWBIRD) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "4290", "4206", "4480", "4474", "2211" })) //
+						Arrays.asList(new String[] { //
+						"4290", // 105 Street & 21 Avenue #Yellowbird
+								"4118", // ++
+								"4206", // Century Park Transit Centre
+								"4224", // ++
+								"4054", // ++
+								"2203", // Southgate Transit Centre
+								"2211" // Southgate Transit Centre
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "2211", "4052", "4475", "4205", "4290" })) //
+						Arrays.asList(new String[] { //
+						"2203", // Southgate Transit Centre
+								"2211", // Southgate Transit Centre
+								"4490", // ++
+								"4164", // ++
+								"4205", // Century Park Transit Centre
+								"4467", // ++
+								"4290" // 105 Street & 21 Avenue #Yellowbird
+						})) //
 				.compileBothTripSort());
 		map2.put(41l, new RouteTripSpec(41l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
@@ -1144,31 +1177,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						// "1824", "1804", "1780", "3203", "3139", "3154" //
 						})) //
 				.compileBothTripSort());
-		map2.put(63l, new RouteTripSpec(63l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHWOOD) //
-				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "3143", //
-								"3128", //
-								"3204", // Mill Woods TC
-								"3212", // Mill Woods TC
-								"3087", //
-								"3212", //
-								"1246", //
-								"1609", //
-								"1364", //
-								"1358"
-						})) //
-				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "1358", //
-								"1609", "1570", //
-								"1608", //
-								"3090", //
-								"3204", // Mill Woods TC
-								"3129", //
-								"3143"
-						})) //
-				.compileBothTripSort());
 		map2.put(64l, new RouteTripSpec(64l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KNOTTWOOD) //
@@ -1247,11 +1255,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(70l, new RouteTripSpec(70l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_) //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "3201", "3012", "3093", "2685", /* + */"2840"/* + */, /* + */"2659"/* + */, "2824", "2659", "1780" })) //
+						Arrays.asList(new String[] { //
+						"3201", // Mill Woods Transit Centre
+								"3012", // Lakewood Transit Centre
+								"3093", // Parsons Road & 34 Avenue
+								"2685", // 99 Street & 51 Avenue
+								"2840", // ++ 99 Street & 81 Avenue
+								"2824", // 99 Street & 83 Avenue
+								"2659", // 99 Street & 82 Avenue
+								"1457", // 100 Street & Jasper Avenue
+								"1780" // 103 Street & 102 Avenue
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "1780", "2840", "2245", "3497", "3004", "3201" })) //
+						Arrays.asList(new String[] { //
+						"1780", // 103 Street & 102 Avenue
+								"2840",// 99 Street & 81 Avenue
+								"2245", // 99 Street & 51 Avenue
+								"3497", // Parsons Road & 34 Avenue
+								"3004", // Lakewood Transit Centre
+								"3201" // Mill Woods Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(71l, new RouteTripSpec(71l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, GOV_CTR, //
@@ -1270,12 +1295,22 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "1989", "2110", "2106", "3355", "3748", "3185", "3206" })) //
 				.compileBothTripSort());
 		map2.put(73l, new RouteTripSpec(73l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "2203", "2888", "2102", "3002", "3205" })) //
+						Arrays.asList(new String[] { //
+						"2203", // Southgate Transit Centre
+								"2211", // Southgate Transit Centre
+								"2888", "2102", "3002", //
+								"3205" // Mill Woods Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "3205", "3010", "2109", "2203" })) //
+						Arrays.asList(new String[] { //
+						"3205", // Mill Woods Transit Centre
+								"3010", "2109", //
+								"2203", // Southgate Transit Centre
+								"2211" // Southgate Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(74l, new RouteTripSpec(74l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_, //
@@ -1781,39 +1816,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"5204", "6781", "5106" //
 						})) //
 				.compileBothTripSort());
-		map2.put(125l, new RouteTripSpec(125l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, BELVEDERE, // DOWNTOWN, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE) //
-				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { //
-						"5101", // Jasper Place Transit Centre
-								"5448", //
-								"5202", // Westmount Transit Centre
-								"1107", // END // Kingsway RAH Transit Centre // 1129
-								"1110", // "1024", "1377", // Kingsway RAH Transit Centre // 1129
-								"1024", "1377", // Kingsway RAH Transit Centre // 1366
-								"1129", "1401",
-								"1044", // ==
-								"1209", // != Coliseum Transit Centre
-								"1205", // != Coliseum Transit Centre
-								"7205" // Belvedere Transit Centre
-						})) //
-				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { //
-						"7205", // Belvedere Transit Centre
-								"1209", // Coliseum Transit Centre
-								"1402", // Stadium Transit Centre
-								"1023", // !=
-								"1529", // !=
-								"1553", // ==
-								"1107", // Kingsway RAH Transit Centre
-								"1395", //
-								"5202", // Westmount Transit Centre #END
-								"5209", // Westmount Transit Centre
-								"5150", //
-								"5101" // Jasper Place Transit Centre
-						})) //
-				.compileBothTripSort());
 		map2.put(126l, new RouteTripSpec(126l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WESTMOUNT, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL) //
@@ -2014,82 +2016,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1932", // !=
 								"5090", // ==
 								"5203", "5102", "5007" //
-						})) //
-				.compileBothTripSort());
-		map2.put(151l, new RouteTripSpec(151l, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, KING_EDWARD_PK) //
-				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { // CASTLE_DOWNS
-						"2253", // 71 Street & 77 Avenue
-								"2581", // ++ Argyll Road & 76 Avenue
-								"2325", // 73 Street & 76 Avenue
-								"2025", "2538", "2234", "2473", "2546", "2582", "2166", "2548", "2520", "2087", //
-								"2432", // 91 Street & 82 Avenue
-								"2036", "2089", "2031", "2596", "2384", "2133", "2382", "1648", "1544", "1495", //
-								"1591", // 101 Street & MacDonald Drive
-								"1251", // both direction // 102 Street & MacDonald Drive
-								"1346", // 101 Street & 101A Avenue
-								"1128", // ?? 101 Street & 102 Avenue
-								"1492", // 101 Street & 103A Avenue nearside
-								"1019", // 101 Street & 104 Avenue
-								"1587", // 101 Street & 105A Avenue
-								"1554", "1477", "1529", "1233", "1484", "1348", //
-								"1594", // 101 Street & 115 Avenue
-								"1237", // 101 Street & 117 Avenue
-								"1040", // 97 Street & 118 Avenue
-								"1126", "1523", "1559", //
-								"1043", // != 97 St & Yellowhead Tr Nearside
-								"6496", // both direction // 97 Street & 128 Avenue
-								"6421", // != 102 Street & 127 Avenue
-								"6250", //
-								"6284", "6221", "6181", "6363", "6295", "6193", "6167", "6581", "6253", "6555", "6454", //
-								"6571", // == 125 Street & 129 Avenue
-								"6333", // 127 Street & 129 Avenue
-								"6328", // s 127 Street & 129 Avenue
-								"6222", // != 129 Street & 129 Avenue
-								"6132", // != 129 Street & 132 Avenue
-								"6487", // != 127 Street & 132 Avenue
-								"6251", "6142", //
-								"6243", // == 127 Street & 137 Avenue
-								"6625", // != 127 Street & 140 Avenue
-								"6474", // == 123A Street & 137 Avenue
-								"6462", // both direction // 127 Street & 137 Avenue
-								"6360", // both direction // 127 Street & 135 Avenue
-								"6426", // both direction // 127 Street & 133 Avenue
-								"6553", // ++ 127 Street & 131 Avenue
-								"6020", // == 127 Street & 132 Avenue
-								"6434", // != 129 Street & 129 Avenue
-								"6292", // both direction // 127 Street & 129 Avenue
-								"6179", // != 127 Street & 142 Avenue
-								"6856", // 139 Street & 153 Avenue
-								"6445", // ++ Castle Downs Road & 153 Avenue
-								"6004" // Castle Downs Transit Centre
-						})) //
-				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { // KING_EDWARD_PK
-						"6004", // Castle Downs Transit Centre
-								"6766", // Castle Downs Road & 153 Avenue
-								"6111", // ++ 137 Street & 153 Avenue
-								"6563", // == 127 Street & 140 Avenue
-								"6462", // both direction // 127 Street & 137 Avenue
-								"6360", // both direction // 127 Street & 135 Avenue
-								"6426", // both direction // 127 Street & 133 Avenue
-								"6568", // == 127 Street & 132 Avenue
-								"6366", // != 127 Street & 131 Avenue
-								"6292", // both direction // 127 Street & 129 Avenue
-								"6123", // != 125 Street & 129 Avenue
-								"6116", // != 103 Street & 127 Avenue
-								"6496", // both direction // 97 Street & 128 Avenue
-								"6266", // 101 Street & 128 Avenue
-								"1372", // 101 Street & 117 Avenue
-								"1243", // == 101 Street & 101A Avenue
-								"1142", // != 101 Street & MacDonald Drive nearside
-								"1251", // != // both direction // 102 Street & MacDonald Drive
-								"2079", // 91 Street & 83 Avenue
-								"2349", // 83 Street & 76 Avenue
-								"2555", // ++ 71 Street & 80 Avenue
-								"2253" // 71 Street & 77 Avenue
 						})) //
 				.compileBothTripSort());
 		map2.put(152l, new RouteTripSpec(152l, //
@@ -2508,9 +2434,19 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "4204", "4065", "4547", "4186", "2211" })) //
+						Arrays.asList(new String[] { //
+						"4204", // Century Park Transit Centre
+								"4065", "4547", "4186", //
+								"2203", // Southgate Transit Centre
+								"2211" // Southgate Transit Centre
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "2211", "4275", "4543", "4443", "4204" })) //
+						Arrays.asList(new String[] { //
+						"2203", // Southgate Transit Centre
+								"2211", // Southgate Transit Centre
+								"4275", "4543", "4443", //
+								"4204", // Century Park Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(302l, new RouteTripSpec(302l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EVERGREEN, //
@@ -2528,12 +2464,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MISTATIM_IND) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "7011", "6688", "6732", "6680", "6183", "6345", "6727" })) //
+						Arrays.asList(new String[] { //
+						"7011", // Northgate Transit Centre
+								"6348", // ==
+								"6472", // ><
+								"6930", // ><
+								"6484", // ==
+								"6233", // ==
+								"6183", // 142 Street & 134 Avenue
+								"6727" // 159 Street & 131 Avenue Nearside
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "6727", "6844", "6646", "6732", "6755",
-						/* + */"6926",/* + *///
-								/* + */"6563",/* + *///
-								"6688", "7011" })) //
+						Arrays.asList(new String[] { //
+						"6727", // 159 Street & 131 Avenue Nearside
+								"6677", // ==
+								"66139", // !=
+								"6178", // ==
+								"6524", // ++
+								"6472", // ><
+								"6930", // ><
+								"7579", // ++
+								"7011" // Northgate Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(304l, new RouteTripSpec(304l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
@@ -2991,37 +2943,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"7903", "1211" //
 						})) //
 				.compileBothTripSort());
-		map2.put(560l, new RouteTripSpec(560l, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
-				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { //
-						"5389", //
-								"8730", "8743", "8737", "8785", //
-								"8761", //
-								/* + */"5415"/* + */, //
-								"8169", //
-								"-5473", //
-								"-5575", //
-								"5210", // ==
-								"-11330", //
-								"1890", //
-								"-1372", //
-								"1366", //
-								"1983", "1479" //
-						})) //
-				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { //
-						"1570", "1679", "1915", //
-								"-1237", //
-								"1860", //
-								"-11307", //
-								"5210", //
-								"-5164", //
-								"8169", //
-								"8730" //
-						})) //
-				.compileBothTripSort());
 		map2.put(561l, new RouteTripSpec(561l, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, NAIT, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Acheson") //
@@ -3032,6 +2953,22 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"1860", "8169" //
+						})) //
+				.compileBothTripSort());
+		map2.put(562l, new RouteTripSpec(562l, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTH_CAMPUS, // WEST_EDM_MALL
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						"8207", // Jennifer Heil Way & Grove Drive
+								"5219", // 175 Street & 87 Avenue
+								"2708" // South Campus Transit Centre Fort Edmonton Park
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"2708", // South Campus Transit Centre Fort
+								"5014", // West Edmonton Mall Transit Centre
+								"8207", // Jennifer Heil Way & Grove Drive
 						})) //
 				.compileBothTripSort());
 		map2.put(577l, new RouteTripSpec(577l, //
