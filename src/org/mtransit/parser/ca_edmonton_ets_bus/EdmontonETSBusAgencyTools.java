@@ -4840,7 +4840,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "4238", "4265", "4248" })) //
+						Arrays.asList(new String[] { //
+						"4340", // 119 Street & Fairway Drive
+								"4238", // 119 Street & Fairway Drive
+								"4265", // Twin Brooks Drive & 12 Avenue
+								"4248", // Running Creek Road & 12 Avenue
+						})) //
 				.compileBothTripSort());
 		map2.put(884l, new RouteTripSpec(884l, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WP_WAGNER, //
