@@ -72,6 +72,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	@Override
+	public boolean excludeRoute(GRoute gRoute) {
+		return super.excludeRoute(gRoute);
+	}
+
+	@Override
 	public boolean excludeTrip(GTrip gTrip) {
 		if (this.serviceIds != null) {
 			return excludeUselessTrip(gTrip, this.serviceIds);
@@ -636,35 +641,18 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"7106", "7572", "7008", "7496", "7007" //
 						})) //
 				.compileBothTripSort());
-		map2.put(12l, new RouteTripSpec(12l, //
+		map2.put(12L, new RouteTripSpec(12L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1251", "1529", //
-								"1476", "1434", "1435", //
-								"1553", // ==
-								"1032", // !=
-								"1109", // ==
-								"1886", // !=
-								"11307", //
-								"1821", //
-								"1669", //
-								"6122", //
-								"6328", "6252", "7003" //
+						"1110", // Kingsway RAH Transit Centre
+								"7003", // Northgate Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"7003", "6551", //
-								"6369", //
-								"6289", //
-								"6372", //
-								"-11330", //
-								"1932", "1847", //
-								"1778", //
-								"1847", "1951", //
-								"1109", "1533", "1476", //
-								"11326", "1113", "1251" //
+						"7003", // Northgate Transit Centre
+								"1110", // Kingsway RAH Transit Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(13l, new RouteTripSpec(13l, //
