@@ -465,11 +465,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"8601", // Lewis Farms Transit Centre
-								"5006", // West Edmonton Mall Transit Centre
-								"2702", // South Campus Transit Centre Fort Edmonton Park // LAST
+								"5463", // !=
+								"5006", // <> West Edmonton Mall Transit Centre
+								"5054", // !=
+								"22159", // !=
+								"2702", // <> South Campus Transit Centre Fort Edmonton Park // LAST
 								"2714", // South Campus Transit Centre Fort Edmonton Park // CONTINUE
-								"2748", // ==
-								"22354", // != <>
+								"2748", // == !=
 								"2982", // != <>
 								"2638", // == <>
 								"2625", // != <>
@@ -480,32 +482,37 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"2196", // != 83 Street & 90 Avenue
 								"2952", // != 83 Street & 84 Avenue
 								"2159", // <> 83 Street & 82 Avenue // LAST
-								"2549", // 83 Street & 82 Avenue // LAST
 								"2447", // 83 Street & 82 Avenue // CONTINUE
-								"2222", // !=
-								"2372", // !=
+								"2222", // ++
+								"2372", // ++
 								"2306", // Capilano Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2306", // Capilano Transit Centre
-								"2532", // !=
-								"2532", "2476", "2568", "2050", "2462", "2161", "2287", "2288", "2494", "2376", "2231", "2015", "2615", "2608", "2167", "2193", //
+								"2532", // ++
+								"2476", "2568", "2050", "2462", "2161", "2287", "2288", "2494", "2376", "2231", "2015", "22666", "22659", "2167", // ++
+								"2193", // ++
 								"2037", // !=
 								"2159", // <> 83 Street & 82 Avenue // CONTINUE
 								"2590", // !=
-								"2340", "2087", "2131", "2294", "2236", "2033", "2659", "2853", "2723", "2891", "2845", "2683", "2893", "2788", "2689", //
-								"2733", // !=
-								"2752", // ==
-								"22354", // != <>
+								"2340", // ++
+								"2087", "2131", "2294", "2236", "2033", "2659", "2853", "2723", "2891", "2845", "2683", "2893", "2788", "2689", //
+								"2733", // ++
+								"2752", // == !=
 								"2982", // != <>
 								"2638", // == <>
 								"2625", // != <>
 								"2890", // == <> 114 Street & 89 Avenue
 								"2001", // != University Transit Centre
-								"2702", // South Campus Transit Centre Fort Edmonton Park
-								"5006", // West Edmonton Mall Transit Centre // LAST
+								"22156", // !=
+								"2702", // <> South Campus Transit Centre Fort Edmonton Park
+								"22160", // !=
+								"5449", // !=
+								"5006", // <> West Edmonton Mall Transit Centre // LAST
 								"5003", // West Edmonton Mall Transit Centre // CONTINUE
+								"5042", // ++
+								"5819", // ++
 								"8601" // Lewis Farms Transit Centre
 						})) //
 				.compileBothTripSort());
@@ -613,11 +620,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), // CENTURY_PK / SOUTHGATE => EAUX_CLAIRES
 						Arrays.asList(new String[] { //
 						"4216", // Century Park Transit Centre
-								"2218", // == Southgate Transit Centre
-								"2623", // ==
-								"2658", // !=
-								"2830", "2657", // !=
+								"4054", // !=
+								"2218", // == <> Southgate Transit Centre
+								"2623", // == !=
+								"22739", // !=
+								"2830", // !=
+								"22738", // !=
 								"2852", // ==
+								"1495", // ++
 								"1591", // 101 Street & MacDonald Drive
 								"1108", // 101 Street & MacDonald Drive
 								"1476", // 106 Street & 118 Avenue
@@ -630,13 +640,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"7001", // Northgate Transit Centre
 								"1532", // 106 Street & 118 Avenue Loop
 								"1142", // 101 Street & MacDonald Drive nearside
-								"2631",// ==
-								"2895", "2833", // !=
-								"-22352", // !=
+								"2631", // ==
+								"2895", // !=
+								"2833", // !=
 								"2773", // ==
-								"2639", // ==
-								"-22223", // !=
-								"2218", // == Southgate Transit Centre
+								"2639", // == !=
+								"2218", // != <> Southgate Transit Centre => END
 								"2206", // Southgate Transit Centre
 								"4216" // Century Park Transit Centre
 						})) //
@@ -1964,10 +1973,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"5733", // 172 Street & Callingwood Road
 								"5650", //
 								"5900", "5757", "5722", "5638", "5671", "5974", "5821", "5749", "5923", "5750", //
-								"5463", //
-								"5004", // West Edmonton Mall Transit Centre END
+								"5463", // !=
+								"5004", // <> West Edmonton Mall Transit Centre END
 								"5007", // West Edmonton Mall Transit Centre CONTINUE
-								"5054", //
+								"5054", // ++
 								"5186", "5486", "5566", "5578", "5359", "5281", "5197", "5332", "5451", "5499", "5298", "4425", "22162", "2978", //
 								"22159", //
 								"2713", // South Campus Transit Centre Fort Edmonton Park
@@ -1975,7 +1984,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"22157", "2959", "2944", "2505", "2516", //
 								"2748", // ==
 								"2982", // !=
-								"22354", // !=
 								"2638", // ==
 								"2625", // ++
 								"2890", // 114 Street & 89 Avenue
@@ -1983,9 +1991,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2001", // University Transit Centre
-								"2641", // ++
-								"5004", // West Edmonton Mall Transit Centre
+						"2890", // 114 Street & 89 Avenue
+								"2001", // University Transit Centre
+								"22720", // ++
+								"5449", // !=
+								"5004", // <> West Edmonton Mall Transit Centre
+								"5653", // !=
+								"5797", // ++
 								"5733", // 172 Street & Callingwood Road
 						})) //
 				.compileBothTripSort());
