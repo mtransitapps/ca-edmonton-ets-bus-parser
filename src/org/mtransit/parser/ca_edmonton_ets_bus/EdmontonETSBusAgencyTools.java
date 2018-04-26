@@ -1186,15 +1186,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"9301", // Allard Boulevard & Alexander Way SW
-								"9163", // Callaghan Drive & Callaghan Point
+								"9552", // James Mowatt Trail & 30 Avenue SW
+								"9163", // ++ Callaghan Drive & Callaghan Point
 								"4548", // == 111 Street & 23 Avenue
 								"4214", // != Century Park Transit Centre
-								"4206" // != Century Park Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"4206", // != Century Park Transit Centre
-								"4214", // != Century Park Transit Centre
+						"4214", // != Century Park Transit Centre
 								"4456", // == 111 Street & 23 Avenue
 								"9164", // Callaghan Drive & Callaghan Close
 								"9301" // Allard Boulevard & Alexander Way SW
