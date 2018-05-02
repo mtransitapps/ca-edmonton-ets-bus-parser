@@ -744,13 +744,16 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3208", // Mill Woods Transit Centre
+						"3208", // == Mill Woods Transit Centre
+								"3244", // !=
+								"3122", // !=
+								"3008", // ==
 								"2117", // Millgate Transit Centre
 								"1457", // 100 Street & Jasper Avenue
 								"1989", // 108 Street & 104 Avenue
-								"1227", // ++
-								"1532", // ++
-								"1476", // 106 Street & 118 Avenue
+								"1227", // ==
+								"1532", // != 106 Street & 118 Avenue Loop
+								"1476", // != 106 Street & 118 Avenue
 								"6317", // Eaux Claires Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
