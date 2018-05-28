@@ -583,14 +583,16 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3207", // Mill Woods Transit Centre
+						"3207", // != Mill Woods Transit Centre <=
+								"3208", // != Mill Woods Transit Centre <=
 								"3122", // ==
 								"3244", // !=
 								"3338", // !=
-								// "3462", // !=
-								// "3498", // !=
 								"3264", // ==
-								"2108", // Millgate Transit Centre
+								"3347", // ==
+								"2108", // != Millgate Transit Centre
+								"2117", // != Millgate Transit Centre
+								"2026", // ==
 								"1457", // 100 Street & Jasper Avenue
 								"1989", // 108 Street & 104 Avenue
 								"1106", // Kingsway RAH Transit
@@ -605,13 +607,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1112", // Kingsway RAH Transit Centre
 								"1557", // 109 Street & 105 Avenue
 								"1542", // 100 Street & Jasper Avenue
-								"2103", // Millgate Transit Centre
+								"2024", // ==
+								"2103", // != Millgate Transit Centre
+								"2118", // != Millgate Transit Centre
+								"3281", // ==
 								"3599", // ==
-								// "3676", // !=
-								// "3360", // !=
 								"3394", // !=
 								"3121", // ==
-								"3207", // Mill Woods Transit Centre
+								"3207", // != Mill Woods Transit Centre =>
+								"3208", // != Mill Woods Transit Centre =>
 						})) //
 				.compileBothTripSort());
 		map2.put(9L, new RouteTripSpec(9L, //
@@ -744,11 +748,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"3208", // == Mill Woods Transit Centre
+						"3207", // != Mill Woods Transit Centre <=
+								"3208", // == Mill Woods Transit Centre <=
 								"3244", // !=
 								"3122", // !=
 								"3008", // ==
-								"2117", // Millgate Transit Centre
+								"3659", // ==
+								"2117", // != Millgate Transit Centre
+								"2108", // != Millgate Transit Centre
+								"2338", // ==
 								"1457", // 100 Street & Jasper Avenue
 								"1989", // 108 Street & 104 Avenue
 								"1227", // ==
@@ -762,8 +770,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1532", // 106 Street & 118 Avenue Loop
 								"1557", // 109 Street & 105 Avenue
 								"1542", // 100 Street & Jasper Avenue
-								"2118", // Millgate Transit Centre
-								"3208", // Mill Woods Transit Centre
+								"2385", // ==
+								"2118", // != Millgate Transit Centre
+								"2103", // != Millgate Transit Centre
+								"3499", // ==
+								"3121", // ==
+								"3207", // != Mill Woods Transit Centre =>
+								"3208", // != Mill Woods Transit Centre =>
 						})) //
 				.compileBothTripSort());
 		map2.put(16L, new RouteTripSpec(16L, //
@@ -3540,6 +3553,22 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						/* + */"1131"/* + */, //
 								"1517" })) //
 				.compileBothTripSort());
+		map2.put(510L, new RouteTripSpec(510L, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"1301", // Government Transit Centre
+								"1457", // ++
+								"7903", // West Clareview Transit Centre
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"7903", // West Clareview Transit Centre
+								"1292", // ++
+								"1301", // Government Transit Centre
+						})) //
+				.compileBothTripSort());
 		map2.put(512L, new RouteTripSpec(512L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
@@ -3725,7 +3754,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"6316", // Eaux Claires Transit Centre
+						"6313", // != Eaux Claires Transit Centre <=
+								"6316", // != Eaux Claires Transit Centre <=
+								"7463", // ==
 								"7991", // 97 Street & 176 Avenue
 								"7873", // C Ortona Road & Churchill Avenue Garrison
 								"7681", // Ortona Road & Ubique Avenue Garrison
@@ -3739,7 +3770,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"7873", // C Ortona Road & Churchill Avenue Garrison
 								"7681", // Ortona Road & Ubique Avenue Garrison
 								"6854", // 97 Street & 176 Avenue
-								"6316" // Eaux Claires Transit Centre
+								"6362", // ==
+								"6313", // != Eaux Claires Transit Centre =>
+								"6316" // != Eaux Claires Transit Centre =>
 						})) //
 				.compileBothTripSort());
 		map2.put(601L, new RouteTripSpec(601L, //
