@@ -355,10 +355,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			tripHeadsign = null;
 		}
 		if (StringUtils.isEmpty(tripHeadsign)) {
-			if (isGoodEnoughAccepted()) {
-				mTrip.setHeadsignString(mRoute.getLongName(), gTrip.getDirectionId()); // cleanTripHeadsign() currently used for stop head sign
-				return;
-			}
 			System.out.printf("\nUnexpected trip to split %s\n", gTrip);
 			System.exit(-1);
 		}
@@ -3553,6 +3549,22 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						/* + */"1131"/* + */, //
 								"1517" })) //
 				.compileBothTripSort());
+		map2.put(505L, new RouteTripSpec(505L, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CENTURY_PK_TC) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"4216", // Century Park Transit Centre
+								"1322", // ++
+								"7903", // West Clareview Transit Centre
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"7903", // West Clareview Transit Centre
+								"1619", // ++
+								"4216", // Century Park Transit Centre
+						})) //
+				.compileBothTripSort());
 		map2.put(510L, new RouteTripSpec(510L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CLAREVIEW, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
@@ -3601,6 +3613,23 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"4201", // Century Park Transit Centre
 								"9892", // Ken Nichol RR Ctr Beaumont
+						})) //
+				.compileBothTripSort());
+		map2.put(545L, new RouteTripSpec(545L, //
+				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, NAIT, //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
+				.addTripSort(MDirectionType.NORTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"1246", // 100 Street & 102 Avenue
+								"1109", // Kingsway RAH Transit Centre
+								"1860", // 109 Street & Princess Elizabeth Avenue
+
+						})) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), //
+						Arrays.asList(new String[] { //
+						"1860", // 109 Street & Princess Elizabeth Avenue
+								"1104", // Kingsway RAH Transit Centre
+								"1246", // 100 Street & 102 Avenue
 						})) //
 				.compileBothTripSort());
 		map2.put(560L, new RouteTripSpec(560L, //
@@ -3663,13 +3692,17 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHLANDS, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, _84_ST_111_AVE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "1408",
-						/* + */"1094"/* + */, //
-								"1371" })) //
+						Arrays.asList(new String[] { //
+						"1408", // 84 Street & 111 Avenue
+								"1480", // ++
+								"1371", // Northlands South Entrance
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "1371",
-						/* + */"1180"/* + */, //
-								"1408" })) //
+						Arrays.asList(new String[] { //
+						"1371", // Northlands South Entrance
+								"1180", // ++
+								"1408", // 84 Street & 111 Avenue
+						})) //
 				.compileBothTripSort());
 		map2.put(580L, new RouteTripSpec(580L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, FT_SASKATCHEWAN, //
