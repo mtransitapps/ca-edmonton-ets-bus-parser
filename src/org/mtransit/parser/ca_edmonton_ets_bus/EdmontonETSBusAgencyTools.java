@@ -907,30 +907,35 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						/* + */"9710"/* + */,//
 								"9460" })) //
 				.compileBothTripSort());
+		boolean _30_WithMillWoodsTC = false;
+		List<String> _30_North = Arrays.asList(new String[] { //
+				"4211", // Century Park Transit Centre
+						"4811", // Leger Transit Centre
+						"4597", // ++
+						"4153", // ++
+						"2704", // South Campus Fort Edmonton Transit Centre
+				});
+		String _30_SouthHeadsignString = CENTURY_PK;
+		List<String> _30_South = Arrays.asList(new String[] { //
+				"2704", // South Campus Fort Edmonton Transit Centre
+						"4021", // ++
+						"4494", // ++
+						"4262", // ==
+						"4811", // != Leger Transit Centre =>
+						"4803", // != Leger Transit Centre
+						"4211", // Century Park Transit Centre
+						"4202", // Century Park Transit Centre
+				});
+		if (_30_WithMillWoodsTC) {
+			_30_North.add(0, "3217"); // Mill Woods Transit Centre
+			_30_SouthHeadsignString = MILL_WOODS_TC;
+			_30_South.add(_30_South.size(), "3217"); // Mill Woods Transit Centre
+		}
 		map2.put(30L, new RouteTripSpec(30L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTH_CAMPUS, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC) //
-				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { //
-						"3217", // Mill Woods Transit Centre
-								"4211", // Century Park Transit Centre
-								"4811", // Leger Transit Centre
-								"4597", // ++
-								"4153", // ++
-								"2704", // South Campus Fort Edmonton Transit Centre
-						})) //
-				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { //
-						"2704", // South Campus Fort Edmonton Transit Centre
-								"4021", // ++
-								"4494", // ++
-								"4262", // ==
-								"4811", // != Leger Transit Centre =>
-								"4803", // != Leger Transit Centre
-								"4211", // Century Park Transit Centre
-								"4202", // Century Park Transit Centre
-								"3217", // Mill Woods Transit Centre
-						})) //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, _30_SouthHeadsignString) //
+				.addTripSort(MDirectionType.NORTH.intValue(), _30_North) //
+				.addTripSort(MDirectionType.SOUTH.intValue(), _30_South) //
 				.compileBothTripSort());
 		map2.put(31L, new RouteTripSpec(31L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE_TC, //
