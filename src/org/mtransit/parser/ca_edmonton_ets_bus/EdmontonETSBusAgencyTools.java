@@ -102,7 +102,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return Long.parseLong(gRoute.getRouteId()); // using route short name as route ID
 	}
 
-	private static final String DASH = " - ";
 	private static final String SLASH = " / ";
 	private static final String FORT = "Fort";
 	private static final String _AVE = " Ave";
@@ -115,7 +114,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String LEWIS_FARMS = "Lewis Farms";
 	private static final String LEWIS_FARMS_TC = "Lewis Farms"; // "Lewis Farms TC"
 	private static final String CAPILANO = "Capilano"; //
-	private static final String CAPILANO_TC = "Capilano"; // "Capilano TC"
 	private static final String CLAREVIEW = "Clareview";
 	private static final String CLAREVIEW_EAST_TC = "Clareview"; // "East Clareview TC"
 	private static final String CLAREVIEW_WEST_TC = "Clareview"; // "West Clareview TC"
@@ -171,7 +169,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String BELVEDERE = "Belvedere";
 	private static final String BELVEDERE_TC = "Belvedere"; // "Belvedere TC"
 	private static final String BONNIE_DOON = "Bonnie Doon";
-	private static final String LAUREL = "Laurel";
 	private static final String PLYPOW = "Plypow";
 	private static final String TAMARACK = "Tamarack";
 	private static final String BRECKENRIDGE_GRNS = "Breckenridge Grns";
@@ -210,7 +207,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String _82_ST_132_AVE = "82" + _ST + SLASH + "132" + _AVE;
 	private static final String _84_ST_105_AVE = "84" + _ST + SLASH + "105" + _AVE;
 	private static final String _84_ST_111_AVE = "84" + _ST + SLASH + " 111" + _AVE;
-	private static final String _85_ST_132_AVE = "85" + _ST + DASH + "132" + _AVE;
+	private static final String _85_ST_132_AVE = "85" + _ST + SLASH + "132" + _AVE;
 	private static final String _88_ST_132_AVE = "88" + _ST + SLASH + "132" + _AVE;
 	private static final String _95_ST_132_AVE = "95" + _ST + SLASH + "132" + _AVE;
 	private static final String _127_ST_129_AVE = "127" + _ST + SLASH + "129" + _AVE;
@@ -305,7 +302,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String BRUCE_SMITH = "Bruce Smith";
 	private static final String JH_PICARD = "JH Picard";
 	private static final String TD_BAKER = "TD Baker";
-	private static final String ST_KEVIN = "St Kevin";
 	private static final String LAKEWOOD = "Lakewood";
 	private static final String WOODVALE = "Woodvale";
 	private static final String VERNON_BARFORD = "Vernon Barford";
@@ -396,15 +392,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5302", // Meadowlark Transit Centre
 								"5110", // Jasper Place Transit Centre
 								"5169", // == 142 Street & Stony Plain Road
-								"5432", "1047", // !=
-								"5440", "1917", // !=
+								"5440", // !=
+								"1917", // !=
 								"1242", // == 124 Street & 102 Avenue
 								"1322", // == 103 Street & Jasper Avenue
 								"1336", // != 101 Street & Jasper Avenue
 								"1346", // != 101 Street & 101A Avenue
-								"1346", // 101 Street & 101A Avenue
 								"2591", // 79 Street & 106 Avenue
-								"2301" // Capilano Transit Centre
+								"2301", // Capilano Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -412,12 +407,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"2267", // 79 Street & 106 Avenue
 								"1620", // 101 Street & Jasper Avenue
 								"1746", // == 122 Street & 102 Avenue
-								"1971", "5087", // !=
-								"1828", "5564", // !=
+								"1971", // !=
+								"5087", // !=
 								"5157", // == 140 Street & Stony Plain Road
 								"5101", // Jasper Place Transit Centre
-								"5301", // Meadowlark Transit Centre
-								"5009" // West Edmonton Mall Transit Centre
+								"5580", // ==
+								"5301", // != Meadowlark Transit Centre
+								"5303", // !≃ Meadowlark Transit Centre
+								"5241", // ==
+								"5009", // West Edmonton Mall Transit Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(2L, new RouteTripSpec(2L, //
@@ -1918,34 +1916,53 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(95L, new RouteTripSpec(95L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LAUREL, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MEADOWS, // LAUREL
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3213", // Mill Woods Transit Centre
-								"3189", // ++
-								"3952", // != 34 Street & 23 Avenue
-								"3618", // != 34 Street & 23 Avenue
-								"3759", // != 32 Street & 23 Avenue
-								"3852", // != 24 Street & 23 Avenue =>
-								"3303", // <> 32 Street & 22 Avenue
-								"3305", // <> 32 Street & 22 Avenue
-								"3747", // <> 32 Street & 17B Avenue
+								"3775", // ==
+								"3952", // != != 34 Street & 23 Avenue
+								"3618", // != 34 Street & 23 Avenue CONTNUE
+								"3762", // != !=
+								"3753", // != <>
+								"3746", // <>
+								"3503", // <>
+								"3304", // <>
+								"3305", // != <> 32 Street & 22 Avenue
+								"3759", // != != 32 Street & 23 Avenue
+								"3852", // != 24 Street & 23 Avenue
+								"3844", // != <> 24 Street & 23 Avenue => MILL_WOODS_TC
+								"3303", // != <> 32 Street & 22 Avenue => MILL_WOODS_TC
+								"3306", // != <>
+								"3501", // <>
+								"3736", // <>
+								"3747", // != <> 32 Street & 17B Avenue
 								"3758", // != 32 Street & 16A Avenue
+								"3846", // !=
+								"3858", // ==
 								"3703", // Meadows Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
 						"3703", // Meadows Transit Centre
 								"3782", // == 17 Street & 23 Avenue
-								"3852", // != 24 Street & 23 Avenue <=
-								"3844", // !== 24 Street & 23 Avenue
+								"3844", // !== <> 24 Street & 23 Avenue
+								"3963", // != !=
+								"3788", // !=
+								"3753", // <>
+								"3746", // <>
+								"3503", // <>
+								"3304", // <>
 								"3305", // <> 32 Street & 22 Avenue
 								"3763", // !== 32 Street & 23 Avenue
 								"3855", // !== 24 Street & 23 Avenue
 								"3777", // != 24 Street & 23 Avenue
-								"3303", // <> 32 Street & 22 Avenue
-								"3747", // <> 32 Street & 17B Avenue
+								"3303", // != <> 32 Street & 22 Avenue
+								"3306", // != <>
+								"3501", // <>
+								"3736", // <>
+								"3747", // != <> 32 Street & 17B Avenue
 								"3761", // != 32 Street & 16A Avenue
 								"3620", // !== 34 Street & 18 Avenue
 								"3116", // == 34 Street & 23 Avenue
@@ -2716,7 +2733,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MAC_EWAN_GOV_CTR) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1309", // != Government Transit Centre START
+						"1301", "1309", // != Government Transit Centre START
 								"1035", // !=
 								"1824", // != 108 Street & 104 Avenue START
 								"1845", // !=
@@ -2738,7 +2755,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1740", // !=
 								"1989", // != 108 Street & 104 Avenue END
 								"1622", // !=
-								"1309", // !≃ Government Transit Centre END
+								"1301", "1309", // !≃ Government Transit Centre END
 						})) //
 				.compileBothTripSort());
 		map2.put(162L, new RouteTripSpec(162L, //
@@ -2746,7 +2763,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MAC_EWAN_GOV_CTR) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"1309", // != Government Transit Centre START
+						"1301", "1309", // != Government Transit Centre START
 								"1035", // !=
 								"1824", // != 108 Street & 104 Avenue START
 								"1845", // !=
@@ -2767,7 +2784,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1740", // !=
 								"1989", // != 108 Street & 104 Avenue END
 								"1964", // !=
-								"1309", // != Government Transit Centre END
+								"1301", "1309", // != Government Transit Centre END
 						})) //
 				.compileBothTripSort());
 		map2.put(163L, new RouteTripSpec(163L, //
@@ -3895,17 +3912,19 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"5219", // 175 Street & 87 Avenue
+						"8603", // != Lewis Farms Transit Centre <=
+								"5219", // == 175 Street & 87 Avenue #WestEdmontonMall <=
 								"5332", // 152 Street & 87 Avenue
-								"5095", // 133 Street & Buena Vista Road
-								"5015" // Valley Zoo Parking Lot
+								"5095", // 133 Street & Buena Vista Road #ValleyZoo
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"5015", // Valley Zoo Parking Lot
-								"5095", // 133 Street & Buena Vista Road
+						"5095", // 133 Street & Buena Vista Road #ValleyZoo
 								"5610", // 155 Street & 87 Avenue
-								"5219" // 175 Street & 87 Avenue
+								"5449", // ==
+								"5014", // != West Edmonton Mall Transit Centre
+								"8603", // != Lewis Farms Transit Centre =>
+								"5219", // != 175 Street & 87 Avenue #WestEdmontonMall =>
 						})) //
 				.compileBothTripSort());
 		map2.put(595L, new RouteTripSpec(595L, //
@@ -3981,7 +4000,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"7018", // McConachie Boulevard & 176 Avenue
+						"7719", // 65 Street & McConachie Boulevard
+								"7018", // McConachie Boulevard & 176 Avenue
 								"77436", // ++
 								"7907", // West Clareview Transit Centre
 						})) //
@@ -5223,20 +5243,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "3150", "3212" })) //
 				.compileBothTripSort());
 		map2.put(866L, new RouteTripSpec(866L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, CAPILANO_TC, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ST_KEVIN) //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WP_WAGNER) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "2439", "2307" })) //
+						Arrays.asList(new String[] { //
+						"2189", // 80 Street & Wagner Road
+								"3204", // Mill Woods Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.compileBothTripSort());
 		map2.put(867L, new RouteTripSpec(867L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LAKEWOOD) //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WP_WAGNER) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "3002", "3217" })) //
+						Arrays.asList(new String[] { //
+						"2189", // 80 Street & Wagner Road
+								"3204", // Mill Woods Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { /* no stops */})) //
+						Arrays.asList(new String[] { //
+						/* no stops */
+						})) //
 				.compileBothTripSort());
 		map2.put(869L, new RouteTripSpec(869L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, OTTEWELL_AOB, //
@@ -5837,6 +5865,20 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { "5980", "5695", "8583", "8033", "8670" })) //
 				.compileBothTripSort());
+		map2.put(958L, new RouteTripSpec(958L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL_TC) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						/* no stops */
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"5355", // 163 Street & 92 Avenue
+								"5583", // ++ 163 Street & 87 Avenue
+								"5011", // West Edmonton Mall Transit Centre
+						})) //
+				.compileBothTripSort());
 		map2.put(959L, new RouteTripSpec(959L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL_TC, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, OSCAR_ROMERO) //
@@ -5844,6 +5886,20 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { "5695", "5002" })) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
+				.compileBothTripSort());
+		map2.put(960L, new RouteTripSpec(960L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL_TC) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						/* no stops */
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"5355", // 163 Street & 92 Avenue
+								"5583", // ++ 163 Street & 87 Avenue
+								"5011", // West Edmonton Mall Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(965L, new RouteTripSpec(965L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, BRAEMAR, //
