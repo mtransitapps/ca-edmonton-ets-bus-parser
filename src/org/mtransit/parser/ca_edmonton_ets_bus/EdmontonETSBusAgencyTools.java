@@ -2083,7 +2083,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { "2706", /* "-5932-", *//* + */"5634"/* + */,/* + */"5017"/* + */})) //
 				.compileBothTripSort());
-		// optimize 106
 		map2.put(106L, new RouteTripSpec(106L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LESSARD) //
@@ -2091,22 +2090,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"5733", // 172 Street & Callingwood Road
 								"5650", //
-								"5900", "5757", "5722", "5638", "5671", "5974", "5821", "5749", "5923", "5750", //
 								"5463", // !=
-								"5004", // <> West Edmonton Mall Transit Centre END
 								"5007", // West Edmonton Mall Transit Centre CONTINUE
 								"5054", // ++
-								"5186", "5486", "5566", "5578", "5359", "5281", "5197", "5332", "5451", "5499", "5298", "4425", "22162", "2978", //
 								"22159", //
 								"2713", // South Campus Transit Centre Fort Edmonton Park
 								"2885", //
-								"22157", "2959", "2944", "2505", "2516", //
-								"2748", // ==
-								"2982", // !=
-								"2638", // ==
 								"2625", // ++
-								"2890", // 114 Street & 89 Avenue
 								"2001", // University Transit Centre
+								"2890", // 114 Street & 89 Avenue
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -2114,7 +2106,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"2001", // University Transit Centre
 								"22720", // ++
 								"5449", // !=
-								"5004", // <> != West Edmonton Mall Transit Centre
 								"5005", // != West Edmonton Mall Transit Centre
 								"5653", // !=
 								"5797", // ++
