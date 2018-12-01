@@ -99,7 +99,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public long getRouteId(GRoute gRoute) {
-		return Long.parseLong(gRoute.getRouteShortName()); // using route short name as route ID
+		return Long.parseLong(getRouteShortName(gRoute)); // using route short name as route ID
 	}
 
 	private static final String SLASH = " / ";
@@ -333,10 +333,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public String getRouteShortName(GRoute gRoute) {
-		if (StringUtils.isEmpty(gRoute.getRouteShortName())) {
+		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+			return gRoute.getRouteShortName();
+		}
+		if (Utils.isDigitsOnly(gRoute.getRouteId())) {
 			return gRoute.getRouteId();
 		}
-		return super.getRouteShortName(gRoute); // do not change, used by real-time API
+		System.out.printf("\nUnexpected route ID for %s!\n", gRoute);
+		System.exit(-1);
+		return null;
 	}
 
 	private static final String AGENCY_COLOR_BLUE = "2D3092"; // BLUE (from Wikipedia SVG)
@@ -2513,8 +2518,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"2749", // ++
 								"1159", // !=
 								"1308", // <> Government Transit Centre <=
-								"-11531", // !=
-								"-11530", // !=
+								"1711", //
 								"5481", // ==
 								"5127", // !=
 								"5206", // <> Westmount Transit Centre => END
@@ -2524,7 +2528,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"6333", // 127 Street & 129 Avenue
 								"6553", // !=
 								"6458", // !=
-								"-6011", // !=
 								"6006", // Castle Downs Transit Centre END >> UNIVERSITY
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), // UNIVERSITY
@@ -2537,8 +2540,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5206", // <> Westmount Transit Centre
 								"5329", // !=
 								"5445", // ==
-								"-11533", // !==
-								"-11525", // !=
+								"1083", // !==
+								"1964", // !=
 								"1964", // !=
 								"1308", // <> !== Government Transit Centre =>
 								"2501", // !==
@@ -4164,7 +4167,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "6603", "6853", "6293", "6369", "5211", "5548" })) //
+						Arrays.asList(new String[] { //
+						"6747", // 132 Street & 160 Avenue
+								"6603", //
+								"6853", //
+								"6369", //
+								"5211", //
+								"5548", // 142 Street & 109 Avenue
+						})) //
 				.compileBothTripSort());
 		map2.put(607L, new RouteTripSpec(607L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, CASTLE_DOWNS, //
@@ -6124,6 +6134,20 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"5355", // 163 Street & 92 Avenue
 								"5583", // ++ 163 Street & 87 Avenue
 								"5011", // West Edmonton Mall Transit Centre
+						})) //
+				.compileBothTripSort());
+		map2.put(961L, new RouteTripSpec(961L, //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEWIS_FARMS_TC) //
+				.addTripSort(MDirectionType.EAST.intValue(), //
+						Arrays.asList(new String[] { //
+						/* no stops */
+						})) //
+				.addTripSort(MDirectionType.WEST.intValue(), //
+						Arrays.asList(new String[] { //
+						"5355", // 163 Street & 92 Avenue #JasperPlaceSchool
+								"5014", // West Edmonton Mall Transit Centre
+								"8601", // Lewis Farms Transit Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(965L, new RouteTripSpec(965L, //
