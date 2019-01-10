@@ -2676,13 +2676,24 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LAGO_LINDO, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "1251", "1040", "7003", "7010",
-						/* + */"7748"/* + */, //
-								"7377" })) //
+						Arrays.asList(new String[] { //
+						"1251", // 102 Street & MacDonald Drive #Downtown
+								"1040", // ++
+								"7579", // ==
+								"7003", // != Northgate Transit Centre =>
+								"7010", // != Northgate Transit Centre
+								"7448", // ==
+								"7827", // 91 Street & 167 Avenue #LagoLindo
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "7377",
-						/* + */"7042"/* + */, //
-								"7003", "1380", "1251" })) //
+						Arrays.asList(new String[] { //
+						"7827", // 91 Street & 167 Avenue #LagoLindo
+								"7377", // ++
+								"7042", // ++
+								"7003", // != Northgate Transit Centre <=
+								"1380", //
+								"1251", // 102 Street & MacDonald Drive #Downtown
+						})) //
 				.compileBothTripSort());
 		map2.put(141L, new RouteTripSpec(141L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, ABBOTTSFIELD, //
@@ -3771,7 +3782,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, ALLARD) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"9717", // Allard Link & 30 Avenue SW
+						"9718", // Allard Gate & 30 Avenue SW
+								"9717", // Allard Link & 30 Avenue SW
 								"9773", // Allard Gate & Allard Boulevard SW
 								"9685", // ++
 								"4213", // Century Park Transit Centre
@@ -3780,7 +3792,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"4213", // Century Park Transit Centre
 								"9666", // ++
-								"9717" // Allard Link & 30 Avenue SW
+								"9718", // Allard Gate & 30 Avenue SW
 						})) //
 				.compileBothTripSort());
 		map2.put(360L, new RouteTripSpec(360L, //
@@ -4000,6 +4012,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"8207", // Jennifer Heil Way & Grove Drive
+								"8925", // ++ Belmont Crescent & McLeod Avenue
 								"5219", // 175 Street & 87 Avenue
 								"2708" // South Campus Transit Centre Fort Edmonton Park
 						})) //
@@ -4007,6 +4020,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2708", // South Campus Transit Centre Fort
 								"5014", // West Edmonton Mall Transit Centre
+								"9818", // ++ Fulton Drive & Acheson Road
+								"8233", // Century Road & Grove Meadow Drive
+								"8743", // ++ Aspenglen Drive & Grove Drive
 								"8207", // Jennifer Heil Way & Grove Drive
 						})) //
 				.compileBothTripSort());
@@ -4922,7 +4938,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, TWIN_BROOKS) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "4265", "4216", "2218" })) //
+						Arrays.asList(new String[] { //
+						"4348", // 111 Street & 12 Avenue
+								"4265", //
+								"4216", //
+								"2218", // Southgate Transit Centre
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.compileBothTripSort());
