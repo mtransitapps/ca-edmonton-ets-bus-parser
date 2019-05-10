@@ -4044,10 +4044,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"8785", // Century Road & McLeod Avenue #SPRUCE _GRV
 								"8761", // == Century Road & Grove Drive #SPRUCE_GRV
 								"5415", // != 154 Street & 119 Avenue #MIDDLE =>
-								"-11330", //
 								"1890", // != == 109 Street & Princess Elizabeth Avenue #DOWNTOWN
 								"1570", // != != 101 Street & 103A Avenue #DOWNTOWN =>
 								"1366", // != != 101 Street & 111 Avenue #DOWNTOWN
+								"11334", // != 102 Street & 104 Avenue #DOWNTOWN
 								"1983", // != 105 Street & 104 Avenue #DOWNTOWN
 								"1479", // != 97 Street & 103A Avenue #DOWNTOWN =>
 						})) //
