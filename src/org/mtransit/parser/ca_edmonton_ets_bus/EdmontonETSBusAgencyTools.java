@@ -249,8 +249,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String HOLLICK_KENYON = "Hollick Kenyon";
 	private static final String MC_LEOD = "McLeod";
 	private static final String EDM_WASTE_MGT_CTR = EDM + " Waste Mgt Ctr";
-	private static final String VLY_ZOO = "Vly Zoo";
-	private static final String VLY_ZOO_FT_EDM = VLY_ZOO + SLASH + FT_EDM;
 	private static final String EDM_INT_AIRPORT = "Edm Int Airport";
 	private static final String GRIESBACH = "Griesbach";
 	private static final String REMAND_CTR = "Remand Ctr";
@@ -524,7 +522,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5054", // !=
 								"22159", // !=
 								"2702", // <> South Campus Transit Centre Fort Edmonton Park // LAST
-								"2713", "2714", // South Campus Fort Edmonton Transit Centre // CONTINUE
+								"2712", "2713", "2714", // South Campus Fort Edmonton Transit Centre // CONTINUE
 								"2748", // == !=
 								"2982", // != <>
 								"2638", // == <>
@@ -2204,7 +2202,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5007", // West Edmonton Mall Transit Centre CONTINUE
 								"5054", // ++
 								"22159", //
-								"2713", // South Campus Transit Centre Fort Edmonton Park
+								"2708", "2712", "2713", // South Campus Transit Centre Fort Edmonton Park
 								"2885", //
 								"2625", // ++
 								"2001", // University Transit Centre
@@ -4185,12 +4183,20 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(596L, new RouteTripSpec(596L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTH_CAMPUS, //
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, VLY_ZOO_FT_EDM) //
+				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
+				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, "Hawrelak Pk") //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { "5015", "4476", "2706" })) //
+						Arrays.asList(new String[] { //
+						"2515", // Groat Road & Hawrelak Park
+								"2666", // ++
+								"2001", // University Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "2706", "4476", "5015" })) //
+						Arrays.asList(new String[] { //
+						"2001", // University Transit Centre
+								"2851", // ++
+								"2515", // Groat Road & Hawrelak Park
+						})) //
 				.compileBothTripSort());
 		map2.put(599L, new RouteTripSpec(599L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EDM_GARRISON, //
