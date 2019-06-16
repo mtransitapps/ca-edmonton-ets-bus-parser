@@ -521,6 +521,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5006", // <> West Edmonton Mall Transit Centre
 								"5054", // !=
 								"22159", // !=
+								"2707", // <> South Campus Fort Edmonton Transit Centre Bay A
 								"2702", // <> South Campus Transit Centre Fort Edmonton Park // LAST
 								"2712", "2713", "2714", // South Campus Fort Edmonton Transit Centre // CONTINUE
 								"2748", // == !=
@@ -528,7 +529,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"2638", // == <>
 								"2625", // != <>
 								"2890", // == <> 114 Street & 89 Avenue
-								"2002", // University Transit Centre
+								"2002", // <> University Transit Centre
+								"2410", // <>
+								"2834", // !=
 								"2065", // == 87 Street & 82 Avenue
 								"2593", // != 85 Street & 82 Avenue
 								"2196", // != 83 Street & 90 Avenue
@@ -557,8 +560,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"2638", // == <>
 								"2625", // != <>
 								"2890", // == <> 114 Street & 89 Avenue
-								"2001", // != University Transit Centre
+								"2001", "2002", // <> != University Transit Centre
+								"2410", // <>
+								"2660", // !=
 								"22156", // !=
+								"2707", // <> South Campus Fort Edmonton Transit Centre Bay A
 								"2702", // <> South Campus Transit Centre Fort Edmonton Park
 								"22160", // !=
 								"5449", // !=
@@ -613,30 +619,33 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"5112", // 157 Street & Stony Plain Road #JasperPlace <=
-								"5108", // Jasper Place Transit Centre
 								"1881", // 124 Street & 107 Avenue
 								"1829", // 105 Street & 105 Avenue
 								"1570", // !=
-								"1829", // != 105 Street & 105 Avenue <=
+								"1358", // != <> 99 Street & 104 Avenue <=
 								"1608", // ==
 								"1542", // ++
 								"2659", // ++
 								"2891", // ++
-								"2890", // 114 Street & 89 Avenue
-								"2002", // University Transit Centre
+								"2882", // !=
+								"2890", // <> 114 Street & 89 Avenue
+								"2002", // <> University Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2002", // University Transit Centre
+						"2890", // <> 114 Street & 89 Avenue
+								"2002", // <> University Transit Centre
+								"22720", // !=
 								"2860", // ++
 								"2824", // ++
-								"1457", // ++
+								"1457", // ==
+								"1321", // !=
+								"1246", // !=
 								"1364", // ==
-								"1358", // != 99 Street & 104 Avenue =>
-								"11344", // !=
+								"1358", // != <> 99 Street & 104 Avenue =>
+								"11334", // !=
 								"1989", // 108 Street & 104 Avenue
 								"1808", // ++
-								"5108", // Jasper Place Transit Centre
 								"5112", // 157 Street & Stony Plain Road #JasperPlace
 						})) //
 				.compileBothTripSort());
@@ -697,13 +706,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1591", // 101 Street & MacDonald Drive
 								"1108", // Kingsway RAH Transit Centre
 								"1476", // 106 Street & 118 Avenue
-								"7016", // Northgate Transit Centre
+								"7011", "7016", // Northgate Transit Centre
 								"6317", // Eaux Claires Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), // EAUX_CLAIRES => CENTURY_PK / SOUTHGATE
 						Arrays.asList(new String[] { //
 						"6317", // Eaux Claires Transit Centre
-								"7001", // Northgate Transit Centre
+								"7001", "7003", // Northgate Transit Centre
 								"1532", // 106 Street & 118 Avenue Loop
 								"1104", // Kingsway RAH Transit Centre
 								"1142", // 101 Street & MacDonald Drive nearside
@@ -821,7 +830,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.compileBothTripSort());
 		map2.put(15L, new RouteTripSpec(15L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, EAUX_CLAIRES, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_) //
+				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"3207", // != Mill Woods Transit Centre <=
@@ -838,11 +847,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"1227", // ==
 								"1532", // != 106 Street & 118 Avenue Loop
 								"1476", // != 106 Street & 118 Avenue
+								"7016", // Northgate Transit Centre
 								"6317", // Eaux Claires Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"6317", // Eaux Claires Transit Centre
+								"7001", "7003", // Northgate Transit Centre
 								"1532", // 106 Street & 118 Avenue Loop
 								"1557", // 109 Street & 105 Avenue
 								"1542", // 100 Street & Jasper Avenue
@@ -987,13 +998,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						/* + */"9710"/* + */,//
 								"9460" })) //
 				.compileBothTripSort());
+		// 30
 		boolean _30_WithMillWoodsTC = false;
 		List<String> _30_North = Arrays.asList(new String[] { //
 				"4211", // Century Park Transit Centre
 						"4811", // Leger Transit Centre
 						"4597", // ++
 						"4153", // ++
-						"2704", // South Campus Fort Edmonton Transit Centre
+						"2704", "2707" // South Campus Fort Edmonton Transit Centre
 				});
 		String _30_SouthHeadsignString = CENTURY_PK;
 		List<String> _30_South = Arrays.asList(new String[] { //
@@ -1004,10 +1016,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"4811", // != Leger Transit Centre =>
 						"4803", // != Leger Transit Centre
 						"4211", // Century Park Transit Centre
-						"4202", // Century Park Transit Centre
 				});
 		if (_30_WithMillWoodsTC) {
 			_30_North.add(0, "3217"); // Mill Woods Transit Centre
+			//
 			_30_SouthHeadsignString = MILL_WOODS_TC;
 			_30_South.add(_30_South.size(), "3217"); // Mill Woods Transit Centre
 		}
@@ -1017,6 +1029,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), _30_North) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), _30_South) //
 				.compileBothTripSort());
+		//
 		map2.put(31L, new RouteTripSpec(31L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE_TC, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEGER_TC) //
@@ -1042,7 +1055,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"4025", // 148 Street & Riverbend Road nearside
 								"4153", // Whitemud Drive NB & 53 Avenue
-								"2703", "2705", // South Campus Fort Edmonton Transit Centre
+								"2703", "2705", "2707", // South Campus Fort Edmonton Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -1108,7 +1121,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"4530", // !=
 								"4455", // Falconer Road & Riverbend Square
 								"4158", // Whitemud Drive SB & 53 Avenue
-								"2703", // South Campus Transit Centre Fort Edmonton Park
+								"2703", "2707", // South Campus Transit Centre Fort Edmonton Park
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -1254,7 +1267,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"4547", // != 112 Street & Saddleback Road North Ent
 								"4493", // != 116 Street & 30 Avenue
 								"4154", // == 117 Street & 28 Avenue
-								"2711", // South Campus Transit Centre Fort Edmonton Park
+								"2711", "2714", // South Campus Transit Centre Fort Edmonton Park
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -1341,9 +1354,21 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTH_CAMPUS, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTHGATE) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "2210", "4277", "2517", "2957", "2710" })) //
+						Arrays.asList(new String[] { //
+						"2210", // Southgate Transit Centre
+								"4277", // ++
+								"2517", // ++
+								"2957", // ++
+								"2710", "2714", // South Campus Fort Edmonton Transit Centre Bay H
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "2710", "2510", "2924", "4474", "2210" })) //
+						Arrays.asList(new String[] { //
+						"2710", // South Campus Fort Edmonton Transit Centre Bay L
+								"2510", // ++
+								"2924", // ++
+								"4474", // ++
+								"2210", // Southgate Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(51L, new RouteTripSpec(51L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
@@ -1356,12 +1381,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"22354", // !=
 								"2638", // ==
 								"2890", // 114 Street & 89 Avenue
-								"2001", // University Transit Centre
+								"2001", "2002", // University Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"2001", // University Transit Centre
-								/* + */"2889"/* + */, //
+						"2001", "2002", // University Transit Centre
+								"2889", // ++
 								"2795", // 112 Street & 65 Avenue nearside
 						})) //
 				.compileBothTripSort());
@@ -1399,7 +1424,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"2216", // Southgate Transit Centre
 								"2973", // ++
-								"2709", "2712", // South Campus Fort Edmonton Transit Centre
+								"2709", "2712", "2714", // South Campus Fort Edmonton Transit Centre
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -1430,12 +1455,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2202", // Southgate Transit Centre
+								"2707", // South Campus Fort Edmonton Transit Centre Bay A
 								"2706", // South Campus Transit Centre Fort Edmonton Park
 								"2765", // 118 Street & 73 Avenue
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2765", // 118 Street & 73 Avenue
+								"2714", // South Campus Fort Edmonton Transit Centre Bay H
 								"2709", // South Campus Transit Centre Fort Edmonton Park
 								"2202", // Southgate Transit Centre
 						})) //
@@ -2106,7 +2133,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5449", // != ==
 								"5001", // != <> West Edmonton Mall Transit Centre =>
 								"5010", // != West Edmonton Mall Transit Centre
-								"8605", "8610", // Lewis Farms Transit Centre
+								"8601", "8605", "8610", // Lewis Farms Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -2179,17 +2206,36 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTH_CAMPUS, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LYMBURN) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { /*-"5755",-*/"5828", /* + */"5725"/* + */, "5821", "2706" })) //
+						Arrays.asList(new String[] { //
+						"5828", // 188 Street & Ormsby Road West
+								"5725", // 183A Street & 76 Avenue
+								"5821", // ++
+								"2706", "2707", // South Campus Fort Edmonton Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "2706", /*-"5725"-,*//* + */"5755"/* + */,/* + */"5828"/* + */})) //
+						Arrays.asList(new String[] { //
+						"2706", // South Campus Fort Edmonton Transit Centre
+								"5755", // 183A Street & 76 Avenue
+								"5828", // 188 Street & Ormsby Road West
+						})) //
 				.compileBothTripSort());
 		map2.put(105L, new RouteTripSpec(105L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SOUTH_CAMPUS, //
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, LESSARD) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { /* + */"5017"/* + */, /* + */"5932"/* + */, /* "-5634-", */"5733", "5821", "2706" })) //
+						Arrays.asList(new String[] { //
+						"5017", // 188 Street & Lessard Road
+								"5932", // Lessard Road & 57 Avenue
+								"5733", // ++
+								"5821", // ++
+								"2706", "2707", // South Campus Fort Edmonton Transit Centre
+						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "2706", /* "-5932-", *//* + */"5634"/* + */,/* + */"5017"/* + */})) //
+						Arrays.asList(new String[] { //
+						"2706", // South Campus Fort Edmonton Transit Centre
+								"5634", // Lessard Road & 57 Avenue
+								"5017", // 188 Street & Lessard Road
+						})) //
 				.compileBothTripSort());
 		map2.put(106L, new RouteTripSpec(106L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, UNIVERSITY, //
@@ -2202,17 +2248,17 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5007", // West Edmonton Mall Transit Centre CONTINUE
 								"5054", // ++
 								"22159", //
-								"2708", "2712", "2713", // South Campus Transit Centre Fort Edmonton Park
+								"2708", // South Campus Transit Centre Fort Edmonton Park
 								"2885", //
-								"2625", // ++
-								"2001", // University Transit Centre
-								"2890", // 114 Street & 89 Avenue
+								"2625", // !=
+								"2001", "2002", // <> University Transit Centre
+								"2890", // <> 114 Street & 89 Avenue
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
-						"2890", // 114 Street & 89 Avenue
-								"2001", // University Transit Centre
-								"22720", // ++
+						"2890", // <> 114 Street & 89 Avenue
+								"2001", "2002", // <> University Transit Centre
+								"22720", // !=
 								"5449", // !=
 								"5005", // != West Edmonton Mall Transit Centre
 								"5653", // !=
@@ -2242,9 +2288,17 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEWIS_FARMS, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, BRECKENRIDGE_GRNS) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "8670", "8279", "8608" })) //
+						Arrays.asList(new String[] { //
+						"8670", // The Fairways & Potter Greens Drive nearside
+								"8279", // ++
+								"8601", "8608", // Lewis Farms Transit Centre
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "8608", "8999", "8670" })) //
+						Arrays.asList(new String[] { //
+						"8608", // Lewis Farms Transit Centre
+								"8999", // ++
+								"8670", // The Fairways & Potter Greens Drive
+						})) //
 				.compileBothTripSort());
 		map2.put(109L, new RouteTripSpec(109L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, DOWNTOWN, //
@@ -2391,7 +2445,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"5010", // West Edmonton Mall Transit Centre
 								"5819", // != 189 Street & 87 Avenue
-								"8607", // <> Lewis Farms Transit Centre
+								"8601", "8607", // <> Lewis Farms Transit Centre
 								"8536", // != West Henday Promenade Access & Webber Greens Drive
 								"8135", // ++ Guardian Road & Whitemud Drive
 								"8106", // 199 Street & 62 Avenue
@@ -2405,7 +2459,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"8361", // == 199 Street & 69 Avenue
 								"8033", // ++ Guardian Road & Whitemud Drive
 								"8406", // == != Suder Greens Drive & Webber Greens Drive
-								"8607", // != <> Lewis Farms Transit Centre => THE_HAMPTONS
+								"8601", "8607", // != <> Lewis Farms Transit Centre => THE_HAMPTONS
 								"8603", "8605", // != Lewis Farms Transit Centre => WEST_EDM_MALL
 								"5783", // == 187 Street & 87 Avenue
 								"5010", // West Edmonton Mall Transit Centre
@@ -2423,9 +2477,20 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, LEWIS_FARMS, //
 				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, THE_HAMPTONS) //
 				.addTripSort(MDirectionType.NORTH.intValue(), //
-						Arrays.asList(new String[] { "8583", "8097", "8033", "8607" })) //
+						Arrays.asList(new String[] { //
+						"8583", // 215 Street & Hope Road
+								"8097", // ++
+								"8033", // ++
+								"8601", "8607", // Lewis Farms Transit Centre
+						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
-						Arrays.asList(new String[] { "8607", "8135", "8097", "8046", "8583" })) //
+						Arrays.asList(new String[] { //
+						"8607", // Lewis Farms Transit Centre
+								"8135", // ++
+								"8097", // ++
+								"8046", // 199 Street & 62 Avenue
+								"8583", // 215 Street & Hope Road
+						})) //
 				.compileBothTripSort());
 		map2.put(120L, new RouteTripSpec(120L, //
 				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, STADIUM, //
@@ -2648,7 +2713,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"2002", // <> University Transit Centre
 								"22720", // !=
 								"5010", // West Edmonton Mall Transit Centre
-								"8602", "8603", // Lewis Farms Transit Centre
+								"8601", "8602", "8603", // Lewis Farms Transit Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(134L, new RouteTripSpec(134L, //
@@ -3290,17 +3355,18 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"7907", // West Clareview Transit Centre
 								"7879", // ++
 								"77126", // == 55 Street & 167 Avenue
+								"7308", // != McConachie Way & 167 Avenue =>
+								"77130", // !=
+								"7719", // 65 Street & McConachie Boulevard =>
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
-						"77126", // == 55 Street & 167 Avenue
-								"7308", // != 59A Street & McConachie Way
+						"7719", // != 65 Street & McConachie Boulevard <=
+								"77607", // !=
+								"7308", // != 59A Street & McConachie Way <=
 								"77335", // !=
-								"77130", // !== McConachie Way & 167 Avenue
-								"7018", // != McConachie Boulevard & 176 Avenue
-								"77607", // !== McConachie Drive & McConachie Boulevard
 								"77424", // ==
-								"77436", // ==
+								"77436", // ++
 								"7907", // West Clareview Transit Centre
 						})) //
 				.compileBothTripSort());
@@ -3614,7 +3680,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"8080", // <> Secord Drive & Secord Boulevard
 								"8061", // <> 218 Street & Secord Blvd
 								"8068", // !=
-								"8609", // Lewis Farms Transit Centre
+								"8601", "8609", // Lewis Farms Transit Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(316L, new RouteTripSpec(316L, //
@@ -3645,13 +3711,21 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.NORTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2765", // 118 Street & 73 Avenue
-								"2002", // University Transit Centre
+								"2882", // !=
+								"2890", // <>
+								"2002", // <> University Transit Centre
+								"2410", // <>
+								"2660", // !=
 								"2971", // 117 Street & University Avenue
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
 						"2971", // 117 Street & University Avenue
-								"2001", // University Transit Centre
+								"2844", // !=
+								"2890", // <>
+								"2001", "2002", // <> University Transit Centre
+								"2410", // <>
+								"2834", // !=
 								"2765", // 118 Street & 73 Avenue
 						})) //
 				.compileBothTripSort());
@@ -3770,7 +3844,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"8167", // 224 Street & Rosenthal Boulevard
 								"8852", // ++
-								"8604", "8610", // Lewis Farms Transit Centre
+								"8601", "8604", "8610", // Lewis Farms Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -4082,7 +4156,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"8207", // Jennifer Heil Way & Grove Drive
 								"8925", // ++ Belmont Crescent & McLeod Avenue
 								"5219", // 175 Street & 87 Avenue
-								"2708" // South Campus Transit Centre Fort Edmonton Park
+								"2708", "2714", // South Campus Transit Centre Fort Edmonton Park
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -5104,7 +5178,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"5061", // 163 Street & 93 Avenue
 								"5069", // ++
 								"5002", // West Edmonton Mall Transit Centre
-								"8603", "8610", // Lewis Farms Transit Centre
+								"8601", "8603", "8610", // Lewis Farms Transit Centre
 						})) //
 				.compileBothTripSort());
 		map2.put(806L, new RouteTripSpec(806L, //
@@ -5256,7 +5330,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { /* no stops */})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { "1911", "5001", "8605" })) //
+						Arrays.asList(new String[] { //
+						"1911", // 101 Street & Kingsway
+								"5001", //
+								"8601", "8605", // Lewis Farms Transit Centre
+						})) //
 				.compileBothTripSort());
 		map2.put(825L, new RouteTripSpec(825L, //
 				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, NORTHGATE_TC, //
