@@ -483,15 +483,17 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, JASPER_PLACE) //
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
-						"5106", // != 157 Street & 100A Avenue #JasperPlace
-								"-55552", // !=
-								"5112", // != 157 Street & Stony Plain Road #JasperPlace
+						"5112", // != 157 Street & Stony Plain Road #JasperPlace
 								"5360", // ==
-								"5928", //
-								"1279", //
-								"1360", //
+								"5928", // ++
+								"5330", // ==
+								"5331", // !=
+								"5531", // !=
+								"5224", // ==
+								"1279", // ++
+								"1360", // 101 Street & 107 Avenue
 								"1243", // ==
-								"1142", // != 101 Street & MacDonald Drive
+								"1142", // != 101 Street & MacDonald Drive =>
 								"1336", // !=
 								"1256", // Thornton Court & Jasper Avenue
 								"1147", // 82 Street & 115 Avenue Loop
@@ -500,15 +502,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"1147", // 82 Street & 115 Avenue Loop
 								"1346", // 101 Street & 101A Avenue NS
-								"1775", //
-								"1846", //
-								"1669", //
-								"5389", //
+								"1775", // ++
+								"1846", // ++
+								"1669", // ++
+								"5389", // ++
 								"5476", // ==
-								"-55551", // !=
-								"-55552", // !=
 								"5112", // != 157 Street & Stony Plain Road #JasperPlace
-								"5106", // != 157 Street & 100A Avenue #JasperPlace
 						})) //
 				.compileBothTripSort());
 		map2.put(4L, new RouteTripSpec(4L, //
@@ -1005,7 +1004,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"4811", // Leger Transit Centre
 						"4597", // ++
 						"4153", // ++
-						"2704", "2707" // South Campus Fort Edmonton Transit Centre
+						"2704", "2707", "2714" // South Campus Fort Edmonton Transit Centre
 				});
 		String _30_SouthHeadsignString = CENTURY_PK;
 		List<String> _30_South = Arrays.asList(new String[] { //
@@ -1055,7 +1054,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"4025", // 148 Street & Riverbend Road nearside
 								"4153", // Whitemud Drive NB & 53 Avenue
-								"2703", "2705", "2707", // South Campus Fort Edmonton Transit Centre
+								"2703", "2705", "2707", "2714", // South Campus Fort Edmonton Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -1121,7 +1120,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"4530", // !=
 								"4455", // Falconer Road & Riverbend Square
 								"4158", // Whitemud Drive SB & 53 Avenue
-								"2703", "2707", // South Campus Transit Centre Fort Edmonton Park
+								"2703", "2707", "2714", // South Campus Transit Centre Fort Edmonton Park
 						})) //
 				.addTripSort(MDirectionType.SOUTH.intValue(), //
 						Arrays.asList(new String[] { //
@@ -2210,7 +2209,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"5828", // 188 Street & Ormsby Road West
 								"5725", // 183A Street & 76 Avenue
 								"5821", // ++
-								"2706", "2707", // South Campus Fort Edmonton Transit Centre
+								"2706", "2707", "2714", // South Campus Fort Edmonton Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -2228,7 +2227,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5932", // Lessard Road & 57 Avenue
 								"5733", // ++
 								"5821", // ++
-								"2706", "2707", // South Campus Fort Edmonton Transit Centre
+								"2706", "2707", "2714", // South Campus Fort Edmonton Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -2244,15 +2243,19 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						Arrays.asList(new String[] { //
 						"5733", // 172 Street & Callingwood Road
 								"5650", //
+								"5900", "5757", "5722", "5638", "5671", "5974", "5821", "5749", "5923", "5750", "55070", //
 								"5463", // !=
 								"5007", // West Edmonton Mall Transit Centre CONTINUE
 								"5054", // ++
+								"5186", "5486", "5566", "5578", "5359", "5281", "5197", "5332", "5451", "5499", "5298", "4425", "22162", "2978", // ,
 								"22159", //
+								"2714", // South Campus Fort Edmonton Transit Centre
 								"2708", // South Campus Transit Centre Fort Edmonton Park
 								"2885", //
+								"22157", "2959", "2944", "2505", "2516", "2748", "2982", "2638", //
 								"2625", // !=
-								"2001", "2002", // <> University Transit Centre
 								"2890", // <> 114 Street & 89 Avenue
+								"2001", "2002", // <> University Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -2767,7 +2770,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5982", "5696", "5642", "5921", "5747", "5776", "5626", // <>
 								"5981", // <>
 								"5773", // !=
-								"2705", "2707", // South Campus Fort Edmonton Transit Centre
+								"2705", "2707", "2714", // South Campus Fort Edmonton Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -2791,7 +2794,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						"8457", // <> Glastonbury Boulevard & 62 Avenue
 								"8106", // ++
 								"8033", // ++
-								"2705", "2707", // South Campus Fort Edmonton Transit Centre
+								"2705", "2707", "2714", // South Campus Fort Edmonton Transit Centre
 						})) //
 				.addTripSort(MDirectionType.WEST.intValue(), //
 						Arrays.asList(new String[] { //
@@ -3503,6 +3506,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				.addTripSort(MDirectionType.EAST.intValue(), //
 						Arrays.asList(new String[] { //
 						"2808", // Bonnie Doon Safeway
+								"2593", // ==
+								"2447", // !=
+								"2255", // !=
+								"2222", // ==
 								"2805", // ++ Girard Road & 76 Avenue
 								"2415", // !=
 								"2693", // == 17 Street & Oak Ridge Drive
