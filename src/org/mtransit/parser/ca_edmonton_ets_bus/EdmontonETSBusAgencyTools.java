@@ -195,7 +195,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String STRATHCONA = "Strathcona";
 	private static final String WINDSOR_PARK = "Windsor Pk";
 	private static final String BELGRAVIA = "Belgravia";
-	private static final String SILVERBERRY = "SilverBerry";
 	private static final String LAKEWOOD = "Lakewood";
 	private static final String LAUDERDALE = "Lauderdale";
 	private static final String CALDER = "Calder";
@@ -355,6 +354,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					LEWIS_FARMS //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(LEWIS_FARMS, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					S_ + WEST_EDM_MALL, //
+					S_ + UNIVERSITY, //
+					S_ + LEWIS_FARMS //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(S_ + LEWIS_FARMS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 5L) {
@@ -614,6 +621,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(SOUTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 54L) {
+			if (Arrays.asList( //
+					SOUTH_CAMPUS, // <>
+					UNIVERSITY //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(UNIVERSITY, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 55L) {
 			if (Arrays.asList( //
 					SOUTH_CAMPUS, // <>
@@ -855,6 +870,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 125L) {
 			if (Arrays.asList( //
+					S_ + WESTMOUNT, // <>
+					S_ + JASPER_PLACE //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(S_ + JASPER_PLACE, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
 					WESTMOUNT, // <>
 					JASPER_PLACE //
 					).containsAll(headsignsValues)) {
@@ -968,6 +990,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					KING_EDWARD_PK //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(KING_EDWARD_PK, mTrip.getHeadsignId());
+				return true;
+			}
+		} else if (mTrip.getRouteId() == 153L) {
+			if (Arrays.asList( //
+					S_ + CLAREVIEW, //
+					S_ + BELVEDERE //
+			).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(S_ + BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 161L) {
