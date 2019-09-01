@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +22,6 @@ import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.gtfs.data.GTripStop;
 import org.mtransit.parser.mt.data.MAgency;
-import org.mtransit.parser.mt.data.MDirectionType;
 import org.mtransit.parser.mt.data.MRoute;
 import org.mtransit.parser.mt.data.MTrip;
 import org.mtransit.parser.mt.data.MTripStop;
@@ -60,31 +58,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private void setupNext() {
-		ALL_ROUTE_TRIPS2.put(560L, new RouteTripSpec(560L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, EDM, // DOWNTOWN
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
-				.addTripSort(MDirectionType.EAST.intValue(), //
-						Arrays.asList(new String[] { //
-						"8584", // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
-								"8761", // Century Road & Grove Drive
-								"8910", // == Century Road & Vanderbilt Common
-								"5415", // != 154 Street & 119 Avenue =>
-								"1223", // ==
-								"1226", // !=
-								"1113", // <> Kingsway RAH Transit Centre =>
-								"1989", // <> 108 Street & 104 Avenue #Edmonton =>
-						})) //
-				.addTripSort(MDirectionType.WEST.intValue(), //
-						Arrays.asList(new String[] { //
-						"1113", // <> Kingsway RAH Transit Centre <=
-								"1989", // <> 108 Street & 104 Avenue #Edmonton <=
-								"1899", // !=
-								"1227", // ==
-								"5389", // != 154 Street & 118 Avenue <=
-								"8371", // Century Road & Kings Link ==
-								"8584", // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
-						})) //
-				.compileBothTripSort());
 	}
 
 	@Override
@@ -138,9 +111,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String _AND_ = " & ";
 	private static final String _AVE = " Ave";
 	private static final String _ST = " St";
+	private static final String TOWN_CENTER_SHORT = "TC";
 	private static final String TRANSIT_CENTER_SHORT = "TC";
-	private static final String EDM = "Edm";
-	private static final String WEST_EDM_MALL = "West " + EDM + " Mall"; // TODO ? "WEM"
+	private static final String EDMONTON_SHORT = "Edm";
+	private static final String INDUSTRIAL_SHORT = "Ind";
+	private static final String WEST_EDMONTON_MALL = "West " + EDMONTON_SHORT + " Mall"; // TODO ? "WEM"
 	private static final String LEWIS_FARMS = "Lewis Farms";
 	private static final String CAPILANO = "Capilano"; //
 	private static final String CLAREVIEW = "Clareview";
@@ -150,7 +125,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String WESTMOUNT = "Westmount";
 	private static final String UNIVERSITY = "University";
 	private static final String MILL_WOODS = "Mill Woods";
-	private static final String MILL_WOODS_TC = MILL_WOODS + " TC";
+	private static final String MILL_WOODS_TC = MILL_WOODS + " " + TRANSIT_CENTER_SHORT;
 	private static final String NAIT = "NAIT";
 	private static final String SOUTHGATE = "Southgate";
 	private static final String NORTHGATE = "Northgate";
@@ -158,7 +133,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String EAUX_CLAIRES = "Eaux Claires";
 	private static final String DOWNTOWN = "Downtown";
 	private static final String MILLGATE = "Millgate";
-	private static final String GOV_CTR = "Government Ctr"; // TODO "Gov Ctr";
+	private static final String GOVERNMENT_SHORT = "Gov";
+	private static final String GOV_CTR = GOVERNMENT_SHORT + " Ctr";
 	private static final String CASTLE_DOWNS = "Castle Downs";
 	private static final String CENTURY_PK = "Century Pk";
 	private static final String YELLOWBIRD = "Yellowbird";
@@ -171,14 +147,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String PARKALLEN = "Parkallen";
 	private static final String KNOTTWOOD = "Knottwood";
 	private static final String BELVEDERE = "Belvedere";
-	private static final String BELEVEDERE = "Belevedere"; // TODO Belvedere?
 	private static final String BONNIE_DOON = "Bonnie Doon";
 	private static final String TAMARACK = "Tamarack";
 	private static final String LESSARD = "Lessard";
 	private static final String LYMBURN = "Lymburn";
 	private static final String CARLTON = "Carlton";
 	private static final String WEDGEWOOD = "Wedgewood";
-	private static final String MISTATIM_IND = "Mistatim Ind";
+	private static final String MISTATIM_IND = "Mistatim " + INDUSTRIAL_SHORT;
 	private static final String STADIUM = "Stadium";
 	private static final String LAGO_LINDO = "Lago Lindo";
 	private static final String MONTROSE = "Montrose";
@@ -191,10 +166,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String KLARVATTEN = "Klarvatten";
 	private static final String RIVERDALE = "Riverdale";
 	private static final String WINTERBURN = "Winterburn";
-	private static final String WINTERBURN_IND = WINTERBURN + " Ind";
+	private static final String WINTERBURN_IND = WINTERBURN + " " + INDUSTRIAL_SHORT;
 	private static final String STRATHCONA = "Strathcona";
 	private static final String WINDSOR_PARK = "Windsor Pk";
 	private static final String BELGRAVIA = "Belgravia";
+	private static final String SILVERBERRY = "Silverberry";
 	private static final String LAKEWOOD = "Lakewood";
 	private static final String LAUDERDALE = "Lauderdale";
 	private static final String CALDER = "Calder";
@@ -308,21 +284,21 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					CAPILANO, // <>
-					WEST_EDM_MALL //
+					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(WEST_EDM_MALL, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 2L) {
 			if (Arrays.asList( //
-					WEST_EDM_MALL, // <>
+					WEST_EDMONTON_MALL, // <>
 					LESSARD //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(LESSARD, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
-					WEST_EDM_MALL, // <>
+					WEST_EDMONTON_MALL, // <>
 					HIGHLANDS, //
 					DOWNTOWN, //
 					CLAREVIEW //
@@ -349,7 +325,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 			if (Arrays.asList( //
-					WEST_EDM_MALL, //
+					WEST_EDMONTON_MALL, //
 					UNIVERSITY, // <>
 					LEWIS_FARMS //
 					).containsAll(headsignsValues)) {
@@ -357,7 +333,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 			if (Arrays.asList( //
-					S_ + WEST_EDM_MALL, //
+					S_ + WEST_EDMONTON_MALL, //
 					S_ + UNIVERSITY, //
 					S_ + LEWIS_FARMS //
 			).containsAll(headsignsValues)) {
@@ -513,9 +489,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
 					LEGER, //
-					WEST_EDM_MALL //
+					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(WEST_EDM_MALL, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
@@ -799,7 +775,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 100L) {
 			if (Arrays.asList( //
-					WEST_EDM_MALL, //
+					WEST_EDMONTON_MALL, //
 					LEWIS_FARMS //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(LEWIS_FARMS, mTrip.getHeadsignId());
@@ -807,7 +783,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 102L) {
 			if (Arrays.asList( //
-					WEST_EDM_MALL, // <>
+					WEST_EDMONTON_MALL, // <>
 					LYMBURN //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(LYMBURN, mTrip.getHeadsignId());
@@ -815,7 +791,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 106L) {
 			if (Arrays.asList( //
-					WEST_EDM_MALL, // <>
+					WEST_EDMONTON_MALL, // <>
 					LESSARD // <>
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(LESSARD, mTrip.getHeadsignId());
@@ -823,7 +799,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					LESSARD, // <>
-					WEST_EDM_MALL, // <>
+					WEST_EDMONTON_MALL, // <>
 					UNIVERSITY //
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY, mTrip.getHeadsignId());
@@ -848,9 +824,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 112L) {
 			if (Arrays.asList( //
 					DOWNTOWN, // <>
-					WEST_EDM_MALL //
+					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(WEST_EDM_MALL, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
@@ -863,9 +839,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 117L) {
 			if (Arrays.asList( //
 					LEWIS_FARMS, //
-					WEST_EDM_MALL //
+					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(WEST_EDM_MALL, mTrip.getHeadsignId()); // Lewis Farms
+				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId()); // Lewis Farms
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 125L) {
@@ -889,9 +865,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					STADIUM, //
 					COLISEUM, //
 					KINGSWAY, //
-					BELEVEDERE //
+					BELVEDERE //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(BELEVEDERE, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 130L) {
@@ -968,9 +944,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					JASPER_PLACE, // <>
-					WEST_EDM_MALL //
+					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(WEST_EDM_MALL, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 151L) {
@@ -1183,7 +1159,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 562L) {
 			if (Arrays.asList( //
-					WEST_EDM_MALL, // <>
+					WEST_EDMONTON_MALL, // <>
 					"WEM" + _AND_ + SOUTH_CAMPUS //
 			).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString("WEM" + _AND_ + SOUTH_CAMPUS, mTrip.getHeadsignId());
@@ -1192,9 +1168,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 594L) {
 			if (Arrays.asList( //
 					LEWIS_FARMS, //
-					WEST_EDM_MALL //
+					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(WEST_EDM_MALL, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 		}
@@ -1207,9 +1183,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
 		map2.put(101L, new RouteTripSpec(101L, //
-				MDirectionType.NORTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEST_EDM_MALL, //
-				MDirectionType.SOUTH.intValue(), MTrip.HEADSIGN_TYPE_STRING, WEDGEWOOD) //
-				.addTripSort(MDirectionType.NORTH.intValue(), //
+				0, MTrip.HEADSIGN_TYPE_STRING, WEST_EDMONTON_MALL, //
+				1, MTrip.HEADSIGN_TYPE_STRING, WEDGEWOOD) //
+				.addTripSort(0, //
 						Arrays.asList(new String[] { //
 						"5660", // <> 187 Street & 52 Avenue #WedgeWood
 								"5968", // <> Wedgewood Boulevard Loop
@@ -1217,7 +1193,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5908", // 187 Street & 52 Avenue
 								"5003", // West Edmonton Mall Transit Centre
 						})) //
-				.addTripSort(MDirectionType.SOUTH.intValue(), //
+				.addTripSort(1, //
 						Arrays.asList(new String[] { //
 						"5687", // 163 Street & 91 Avenue #WEM
 								"5003", // == West Edmonton Mall Transit Centre
@@ -1234,28 +1210,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 						})) //
 				.compileBothTripSort());
 		map2.put(560L, new RouteTripSpec(560L, //
-				MDirectionType.EAST.intValue(), MTrip.HEADSIGN_TYPE_STRING, EDM, // DOWNTOWN
-				MDirectionType.WEST.intValue(), MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
-				.addTripSort(MDirectionType.EAST.intValue(), //
+				0, MTrip.HEADSIGN_TYPE_STRING, EDMONTON_SHORT, // DOWNTOWN
+				1, MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
+				.addTripSort(0, //
 						Arrays.asList(new String[] { //
-						"8743", // Aspenglen Drive & Grove Drive #SpruceGrove
-								"8584", // ++ Jennifer Heil Way & TransAlta Tri Leisure Centre
+						"8584", // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
 								"8761", // Century Road & Grove Drive
 								"8910", // == Century Road & Vanderbilt Common
 								"5415", // != 154 Street & 119 Avenue =>
-								"1890", // == 109 Street & Princess Elizabeth Avenue
-								"1050", // == 101 Street & 105 Avenue
-								"1570", // != 101 Street & 103A Avenue =>
-								"11334", // == 102 Street & 104 Avenue
-								"1479", // != 97 Street & 103A Avenue =>
+								"1223", // ==
+								"1226", // !=
+								"1113", // <> Kingsway RAH Transit Centre =>
+								"1989", // <> 108 Street & 104 Avenue #Edmonton =>
 						})) //
-				.addTripSort(MDirectionType.WEST.intValue(), //
+				.addTripSort(1, //
 						Arrays.asList(new String[] { //
-						"1570", // != 101 Street & 103A Avenue #Edmonton <=
-								"1860", // != 109 Street & Princess Elizabeth Avenue
+						"1113", // <> Kingsway RAH Transit Centre <=
+								"1989", // <> 108 Street & 104 Avenue #Edmonton <=
+								"1899", // !=
+								"1227", // ==
 								"5389", // != 154 Street & 118 Avenue <=
-								"8371", // == Century Road & Kings Link
-								"8743", // == Aspenglen Drive & Grove Drive
+								"8371", // Century Road & Kings Link ==
+								"8584", // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
 						})) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
@@ -1268,18 +1244,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[\\d]+( )?)", Pattern.CASE_INSENSITIVE);
 
-	private static final String VIA = " via ";
-
 	public String cleanTripHeadsign2(String tripHeadsign) {
-		int indexOfVIA = tripHeadsign.toLowerCase(Locale.ENGLISH).indexOf(VIA);
-		if (indexOfVIA >= 0) {
-			tripHeadsign = tripHeadsign.substring(0, indexOfVIA); // remove "via ..."
-		}
+		tripHeadsign = CleanUtils.removeVia(tripHeadsign);
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = TRANSIT_CENTER.matcher(tripHeadsign).replaceAll(TRANSIT_CENTER_REPLACEMENT);
 		tripHeadsign = TOWN_CENTER.matcher(tripHeadsign).replaceAll(TOWN_CENTER_REPLACEMENT);
 		tripHeadsign = SUPER_EXPRESS.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = INTERNATIONAL.matcher(tripHeadsign).replaceAll(INTERNATIONAL_REPLACEMENT);
+		tripHeadsign = GOVERNMENT_.matcher(tripHeadsign).replaceAll(GOVERNMENT_REPLACEMENT);
+		tripHeadsign = BELVEDERE_.matcher(tripHeadsign).replaceAll(BELVEDERE_REPLACEMENT);
 		tripHeadsign = INDUSTRIAL_.matcher(tripHeadsign).replaceAll(INDUSTRIAL_REPLACEMENT);
 		tripHeadsign = EDMONTON.matcher(tripHeadsign).replaceAll(EDMONTON_REPLACEMENT);
 		tripHeadsign = CleanUtils.cleanStreetTypes(tripHeadsign);
@@ -1291,10 +1264,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String cleanTripHeadsign(String tripHeadsign) {
 		// !ONLY USED FOR stop trip head sign!
-		int indexOfVIA = tripHeadsign.toLowerCase(Locale.ENGLISH).indexOf(VIA);
-		if (indexOfVIA >= 0) {
-			tripHeadsign = tripHeadsign.substring(indexOfVIA); // keep "via ..."
-		}
+		tripHeadsign = CleanUtils.removeVia(tripHeadsign);
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = TRANSIT_CENTER.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = TOWN_CENTER.matcher(tripHeadsign).replaceAll(TOWN_CENTER_REPLACEMENT);
@@ -1311,16 +1281,22 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String TRANSIT_CENTER_REPLACEMENT = "$2" + TRANSIT_CENTER_SHORT + "$4";
 
 	private static final Pattern TOWN_CENTER = Pattern.compile("((^|\\W){1}(town center|town centre)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String TOWN_CENTER_REPLACEMENT = "$2" + "TC" + "$4";
+	private static final String TOWN_CENTER_REPLACEMENT = "$2" + TOWN_CENTER_SHORT + "$4";
 
 	private static final Pattern INTERNATIONAL = Pattern.compile("((^|\\W){1}(international)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
 	private static final String INTERNATIONAL_REPLACEMENT = "$2" + "Int" + "$4";
 
+	private static final Pattern GOVERNMENT_ = Pattern.compile("((^|\\W){1}(government)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String GOVERNMENT_REPLACEMENT = "$2" + GOVERNMENT_SHORT + "$4";
+
+	private static final Pattern BELVEDERE_ = Pattern.compile("((^|\\W){1}(belevedere)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final String BELVEDERE_REPLACEMENT = "$2" + BELVEDERE + "$4";
+
 	private static final Pattern INDUSTRIAL_ = Pattern.compile("((^|\\W){1}(industrial)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String INDUSTRIAL_REPLACEMENT = "$2" + "Ind" + "$4";
+	private static final String INDUSTRIAL_REPLACEMENT = "$2" + INDUSTRIAL_SHORT + "$4";
 
 	private static final Pattern EDMONTON = Pattern.compile("((^|\\W){1}(edmonton)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
-	private static final String EDMONTON_REPLACEMENT = "$2" + EDM + "$4";
+	private static final String EDMONTON_REPLACEMENT = "$2" + EDMONTON_SHORT + "$4";
 
 	@Override
 	public String cleanStopName(String gStopName) {
@@ -1328,6 +1304,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		gStopName = TOWN_CENTER.matcher(gStopName).replaceAll(TOWN_CENTER_REPLACEMENT);
 		gStopName = INTERNATIONAL.matcher(gStopName).replaceAll(INTERNATIONAL_REPLACEMENT);
 		gStopName = INDUSTRIAL_.matcher(gStopName).replaceAll(INDUSTRIAL_REPLACEMENT);
+		gStopName = GOVERNMENT_.matcher(gStopName).replaceAll(GOVERNMENT_REPLACEMENT);
+		gStopName = BELVEDERE_.matcher(gStopName).replaceAll(BELVEDERE_REPLACEMENT);
 		gStopName = EDMONTON.matcher(gStopName).replaceAll(EDMONTON_REPLACEMENT);
 		gStopName = CleanUtils.cleanStreetTypes(gStopName);
 		gStopName = CleanUtils.cleanNumbers(gStopName);
