@@ -488,6 +488,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 23L) {
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
+					"School Special", //
 					LEGER, //
 					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
@@ -703,9 +704,16 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 70L) {
 			if (Arrays.asList( //
 					STRATHCONA, //
-					DOWNTOWN //
+					DOWNTOWN // <>
 					).containsAll(headsignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					DOWNTOWN, // <>
+					MILL_WOODS_TC //
+					).containsAll(headsignsValues)) {
+				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 74L) {
