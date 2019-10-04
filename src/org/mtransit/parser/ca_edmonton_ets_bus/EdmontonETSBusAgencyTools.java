@@ -271,8 +271,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		} else if (mTripToMerge.getHeadsignValue().startsWith(S_)) {
-			mTripToMerge.setHeadsignString(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignId());
-			return true;
+			if (!mTrip.getHeadsignValue().startsWith(S_)) {
+				mTrip.setHeadsignString(mTrip.getHeadsignValue(), mTrip.getHeadsignId());
+				return true;
+			}
 		}
 		if (mTrip.getRouteId() == 1L) {
 			if (Arrays.asList( //
@@ -791,10 +793,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 102L) {
 			if (Arrays.asList( //
-					WEST_EDMONTON_MALL, // <>
-					LYMBURN //
+					LYMBURN, //
+					WEST_EDMONTON_MALL //
 					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(LYMBURN, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 106L) {
