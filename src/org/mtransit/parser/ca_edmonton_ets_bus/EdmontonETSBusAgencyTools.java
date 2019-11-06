@@ -575,6 +575,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(YELLOWBIRD, mTrip.getHeadsignId());
 				return true;
 			}
+			if (Arrays.asList( //
+					CENTURY_PK, //
+					HARRY_AINLAY, //
+					YELLOWBIRD, //
+					CENTURY_PK + _SLASH_ + HARRY_AINLAY + _SLASH_ + YELLOWBIRD // ++
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(CENTURY_PK + _SLASH_ + HARRY_AINLAY + _SLASH_ + YELLOWBIRD, mTrip.getHeadsignId()); // Clockwise
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 51L) {
 			if (Arrays.asList( //
 					PARKALLEN, // <>
