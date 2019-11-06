@@ -1,12 +1,5 @@
 package org.mtransit.parser.ca_edmonton_ets_bus;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang3.StringUtils;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
@@ -25,6 +18,13 @@ import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MRoute;
 import org.mtransit.parser.mt.data.MTrip;
 import org.mtransit.parser.mt.data.MTripStop;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.regex.Pattern;
 
 // https://data.edmonton.ca/
 // http://www.edmonton.ca/ets/ets-data-for-developers.aspx
@@ -46,7 +46,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public void start(String[] args) {
-		System.out.printf("\nGenerating ETS bus data...");
+		System.out.print("\nGenerating ETS bus data...");
 		long start = System.currentTimeMillis();
 		boolean isNext = "next_".equalsIgnoreCase(args[2]);
 		if (isNext) {
@@ -184,6 +184,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String NORTH = "North";
 	private static final String HIGHLANDS = "Highlands";
 	private static final String LAUREL = "Laurel";
+	private static final String SCHOOL_SPECIAL = "School Special";
 
 	@Override
 	public String getRouteLongName(GRoute gRoute) {
@@ -264,7 +265,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
-		List<String> headsignsValues = Arrays.asList(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignValue());
+		List<String> headSignsValues = Arrays.asList(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignValue());
 		if (mTrip.getHeadsignValue().startsWith(S_)) {
 			if (!mTripToMerge.getHeadsignValue().startsWith(S_)) {
 				mTrip.setHeadsignString(mTripToMerge.getHeadsignValue(), mTrip.getHeadsignId());
@@ -280,14 +281,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					CAPILANO //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CAPILANO, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					CAPILANO, // <>
 					WEST_EDMONTON_MALL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
@@ -295,7 +296,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					WEST_EDMONTON_MALL, // <>
 					LESSARD //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LESSARD, mTrip.getHeadsignId());
 				return true;
 			}
@@ -304,7 +305,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					HIGHLANDS, //
 					DOWNTOWN, //
 					CLAREVIEW //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CLAREVIEW, mTrip.getHeadsignId());
 				return true;
 			}
@@ -312,7 +313,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					CROMDALE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CROMDALE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -322,7 +323,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					SOUTH_CAMPUS, //
 					UNIVERSITY, // <>
 					CAPILANO //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CAPILANO, mTrip.getHeadsignId());
 				return true;
 			}
@@ -330,7 +331,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					WEST_EDMONTON_MALL, //
 					UNIVERSITY, // <>
 					LEWIS_FARMS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LEWIS_FARMS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -338,7 +339,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					S_ + WEST_EDMONTON_MALL, //
 					S_ + UNIVERSITY, //
 					S_ + LEWIS_FARMS //
-			).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(S_ + LEWIS_FARMS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -346,7 +347,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					COLISEUM //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(COLISEUM, mTrip.getHeadsignId());
 				return true;
 			}
@@ -354,7 +355,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					MILLGATE, //
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -362,14 +363,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					JASPER_PLACE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(JASPER_PLACE, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					UNIVERSITY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -382,7 +383,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					NORTH, //
 					NAIT, //
 					ABBOTTSFIELD //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(ABBOTTSFIELD, mTrip.getHeadsignId());
 				return true;
 			}
@@ -393,7 +394,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					LAKEWOOD, //
 					BONNIE_DOON, //
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -403,7 +404,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					KINGSWAY, //
 					SOUTHGATE, //
 					CENTURY_PK //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CENTURY_PK, mTrip.getHeadsignId());
 				return true;
 			}
@@ -411,7 +412,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					NORTHGATE, //
 					NAIT, //
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
@@ -419,14 +420,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					BELVEDERE, // <>
 					CLAREVIEW //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CLAREVIEW, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					BELVEDERE, // <>
 					COLISEUM //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(COLISEUM, mTrip.getHeadsignId());
 				return true;
 			}
@@ -434,7 +435,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					"88" + _ST + _AND_ + "132" + _AVE, //
 					NORTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(NORTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -442,7 +443,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					KINGSWAY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(KINGSWAY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -450,7 +451,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					JASPER_PLACE, //
 					DOWNTOWN //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId()); // Jasper Pl
 				return true;
 			}
@@ -459,7 +460,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					DOWNTOWN, // <>
 					NAIT, //
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
@@ -467,7 +468,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					DOWNTOWN, // <>
 					MILLGATE, //
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -475,7 +476,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					EAUX_CLAIRES, // <>
 					CASTLE_DOWNS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CASTLE_DOWNS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -483,24 +484,24 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					EAUX_CLAIRES, // <>
 					NORTHGATE, //
 					GOV_CTR //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(GOV_CTR, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 23L) {
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
-					"School Special", //
+					SCHOOL_SPECIAL, //
 					LEGER, //
 					WEST_EDMONTON_MALL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -508,23 +509,22 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LEGER, //
 					CENTURY_PK //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CENTURY_PK, mTrip.getHeadsignId());
 				return true;
 			}
-		} else if (mTrip.getRouteId() == 33L) {
 			if (Arrays.asList( //
-					SOUTHGATE, //
-					MEADOWS //
-					).containsAll(headsignsValues)) {
-				mTrip.setHeadsignString(MEADOWS, mTrip.getHeadsignId());
+					SCHOOL_SPECIAL, //
+					SOUTH_CAMPUS //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(SOUTH_CAMPUS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 33L) {
 			if (Arrays.asList( //
 					SOUTHGATE, //
 					MEADOWS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MEADOWS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -532,7 +532,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LEGER, //
 					CENTURY_PK //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CENTURY_PK, mTrip.getHeadsignId());
 				return true;
 			}
@@ -540,7 +540,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					RUTHERFORD, // <>
 					CENTURY_PK //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CENTURY_PK, mTrip.getHeadsignId());
 				return true;
 			}
@@ -548,7 +548,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					YELLOWBIRD, //
 					CENTURY_PK //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CENTURY_PK, mTrip.getHeadsignId());
 				return true;
 			}
@@ -556,7 +556,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CENTURY_PK, //
 					SOUTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(SOUTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -564,14 +564,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
 					HARRY_AINLAY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(HARRY_AINLAY, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
 					YELLOWBIRD //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(YELLOWBIRD, mTrip.getHeadsignId());
 				return true;
 			}
@@ -579,7 +579,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					PARKALLEN, // <>
 					UNIVERSITY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -588,7 +588,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					ROSSDALE, //
 					STRATHCONA, //
 					DOWNTOWN //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId());
 				return true;
 			}
@@ -596,7 +596,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					DOWNTOWN, // <>
 					GOV_CTR, //
 					SOUTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(SOUTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -604,7 +604,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					SOUTH_CAMPUS, // <>
 					UNIVERSITY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -612,14 +612,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					SOUTH_CAMPUS, // <>
 					SOUTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(SOUTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					BELGRAVIA, //
 					SOUTH_CAMPUS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(SOUTH_CAMPUS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -627,7 +627,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					MILLGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILLGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -635,7 +635,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					MILLGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILLGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -643,7 +643,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					MILL_WOODS_TC, //
 					SOUTHWOOD //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(SOUTHWOOD, mTrip.getHeadsignId());
 				return true;
 			}
@@ -651,7 +651,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					MILL_WOODS_TC, //
 					SOUTHWOOD //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(SOUTHWOOD, mTrip.getHeadsignId());
 				return true;
 			}
@@ -659,7 +659,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					KNOTTWOOD, // <>
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -667,14 +667,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					MILLGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILLGATE, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					LAKEWOOD, //
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -683,7 +683,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					MEADOWS, //
 					SILVERBERRY, //
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -691,7 +691,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					MILLGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILLGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -699,7 +699,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					MILLGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILLGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -707,14 +707,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					STRATHCONA, //
 					DOWNTOWN // <>
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					DOWNTOWN, // <>
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -722,7 +722,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CENTURY_PK, //
 					SOUTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(SOUTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -730,14 +730,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					STRATHCONA, //
 					DOWNTOWN //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					MILLGATE, //
 					MILL_WOODS_TC //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
@@ -746,7 +746,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					S_ + STRATHCONA, //
 					S_ + MILLGATE, //
 					MILLGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILLGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -756,7 +756,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					MEADOWS, //
 					TAMARACK, //
 					MEADOWS + _SLASH_ + TAMARACK // ++
-			).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MEADOWS + _SLASH_ + TAMARACK, mTrip.getHeadsignId());
 				return true;
 			}
@@ -764,7 +764,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LAUREL, //
 					MEADOWS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MEADOWS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -772,14 +772,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					COLISEUM, // <>
 					CAPILANO //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CAPILANO, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					COLISEUM, // <>
 					BELVEDERE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -787,7 +787,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					WEST_EDMONTON_MALL, //
 					LEWIS_FARMS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LEWIS_FARMS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -795,7 +795,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LYMBURN, //
 					WEST_EDMONTON_MALL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
@@ -803,7 +803,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					WEST_EDMONTON_MALL, // <>
 					LESSARD // <>
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LESSARD, mTrip.getHeadsignId());
 				return true;
 			}
@@ -811,7 +811,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					LESSARD, // <>
 					WEST_EDMONTON_MALL, // <>
 					UNIVERSITY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(UNIVERSITY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -819,7 +819,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					JASPER_PLACE, //
 					DOWNTOWN //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId());
 				return true;
 			}
@@ -827,7 +827,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					JASPER_PLACE, //
 					DOWNTOWN //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId());
 				return true;
 			}
@@ -835,14 +835,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, // <>
 					WEST_EDMONTON_MALL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					DOWNTOWN, // <>
 					CAPILANO //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CAPILANO, mTrip.getHeadsignId());
 				return true;
 			}
@@ -850,7 +850,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LEWIS_FARMS, //
 					WEST_EDMONTON_MALL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId()); // Lewis Farms
 				return true;
 			}
@@ -858,14 +858,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					S_ + WESTMOUNT, // <>
 					S_ + JASPER_PLACE //
-			).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(S_ + JASPER_PLACE, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					WESTMOUNT, // <>
 					JASPER_PLACE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(JASPER_PLACE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -876,7 +876,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					COLISEUM, //
 					KINGSWAY, //
 					BELVEDERE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -884,7 +884,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					NAIT, //
 					NORTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(NORTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -892,7 +892,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					NORTHGATE, //
 					CLAREVIEW //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CLAREVIEW, mTrip.getHeadsignId());
 				return true;
 			}
@@ -900,14 +900,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					NORTHGATE, // <>
 					DOWNTOWN //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(DOWNTOWN, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					LAGO_LINDO, //
 					NORTHGATE // <>
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(NORTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -915,14 +915,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					COLISEUM, // <>
 					KINGSWAY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(KINGSWAY, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					COLISEUM, // <>
 					MONTROSE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MONTROSE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -930,7 +930,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					"88" + _ST + _AND_ + "132" + _AVE, //
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
@@ -938,7 +938,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					S_ + EAUX_CLAIRES, //
 					S_ + LAGO_LINDO, //
 					LAGO_LINDO //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LAGO_LINDO, mTrip.getHeadsignId());
 				return true;
 			}
@@ -948,14 +948,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					WESTMOUNT, //
 					NORTHGATE, //
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					JASPER_PLACE, // <>
 					WEST_EDMONTON_MALL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
@@ -965,7 +965,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					LAUDERDALE, // <>
 					NAIT, //
 					CASTLE_DOWNS //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CASTLE_DOWNS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -974,7 +974,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					LAUDERDALE, // <>
 					DOWNTOWN, //
 					KING_EDWARD_PK //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(KING_EDWARD_PK, mTrip.getHeadsignId());
 				return true;
 			}
@@ -982,7 +982,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					S_ + CLAREVIEW, //
 					S_ + BELVEDERE //
-			).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(S_ + BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -991,7 +991,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					DOWNTOWN, //
 					GOV_CTR, //
 					NORTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(NORTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -999,7 +999,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					EAUX_CLAIRES, // <>
 					CASTLE_DOWNS // <>
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CASTLE_DOWNS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1008,7 +1008,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					DOWNTOWN, //
 					GOV_CTR, //
 					EAUX_CLAIRES // <>
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1016,7 +1016,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CARLTON, //
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1024,14 +1024,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					BELVEDERE, // <>
 					ABBOTTSFIELD //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(ABBOTTSFIELD, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					BELVEDERE, // <>
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1039,7 +1039,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LONDONDERRY, //
 					BELVEDERE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1047,14 +1047,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CLAREVIEW, // <>
 					NORTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(NORTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					CLAREVIEW, // <>
 					FRASER //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(FRASER, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1062,7 +1062,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CLAREVIEW, //
 					NORTHGATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(NORTHGATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1070,7 +1070,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CLAREVIEW, //
 					LONDONDERRY //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LONDONDERRY, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1078,14 +1078,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LONDONDERRY, // <>
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					LONDONDERRY, // <>
 					CLAREVIEW //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CLAREVIEW, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1093,7 +1093,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					KLARVATTEN, // <>
 					EAUX_CLAIRES //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EAUX_CLAIRES, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1101,14 +1101,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					HENWOOD, // <>
 					CLAREVIEW //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CLAREVIEW, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					HENWOOD, // <>
 					EVERGREEN //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(EVERGREEN, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1116,7 +1116,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					ST_ALBERT_TRAIL, //
 					MISTATIM_IND //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MISTATIM_IND, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1124,7 +1124,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					WESTMOUNT, // <>
 					JASPER_GATE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(JASPER_GATE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1132,7 +1132,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					BONNIE_DOON, //
 					MAPLE_RIDGE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MAPLE_RIDGE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1140,7 +1140,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, //
 					RIVERDALE //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(RIVERDALE, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1148,7 +1148,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					SECORD, //
 					WINTERBURN_IND //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WINTERBURN_IND, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1156,14 +1156,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					UNIVERSITY, // <>
 					BELGRAVIA //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(BELGRAVIA, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
 					UNIVERSITY, // <>
 					WINDSOR_PARK //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WINDSOR_PARK, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1171,7 +1171,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					WEST_EDMONTON_MALL, // <>
 					"WEM" + _AND_ + SOUTH_CAMPUS //
-			).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString("WEM" + _AND_ + SOUTH_CAMPUS, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1179,7 +1179,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					LEWIS_FARMS, //
 					WEST_EDMONTON_MALL //
-					).containsAll(headsignsValues)) {
+			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
 				return true;
 			}
@@ -1190,22 +1190,23 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
+
 	static {
-		HashMap<Long, RouteTripSpec> map2 = new HashMap<Long, RouteTripSpec>();
+		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
 		map2.put(101L, new RouteTripSpec(101L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, WEST_EDMONTON_MALL, //
 				1, MTrip.HEADSIGN_TYPE_STRING, WEDGEWOOD) //
 				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"5660", // <> 187 Street & 52 Avenue #WedgeWood
+						Arrays.asList(//
+								"5660", // <> 187 Street & 52 Avenue #WedgeWood
 								"5968", // <> Wedgewood Boulevard Loop
 								"5888", // !=
 								"5908", // 187 Street & 52 Avenue
-								"5003", // West Edmonton Mall Transit Centre
-						})) //
+								"5003" // West Edmonton Mall Transit Centre
+						)) //
 				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"5687", // 163 Street & 91 Avenue #WEM
+						Arrays.asList(//
+								"5687", // 163 Street & 91 Avenue #WEM
 								"5003", // == West Edmonton Mall Transit Centre
 								"5863", // !=
 								"5721", // ==
@@ -1216,45 +1217,45 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"5948", // ==
 								"5856", // !=
 								"5660", // <> 187 Street & 52 Avenue #WedgeWood
-								"5968", // <> Wedgewood Boulevard Loop
-						})) //
+								"5968" // <> Wedgewood Boulevard Loop
+						)) //
 				.compileBothTripSort());
 		map2.put(560L, new RouteTripSpec(560L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, EDMONTON_SHORT, // DOWNTOWN
 				1, MTrip.HEADSIGN_TYPE_STRING, SPRUCE_GRV) //
 				.addTripSort(0, //
-						Arrays.asList(new String[] { //
-						"8584", // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
+						Arrays.asList(//
+								"8584", // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
 								"8761", // Century Road & Grove Drive
 								"8910", // == Century Road & Vanderbilt Common
 								"5415", // != 154 Street & 119 Avenue =>
 								"1223", // ==
 								"1226", // !=
 								"1113", // <> Kingsway RAH Transit Centre =>
-								"1989", // <> 108 Street & 104 Avenue #Edmonton =>
-						})) //
+								"1989" // <> 108 Street & 104 Avenue #Edmonton =>
+						)) //
 				.addTripSort(1, //
-						Arrays.asList(new String[] { //
-						"1113", // <> Kingsway RAH Transit Centre <=
+						Arrays.asList(//
+								"1113", // <> Kingsway RAH Transit Centre <=
 								"1989", // <> 108 Street & 104 Avenue #Edmonton <=
 								"1899", // !=
 								"1227", // ==
 								"5389", // != 154 Street & 118 Avenue <=
 								"8371", // Century Road & Kings Link ==
-								"8584", // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
-						})) //
+								"8584" // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
+						)) //
 				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
-	private static final Pattern N_A_I_T = Pattern.compile("((^|\\W){1}(n a i t)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern N_A_I_T = Pattern.compile("((^|\\W)(n a i t)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String N_A_I_T_REPLACEMENT = "$2" + NAIT + "$4";
 
-	private static final Pattern SUPER_EXPRESS = Pattern.compile("((^|\\W){1}(super express)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern SUPER_EXPRESS = Pattern.compile("((^|\\W)(super express)(\\W|$))", Pattern.CASE_INSENSITIVE);
 
 	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[\\d]+( )?)", Pattern.CASE_INSENSITIVE);
 
-	public String cleanTripHeadsign2(String tripHeadsign) {
+	private String cleanTripHeadsign2(String tripHeadsign) {
 		tripHeadsign = CleanUtils.removeVia(tripHeadsign);
 		tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(StringUtils.EMPTY);
 		tripHeadsign = TRANSIT_CENTER.matcher(tripHeadsign).replaceAll(TRANSIT_CENTER_REPLACEMENT);
@@ -1287,25 +1288,25 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return CleanUtils.cleanLabel(tripHeadsign);
 	}
 
-	private static final Pattern TRANSIT_CENTER = Pattern.compile("((^|\\W){1}(transit center|transit centre)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern TRANSIT_CENTER = Pattern.compile("((^|\\W)(transit center|transit centre)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String TRANSIT_CENTER_REPLACEMENT = "$2" + TRANSIT_CENTER_SHORT + "$4";
 
-	private static final Pattern TOWN_CENTER = Pattern.compile("((^|\\W){1}(town center|town centre)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern TOWN_CENTER = Pattern.compile("((^|\\W)(town center|town centre)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String TOWN_CENTER_REPLACEMENT = "$2" + TOWN_CENTER_SHORT + "$4";
 
-	private static final Pattern INTERNATIONAL = Pattern.compile("((^|\\W){1}(international)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern INTERNATIONAL = Pattern.compile("((^|\\W)(international)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String INTERNATIONAL_REPLACEMENT = "$2" + "Int" + "$4";
 
-	private static final Pattern GOVERNMENT_ = Pattern.compile("((^|\\W){1}(government)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern GOVERNMENT_ = Pattern.compile("((^|\\W)(government)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String GOVERNMENT_REPLACEMENT = "$2" + GOVERNMENT_SHORT + "$4";
 
-	private static final Pattern BELVEDERE_ = Pattern.compile("((^|\\W){1}(belevedere)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern BELVEDERE_ = Pattern.compile("((^|\\W)(belevedere)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String BELVEDERE_REPLACEMENT = "$2" + BELVEDERE + "$4";
 
-	private static final Pattern INDUSTRIAL_ = Pattern.compile("((^|\\W){1}(industrial)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern INDUSTRIAL_ = Pattern.compile("((^|\\W)(industrial)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String INDUSTRIAL_REPLACEMENT = "$2" + INDUSTRIAL_SHORT + "$4";
 
-	private static final Pattern EDMONTON = Pattern.compile("((^|\\W){1}(edmonton)(\\W|$){1})", Pattern.CASE_INSENSITIVE);
+	private static final Pattern EDMONTON = Pattern.compile("((^|\\W)(edmonton)(\\W|$))", Pattern.CASE_INSENSITIVE);
 	private static final String EDMONTON_REPLACEMENT = "$2" + EDMONTON_SHORT + "$4";
 
 	@Override
@@ -1327,7 +1328,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return Math.abs(super.getStopId(gStop)); // remove negative stop IDs
 	}
 
-	private static final Pattern REMOVE_STARTING_DASH = Pattern.compile("(^\\-)", Pattern.CASE_INSENSITIVE);
+	private static final Pattern REMOVE_STARTING_DASH = Pattern.compile("(^-)", Pattern.CASE_INSENSITIVE);
 
 	@Override
 	public String getStopCode(GStop gStop) {
