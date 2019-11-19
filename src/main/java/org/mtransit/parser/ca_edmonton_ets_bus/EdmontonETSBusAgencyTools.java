@@ -361,6 +361,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 7L) {
 			if (Arrays.asList( //
+					"MacEwan University", //
 					DOWNTOWN, //
 					JASPER_PLACE //
 			).containsAll(headSignsValues)) {
