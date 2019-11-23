@@ -3,6 +3,7 @@ package org.mtransit.parser.ca_edmonton_ets_bus;
 import org.apache.commons.lang3.StringUtils;
 import org.mtransit.parser.CleanUtils;
 import org.mtransit.parser.DefaultAgencyTools;
+import org.mtransit.parser.MTLog;
 import org.mtransit.parser.Pair;
 import org.mtransit.parser.SplitUtils;
 import org.mtransit.parser.SplitUtils.RouteTripSpec;
@@ -54,7 +55,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		}
 		this.serviceIds = extractUsefulServiceIds(args, this, true);
 		super.start(args);
-		System.out.printf("\nGenerating ETS bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+		MTLog.log("Generating ETS bus data... DONE in %s.\n", Utils.getPrettyDuration(System.currentTimeMillis() - start));
 	}
 
 	private void setupNext() {
@@ -204,8 +205,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		if (isGoodEnoughAccepted()) {
 			return super.mergeRouteLongName(mRoute, mRouteToMerge);
 		}
-		System.out.printf("\nUnexpected routes to merge: %s & %s!\n", mRoute, mRouteToMerge);
-		System.exit(-1);
+		MTLog.logFatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
 		return false;
 	}
 
@@ -217,8 +217,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		if (Utils.isDigitsOnly(gRoute.getRouteId())) {
 			return gRoute.getRouteId();
 		}
-		System.out.printf("\nUnexpected route ID for %s!\n", gRoute);
-		System.exit(-1);
+		MTLog.logFatal("Unexpected route ID for %s!", gRoute);
 		return null;
 	}
 
@@ -265,17 +264,26 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public boolean mergeHeadsign(MTrip mTrip, MTrip mTripToMerge) {
-		List<String> headSignsValues = Arrays.asList(mTrip.getHeadsignValue(), mTripToMerge.getHeadsignValue());
+		String tripHeadsignValue = mTrip.getHeadsignValue();
+		if (tripHeadsignValue.startsWith(S_)) {
+			tripHeadsignValue = tripHeadsignValue.substring(S_.length());
+		}
+		String tripToMergeHeadsignValue = mTripToMerge.getHeadsignValue();
+		if (tripToMergeHeadsignValue.startsWith(S_)) {
+			tripToMergeHeadsignValue = tripToMergeHeadsignValue.substring(S_.length());
+		}
+		List<String> headSignsValues = Arrays.asList(
+				tripHeadsignValue,
+				tripToMergeHeadsignValue
+		);
 		if (mTrip.getHeadsignValue().startsWith(S_)) {
 			if (!mTripToMerge.getHeadsignValue().startsWith(S_)) {
 				mTrip.setHeadsignString(mTripToMerge.getHeadsignValue(), mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTripToMerge.getHeadsignValue().startsWith(S_)) {
-			if (!mTrip.getHeadsignValue().startsWith(S_)) {
-				mTrip.setHeadsignString(mTrip.getHeadsignValue(), mTrip.getHeadsignId());
-				return true;
-			}
+			mTrip.setHeadsignString(mTrip.getHeadsignValue(), mTrip.getHeadsignId());
+			return true;
 		}
 		if (mTrip.getRouteId() == 1L) {
 			if (Arrays.asList( //
@@ -333,14 +341,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					LEWIS_FARMS //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LEWIS_FARMS, mTrip.getHeadsignId());
-				return true;
-			}
-			if (Arrays.asList( //
-					S_ + WEST_EDMONTON_MALL, //
-					S_ + UNIVERSITY, //
-					S_ + LEWIS_FARMS //
-			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(S_ + LEWIS_FARMS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 5L) {
@@ -566,25 +566,20 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 46L) {
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
-					HARRY_AINLAY //
+					YELLOWBIRD, // <>
+					YELLOWBIRD + _SLASH_ + CENTURY_PK // ++
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(HARRY_AINLAY, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(YELLOWBIRD + _SLASH_ + CENTURY_PK, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
-					CENTURY_PK, // <>
-					YELLOWBIRD //
-			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(YELLOWBIRD, mTrip.getHeadsignId());
-				return true;
-			}
-			if (Arrays.asList( //
-					CENTURY_PK, //
+					CENTURY_PK, //  <>
+					YELLOWBIRD, // <>
 					HARRY_AINLAY, //
-					YELLOWBIRD, //
-					CENTURY_PK + _SLASH_ + HARRY_AINLAY + _SLASH_ + YELLOWBIRD // ++
+					YELLOWBIRD + _SLASH_ + CENTURY_PK, // ++ <>
+					HARRY_AINLAY + _SLASH_ + YELLOWBIRD + _SLASH_ + CENTURY_PK // ++
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(CENTURY_PK + _SLASH_ + HARRY_AINLAY + _SLASH_ + YELLOWBIRD, mTrip.getHeadsignId()); // Clockwise
+				mTrip.setHeadsignString(HARRY_AINLAY + _SLASH_ + YELLOWBIRD + _SLASH_ + CENTURY_PK, mTrip.getHeadsignId()); // Clockwise
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 51L) {
@@ -654,17 +649,19 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 62L) {
 			if (Arrays.asList( //
 					MILL_WOODS_TC, //
-					SOUTHWOOD //
+					SOUTHWOOD, //
+					SOUTHWOOD + (mTrip.getHeadsignId() == 0 ? "" : " ") // ++
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(SOUTHWOOD, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(SOUTHWOOD + (mTrip.getHeadsignId() == 0 ? "" : " "), mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 63L) {
 			if (Arrays.asList( //
 					MILL_WOODS_TC, //
-					SOUTHWOOD //
+					SOUTHWOOD, //
+					SOUTHWOOD + (mTrip.getHeadsignId() == 0 ? "" : " ") // ++
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(SOUTHWOOD, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(SOUTHWOOD + (mTrip.getHeadsignId() == 0 ? "" : " "), mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 65L) {
@@ -755,8 +752,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 87L) {
 			if (Arrays.asList( //
-					S_ + STRATHCONA, //
-					S_ + MILLGATE, //
+					STRATHCONA, //
 					MILLGATE //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILLGATE, mTrip.getHeadsignId());
@@ -868,13 +864,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 125L) {
 			if (Arrays.asList( //
-					S_ + WESTMOUNT, // <>
-					S_ + JASPER_PLACE //
-			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(S_ + JASPER_PLACE, mTrip.getHeadsignId());
-				return true;
-			}
-			if (Arrays.asList( //
 					WESTMOUNT, // <>
 					JASPER_PLACE //
 			).containsAll(headSignsValues)) {
@@ -947,8 +936,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 			if (Arrays.asList( //
-					S_ + EAUX_CLAIRES, //
-					S_ + LAGO_LINDO, //
+					EAUX_CLAIRES, //
 					LAGO_LINDO //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(LAGO_LINDO, mTrip.getHeadsignId());
@@ -992,10 +980,10 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 153L) {
 			if (Arrays.asList( //
-					S_ + CLAREVIEW, //
-					S_ + BELVEDERE //
+					CLAREVIEW, //
+					BELVEDERE //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(S_ + BELVEDERE, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 161L) {
@@ -1196,8 +1184,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 		}
-		System.out.printf("\nUnexpected trips to merge: %s & %s!\n", mTrip, mTripToMerge);
-		System.exit(-1);
+		MTLog.logFatal("Unexpected trips to merge: %s & %s!", mTrip, mTripToMerge);
 		return false;
 	}
 
