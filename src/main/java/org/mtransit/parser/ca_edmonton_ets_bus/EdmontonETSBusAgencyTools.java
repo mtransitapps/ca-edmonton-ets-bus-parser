@@ -380,7 +380,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					KINGSWAY, // <>
 					MILLGATE, // <>
 					DOWNTOWN, // <>
-					COLISEUM, //
+					COLISEUM, // <>
 					NORTH, //
 					NAIT, //
 					ABBOTTSFIELD //
@@ -392,6 +392,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					DOWNTOWN, // <>
 					KINGSWAY, // <>
 					MILLGATE, // <>
+					COLISEUM, // <>
 					LAKEWOOD, //
 					BONNIE_DOON, //
 					MILL_WOODS_TC //
@@ -401,7 +402,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 9L) {
 			if (Arrays.asList( //
-					DOWNTOWN, //
+					DOWNTOWN, // <>
 					KINGSWAY, //
 					SOUTHGATE, //
 					CENTURY_PK //
@@ -410,6 +411,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				return true;
 			}
 			if (Arrays.asList( //
+					DOWNTOWN, // <>
 					NORTHGATE, //
 					NAIT, //
 					EAUX_CLAIRES //
@@ -1203,6 +1205,28 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
+		map2.put(64L, new RouteTripSpec(64L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, "Knottwood", //
+				1, MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC) //
+				.addTripSort(0, //
+						Arrays.asList( //
+								"3208", // xx Mill Woods Transit Centre <=
+								"3122", // != Hewes Way & 27 Avenue
+								"3264", // != 67 Street & 28 Avenue
+								"3009", // xx Lakewood Transit Centre <=
+								"3365", // != Mill Woods Road & Lakewood Road S
+								"3026" // Mill Woods Road & Knottwood Road N =>
+						)) //
+				.addTripSort(1, //
+						Arrays.asList( //
+								"3026", // Mill Woods Road & Knottwood Road N <=
+								"3330", // == != Mill Woods Road & Lakewood Road S
+								"3009", // != xx Lakewood Transit Centre =>
+								"3006", // != Lakewood Transit Centre
+								"3121", // !=
+								"3208" // xx Mill Woods Transit Centre =>
+						)) //
+				.compileBothTripSort());
 		map2.put(101L, new RouteTripSpec(101L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, WEST_EDMONTON_MALL, //
 				1, MTrip.HEADSIGN_TYPE_STRING, WEDGEWOOD) //
