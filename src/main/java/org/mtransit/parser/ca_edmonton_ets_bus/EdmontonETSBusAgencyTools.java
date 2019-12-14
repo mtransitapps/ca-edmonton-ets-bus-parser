@@ -963,6 +963,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CALDER, // <>
 					LAUDERDALE, // <>
+					DOWNTOWN, // <>
 					NAIT, //
 					CASTLE_DOWNS //
 			).containsAll(headSignsValues)) {
@@ -972,7 +973,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					CALDER, // <>
 					LAUDERDALE, // <>
-					DOWNTOWN, //
+					DOWNTOWN, // <>
 					KING_EDWARD_PK //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(KING_EDWARD_PK, mTrip.getHeadsignId());
