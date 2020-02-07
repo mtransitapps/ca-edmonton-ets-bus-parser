@@ -1267,6 +1267,21 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 								"8584" // Jennifer Heil Way & TransAlta Tri Leisure Centre #SpruceGrove
 						)) //
 				.compileBothTripSort());
+		map2.put(804L, new RouteTripSpec(804L, //
+				0, MTrip.HEADSIGN_TYPE_STRING, "Avalon", //
+				1, MTrip.HEADSIGN_TYPE_STRING, "Southgate") //
+				.addTripSort(0, //
+						Arrays.asList(//
+								// NO STOPS
+						)) //
+				.addTripSort(1, //
+						Arrays.asList(//
+								"2009", // 114 Street & 54A Avenue
+								"2996", // ++
+								"2949", // ++
+								"2207" // Southgate TC
+						)) //
+				.compileBothTripSort());
 		ALL_ROUTE_TRIPS2 = map2;
 	}
 
