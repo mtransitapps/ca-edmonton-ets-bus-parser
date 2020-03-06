@@ -92,6 +92,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		if ("Not In Service".equalsIgnoreCase(gTrip.getTripHeadsign())) {
 			return true; // exclude
 		}
+		if ("Sorry Not In Service".equalsIgnoreCase(gTrip.getTripHeadsign())) {
+			return true; // exclude
+		}
 		if (this.serviceIds != null) {
 			return excludeUselessTrip(gTrip, this.serviceIds);
 		}
@@ -1182,6 +1185,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					WEST_EDMONTON_MALL //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					WEST_EDMONTON_MALL,
+					"Vly Zoo" //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString("Vly Zoo", mTrip.getHeadsignId());
 				return true;
 			}
 		}
