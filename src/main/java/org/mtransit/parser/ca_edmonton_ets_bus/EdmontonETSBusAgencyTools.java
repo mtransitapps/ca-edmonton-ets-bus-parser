@@ -481,6 +481,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 16L) {
 			if (Arrays.asList( //
 					EAUX_CLAIRES, // <>
+					NORTHGATE, // <>
 					CASTLE_DOWNS //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(CASTLE_DOWNS, mTrip.getHeadsignId());
@@ -488,7 +489,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					EAUX_CLAIRES, // <>
-					NORTHGATE, //
+					NORTHGATE, // <>
 					GOV_CTR //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(GOV_CTR, mTrip.getHeadsignId());
