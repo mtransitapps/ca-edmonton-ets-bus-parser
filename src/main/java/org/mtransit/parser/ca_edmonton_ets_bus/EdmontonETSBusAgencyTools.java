@@ -396,6 +396,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					KINGSWAY, // <>
 					MILLGATE, // <>
 					COLISEUM, // <>
+					"Kingsway RAH BNR", //
 					LAKEWOOD, //
 					BONNIE_DOON, //
 					MILL_WOODS_TC //
