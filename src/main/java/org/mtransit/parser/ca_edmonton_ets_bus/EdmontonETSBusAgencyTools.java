@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 // https://data.edmonton.ca/
 // http://www.edmonton.ca/ets/ets-data-for-developers.aspx
 // https://data.edmonton.ca/Transit/ETS-Bus-Schedule-GTFS-Data-Schedules-zipped-files/urjq-fvmq
-// https://drive.google.com/uc?id=1KcQixzJcucT5PDOwFJBXhDg-Alh0SVP6&export=download
+// https://gtfs.edmonton.ca/TMGTFSRealTimeWebService/GTFS/GTFS.zip
 public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(String[] args) {
