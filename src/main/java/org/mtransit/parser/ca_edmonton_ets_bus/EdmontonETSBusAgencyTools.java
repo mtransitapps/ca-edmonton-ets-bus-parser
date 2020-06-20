@@ -10,6 +10,7 @@ import org.mtransit.parser.SplitUtils.RouteTripSpec;
 import org.mtransit.parser.Utils;
 import org.mtransit.parser.gtfs.data.GCalendar;
 import org.mtransit.parser.gtfs.data.GCalendarDate;
+import org.mtransit.parser.gtfs.data.GIDs;
 import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GStop;
@@ -59,6 +60,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private void setupNext() {
+		// DO NOTHING
 	}
 
 	@Override
@@ -82,8 +84,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return super.excludeCalendarDate(gCalendarDates);
 	}
 
+	private static final int AGENCY_ID_INT = GIDs.getInt("1"); // Edmonton Transit Service ONLY
+
 	@Override
 	public boolean excludeRoute(GRoute gRoute) {
+		if (gRoute.isDifferentAgency(AGENCY_ID_INT)) {
+			return true; // exclude
+		}
 		return super.excludeRoute(gRoute);
 	}
 
@@ -220,7 +227,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		if (Utils.isDigitsOnly(gRoute.getRouteId())) {
 			return gRoute.getRouteId();
 		}
-		MTLog.logFatal("Unexpected route ID for %s!", gRoute);
+		MTLog.logFatal("Unexpected route ID for %s!", gRoute.toStringPlus());
 		return null;
 	}
 
@@ -362,6 +369,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
 				return true;
 			}
+			if (Arrays.asList( //
+					MILLGATE, //
+					MILL_WOODS //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 7L) {
 			if (Arrays.asList( //
 					"MacEwan University", //
@@ -402,6 +416,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					MILL_WOODS_TC //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					KINGSWAY, // <>
+					MILL_WOODS //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 9L) {
@@ -761,6 +782,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					MILL_WOODS_TC //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					MILLGATE, //
+					MILL_WOODS //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 87L) {
