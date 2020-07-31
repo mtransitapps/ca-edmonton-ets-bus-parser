@@ -136,7 +136,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String WESTMOUNT = "Westmount";
 	private static final String UNIVERSITY = "University";
 	private static final String MILL_WOODS = "Mill Woods";
-	private static final String MILL_WOODS_TC = MILL_WOODS + " " + TRANSIT_CENTER_SHORT;
 	private static final String NAIT = "NAIT";
 	private static final String SOUTHGATE = "Southgate";
 	private static final String NORTHGATE = "Northgate";
@@ -364,9 +363,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 6L) {
 			if (Arrays.asList( //
 					MILLGATE, //
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
@@ -394,12 +393,12 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 8L) {
 			if (Arrays.asList( //
+					COLISEUM, // <>
+					DOWNTOWN, // <>
 					KINGSWAY, // <>
 					MILLGATE, // <>
-					DOWNTOWN, // <>
-					COLISEUM, // <>
-					NORTH, //
 					NAIT, //
+					NORTH, //
 					ABBOTTSFIELD //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(ABBOTTSFIELD, mTrip.getHeadsignId());
@@ -413,13 +412,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 					"Kingsway RAH BNR", //
 					LAKEWOOD, //
 					BONNIE_DOON, //
-					MILL_WOODS_TC //
-			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
-				return true;
-			}
-			if (Arrays.asList( //
-					KINGSWAY, // <>
 					MILL_WOODS //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
@@ -495,9 +487,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			if (Arrays.asList( //
 					DOWNTOWN, // <>
 					MILLGATE, //
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 16L) {
@@ -529,9 +521,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					CENTURY_PK, // <>
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 30L) {
@@ -682,7 +674,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 62L) {
 			if (Arrays.asList( //
-					MILL_WOODS_TC, //
+					MILL_WOODS, //
 					SOUTHWOOD, //
 					SOUTHWOOD + (mTrip.getHeadsignId() == 0 ? "" : " ") // ++
 			).containsAll(headSignsValues)) {
@@ -691,7 +683,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 63L) {
 			if (Arrays.asList( //
-					MILL_WOODS_TC, //
+					MILL_WOODS, //
 					SOUTHWOOD, //
 					SOUTHWOOD + (mTrip.getHeadsignId() == 0 ? "" : " ") // ++
 			).containsAll(headSignsValues)) {
@@ -701,9 +693,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		} else if (mTrip.getRouteId() == 65L) {
 			if (Arrays.asList( //
 					KNOTTWOOD, // <>
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 66L) {
@@ -716,18 +708,18 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					LAKEWOOD, //
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 67L) {
 			if (Arrays.asList( //
 					MEADOWS, //
 					SILVERBERRY, //
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 68L) {
@@ -756,9 +748,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					DOWNTOWN, // <>
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 74L) {
@@ -779,9 +771,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 			if (Arrays.asList( //
 					MILLGATE, //
-					MILL_WOODS_TC //
+					MILL_WOODS //
 			).containsAll(headSignsValues)) {
-				mTrip.setHeadsignString(MILL_WOODS_TC, mTrip.getHeadsignId());
+				mTrip.setHeadsignString(MILL_WOODS, mTrip.getHeadsignId());
 				return true;
 			}
 			if (Arrays.asList( //
@@ -903,6 +895,23 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(WEST_EDMONTON_MALL, mTrip.getHeadsignId()); // Lewis Farms
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 119L) {
+			if (Arrays.asList( //
+					"The Hamptons", // <>
+					"Lewis Farms" //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString("Lewis Farms", mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					"Oscar Romero", //
+					"The Hamptons" // <>
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString("The Hamptons", mTrip.getHeadsignId());
+				return true;
+			}
+			// headsignValue=The Hamptons) & MTrip(routeId=119, headsignId=0, headsignType=0, headsignValue=
+			// Lewis Farms)!
 		} else if (mTrip.getRouteId() == 125L) {
 			if (Arrays.asList( //
 					WESTMOUNT, // <>
@@ -1243,7 +1252,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
 		map2.put(64L, new RouteTripSpec(64L, //
 				0, MTrip.HEADSIGN_TYPE_STRING, "Knottwood", //
-				1, MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS_TC) //
+				1, MTrip.HEADSIGN_TYPE_STRING, MILL_WOODS) //
 				.addTripSort(0, //
 						Arrays.asList( //
 								"3208", // xx Mill Woods Transit Centre <=
