@@ -148,7 +148,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final String CASTLE_DOWNS = "Castle Downs";
 	private static final String CENTURY_PK = "Century Pk";
 	private static final String YELLOWBIRD = "Yellowbird";
-	private static final String SOUTH_CAMPUS = "South Campus";
+	private static final String SOUTH = "South";
+	private static final String SOUTH_CAMPUS = SOUTH + " Campus";
 	private static final String LEGER = "Leger";
 	private static final String MEADOWS = "Mdws"; // "Meadows";
 	private static final String HARRY_AINLAY = "Harry Ainlay";
@@ -1186,10 +1187,18 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			}
 		} else if (mTrip.getRouteId() == 315L) {
 			if (Arrays.asList( //
+					NORTH, //
 					SECORD, //
 					WINTERBURN_IND //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(WINTERBURN_IND, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					SOUTH, //
+					LEWIS_FARMS //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(LEWIS_FARMS, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 318L) {
