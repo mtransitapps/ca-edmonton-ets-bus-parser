@@ -900,8 +900,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString("The Hamptons", mTrip.getHeadsignId());
 				return true;
 			}
-			// headsignValue=The Hamptons) & MTrip(routeId=119, headsignId=0, headsignType=0, headsignValue=
-			// Lewis Farms)!
 		} else if (mTrip.getRouteId() == 125L) {
 			if (Arrays.asList( //
 					WESTMOUNT, // <>
@@ -921,12 +919,27 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 				mTrip.setHeadsignString(BELVEDERE, mTrip.getHeadsignId());
 				return true;
 			}
+		} else if (mTrip.getRouteId() == 128L) {
+		if (Arrays.asList( //
+					UNIVERSITY, //
+					GOV_CTR //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(GOV_CTR, mTrip.getHeadsignId());
+				return true;
+			}
 		} else if (mTrip.getRouteId() == 130L) {
 			if (Arrays.asList( //
 					NAIT, //
 					NORTHGATE //
 			).containsAll(headSignsValues)) {
 				mTrip.setHeadsignString(NORTHGATE, mTrip.getHeadsignId());
+				return true;
+			}
+			if (Arrays.asList( //
+					UNIVERSITY, //
+					GOV_CTR //
+			).containsAll(headSignsValues)) {
+				mTrip.setHeadsignString(GOV_CTR, mTrip.getHeadsignId());
 				return true;
 			}
 		} else if (mTrip.getRouteId() == 137L) {
@@ -1243,7 +1256,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		throw new MTLog.Fatal("Unexpected trips to merge: %s & %s!", mTrip, mTripToMerge);
 	}
 
-	private static HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
+	private static final HashMap<Long, RouteTripSpec> ALL_ROUTE_TRIPS2;
 
 	static {
 		HashMap<Long, RouteTripSpec> map2 = new HashMap<>();
