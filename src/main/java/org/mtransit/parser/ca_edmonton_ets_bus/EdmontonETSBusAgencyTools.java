@@ -110,11 +110,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@NotNull
 	@Override
-	public String getRouteLongName(@NotNull GRoute gRoute) {
-		return cleanRouteLongName(gRoute.getRouteLongName());
-	}
-
-	private String cleanRouteLongName(String gRouteLongName) {
+	public String cleanRouteLongName(@NotNull String gRouteLongName) {
 		gRouteLongName = CleanUtils.cleanStreetTypes(gRouteLongName);
 		return CleanUtils.cleanLabel(gRouteLongName);
 	}
