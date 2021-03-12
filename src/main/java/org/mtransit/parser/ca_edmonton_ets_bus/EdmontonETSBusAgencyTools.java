@@ -7,18 +7,14 @@ import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
 import org.mtransit.parser.StringUtils;
 import org.mtransit.parser.Utils;
-import org.mtransit.parser.gtfs.data.GCalendar;
-import org.mtransit.parser.gtfs.data.GCalendarDate;
 import org.mtransit.parser.gtfs.data.GIDs;
 import org.mtransit.parser.gtfs.data.GRoute;
-import org.mtransit.parser.gtfs.data.GSpec;
 import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
 import org.mtransit.parser.mt.data.MRoute;
-import org.mtransit.parser.mt.data.MTrip;
 
-import java.util.HashSet;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.mtransit.parser.Constants.EMPTY;
@@ -30,47 +26,19 @@ import static org.mtransit.parser.Constants.SPACE_;
 // https://gtfs.edmonton.ca/TMGTFSRealTimeWebService/GTFS/GTFS.zip
 public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
-	public static void main(@Nullable String[] args) {
-		if (args == null || args.length == 0) {
-			args = new String[3];
-			args[0] = "input/gtfs.zip";
-			args[1] = "../../mtransitapps/ca-edmonton-ets-bus-android/res/raw/";
-			args[2] = ""; // files-prefix
-		}
+	public static void main(@NotNull String[] args) {
 		new EdmontonETSBusAgencyTools().start(args);
 	}
 
-	@Nullable
-	private HashSet<Integer> serviceIdInts;
-
 	@Override
-	public void start(@NotNull String[] args) {
-		MTLog.log("Generating ETS bus data...");
-		long start = System.currentTimeMillis();
-		this.serviceIdInts = extractUsefulServiceIdInts(args, this, true);
-		super.start(args);
-		MTLog.log("Generating ETS bus data... DONE in %s.", Utils.getPrettyDuration(System.currentTimeMillis() - start));
+	public boolean defaultExcludeEnabled() {
+		return true;
 	}
 
-	@Override
-	public boolean excludingAll() {
-		return this.serviceIdInts != null && this.serviceIdInts.isEmpty();
-	}
 
-	@Override
-	public boolean excludeCalendar(@NotNull GCalendar gCalendar) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarInt(gCalendar, this.serviceIdInts);
-		}
-		return super.excludeCalendar(gCalendar);
-	}
-
-	@Override
-	public boolean excludeCalendarDate(@NotNull GCalendarDate gCalendarDates) {
-		if (this.serviceIdInts != null) {
-			return excludeUselessCalendarDateInt(gCalendarDates, this.serviceIdInts);
-		}
-		return super.excludeCalendarDate(gCalendarDates);
+	@NotNull
+	public String getAgencyName() {
+		return "ETS";
 	}
 
 	private static final int AGENCY_ID_INT = GIDs.getInt("1"); // Edmonton Transit Service ONLY
@@ -91,9 +59,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		if ("Sorry Not In Service".equalsIgnoreCase(gTrip.getTripHeadsign())) {
 			return true; // exclude
 		}
-		if (this.serviceIdInts != null) {
-			return excludeUselessTripInt(gTrip, this.serviceIdInts);
-		}
 		return super.excludeTrip(gTrip);
 	}
 
@@ -103,9 +68,25 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
 
+	private static final Pattern DIGITS = Pattern.compile("[\\d]+");
+
+	private static final String X = "X";
+
+	private static final long RID_ENDS_WITH_X = 24_000L;
+
 	@Override
 	public long getRouteId(@NotNull GRoute gRoute) {
-		return Long.parseLong(getRouteShortName(gRoute)); // using route short name as route ID
+		if (!Utils.isDigitsOnly(gRoute.getRouteShortName())) {
+			Matcher matcher = DIGITS.matcher(gRoute.getRouteShortName());
+			if (matcher.find()) {
+				long digits = Long.parseLong(matcher.group());
+				if (gRoute.getRouteShortName().endsWith(X)) {
+					return digits + RID_ENDS_WITH_X;
+				}
+			}
+			throw new MTLog.Fatal("Unexpected route ID for %s!", gRoute.toStringPlus());
+		}
+		return Long.parseLong(gRoute.getRouteShortName()); // using route short name as route ID
 	}
 
 	@NotNull
@@ -126,20 +107,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		throw new MTLog.Fatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
 	}
 
-	@NotNull
-	@Override
-	public String getRouteShortName(@NotNull GRoute gRoute) {
-		if (Utils.isDigitsOnly(gRoute.getRouteShortName())) {
-			return gRoute.getRouteShortName();
-		}
-		//noinspection deprecation
-		final String routeId = gRoute.getRouteId();
-		if (Utils.isDigitsOnly(routeId)) {
-			return routeId;
-		}
-		throw new MTLog.Fatal("Unexpected route ID for %s!", gRoute.toStringPlus());
-	}
-
 	private static final String AGENCY_COLOR_BLUE = "2D3092"; // BLUE (from Wikipedia SVG)
 
 	private static final String AGENCY_COLOR = AGENCY_COLOR_BLUE;
@@ -148,14 +115,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getAgencyColor() {
 		return AGENCY_COLOR;
-	}
-
-	@Override
-	public void setTripHeadsign(@NotNull MRoute mRoute, @NotNull MTrip mTrip, @NotNull GTrip gTrip, @NotNull GSpec gtfs) {
-		mTrip.setHeadsignString(
-				cleanTripHeadsign(gTrip.getTripHeadsignOrDefault()),
-				gTrip.getDirectionIdOrDefault()
-		);
 	}
 
 	@Override
@@ -189,11 +148,6 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 			return headSign1;
 		}
 		return null;
-	}
-
-	@Override
-	public boolean mergeHeadsign(@NotNull MTrip mTrip, @NotNull MTrip mTripToMerge) {
-		throw new MTLog.Fatal("Unexpected trips to merge: %s & %s!", mTrip, mTripToMerge);
 	}
 
 	private static final String NAIT = "NAIT";
