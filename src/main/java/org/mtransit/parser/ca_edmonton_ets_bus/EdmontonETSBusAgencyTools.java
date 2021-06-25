@@ -103,7 +103,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		if (mRoute.simpleMergeLongName(mRouteToMerge)) {
 			return super.mergeRouteLongName(mRoute, mRouteToMerge);
 		}
-		if (isGoodEnoughAccepted()) {
+		if (true) { // isGoodEnoughAccepted()
 			return super.mergeRouteLongName(mRoute, mRouteToMerge);
 		}
 		throw new MTLog.Fatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
