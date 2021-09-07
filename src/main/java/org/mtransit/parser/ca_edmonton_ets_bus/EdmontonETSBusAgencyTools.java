@@ -7,6 +7,7 @@ import org.mtransit.commons.CleanUtils;
 import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
+import org.mtransit.parser.gtfs.data.GAgency;
 import org.mtransit.parser.gtfs.data.GIDs;
 import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GStop;
@@ -44,6 +45,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private static final int AGENCY_ID_INT = GIDs.getInt("1"); // Edmonton Transit Service ONLY
+
+	@Override
+	public boolean excludeAgency(@NotNull GAgency gAgency) {
+		if (gAgency.getAgencyIdInt() != AGENCY_ID_INT) {
+			return EXCLUDE;
+		}
+		return super.excludeAgency(gAgency);
+	}
 
 	@Override
 	public boolean excludeRoute(@NotNull GRoute gRoute) {
@@ -109,9 +118,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		throw new MTLog.Fatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
 	}
 
-	private static final String AGENCY_COLOR_BLUE = "2D3092"; // BLUE (from Wikipedia SVG)
+	private static final String AGENCY_COLOR_BLUE = "005087"; // BLUE (from most bus routes)
 
 	private static final String AGENCY_COLOR = AGENCY_COLOR_BLUE;
+
+	@Override
+	public boolean defaultAgencyColorEnabled() {
+		return true;
+	}
 
 	@NotNull
 	@Override
