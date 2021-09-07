@@ -118,19 +118,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		throw new MTLog.Fatal("Unexpected routes to merge: %s & %s!", mRoute, mRouteToMerge);
 	}
 
-	private static final String AGENCY_COLOR_BLUE = "005087"; // BLUE (from most bus routes)
-
-	private static final String AGENCY_COLOR = AGENCY_COLOR_BLUE;
-
 	@Override
 	public boolean defaultAgencyColorEnabled() {
 		return true;
-	}
-
-	@NotNull
-	@Override
-	public String getAgencyColor() {
-		return AGENCY_COLOR;
 	}
 
 	@NotNull
