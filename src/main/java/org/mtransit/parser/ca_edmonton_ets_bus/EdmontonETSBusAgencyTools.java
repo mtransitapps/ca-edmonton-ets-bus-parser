@@ -1,15 +1,14 @@
 package org.mtransit.parser.ca_edmonton_ets_bus;
 
+import static org.mtransit.commons.Constants.EMPTY;
+import static org.mtransit.commons.Constants.SPACE_;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.mtransit.commons.CharUtils;
 import org.mtransit.commons.CleanUtils;
 import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
-import org.mtransit.parser.gtfs.data.GAgency;
-import org.mtransit.parser.gtfs.data.GIDs;
-import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
@@ -18,11 +17,8 @@ import org.mtransit.parser.mt.data.MTrip;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
+import java.util.Locale;
 import java.util.regex.Pattern;
-
-import static org.mtransit.parser.Constants.EMPTY;
-import static org.mtransit.parser.Constants.SPACE_;
 
 // https://data.edmonton.ca/
 // http://www.edmonton.ca/ets/ets-data-for-developers.aspx
@@ -44,30 +40,18 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return "ETS";
 	}
 
-	private static final int AGENCY_ID_INT = GIDs.getInt("1"); // Edmonton Transit Service ONLY
+	private static final String AGENCY_ID = "1"; // Edmonton Transit Service ONLY
 
+	@Nullable
 	@Override
-	public boolean excludeAgency(@NotNull GAgency gAgency) {
-		if (gAgency.getAgencyIdInt() != AGENCY_ID_INT) {
-			return EXCLUDE;
-		}
-		return super.excludeAgency(gAgency);
-	}
-
-	@Override
-	public boolean excludeRoute(@NotNull GRoute gRoute) {
-		if (gRoute.isDifferentAgency(AGENCY_ID_INT)) {
-			return EXCLUDE;
-		}
-		return super.excludeRoute(gRoute);
+	public String getAgencyId() {
+		return AGENCY_ID;
 	}
 
 	@Override
 	public boolean excludeTrip(@NotNull GTrip gTrip) {
-		if ("Not In Service".equalsIgnoreCase(gTrip.getTripHeadsign())) {
-			return EXCLUDE;
-		}
-		if ("Sorry Not In Service".equalsIgnoreCase(gTrip.getTripHeadsign())) {
+		final String tripHeadsignLC = gTrip.getTripHeadsignOrDefault().toLowerCase(Locale.ENGLISH);
+		if (tripHeadsignLC.contains("not in service")) {
 			return EXCLUDE;
 		}
 		return super.excludeTrip(gTrip);
@@ -79,25 +63,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return MAgency.ROUTE_TYPE_BUS;
 	}
 
-	private static final Pattern DIGITS = Pattern.compile("[\\d]+");
-
-	private static final String X = "X";
-
-	private static final long RID_ENDS_WITH_X = 24_000L;
+	@Override
+	public boolean defaultRouteIdEnabled() {
+		return true;
+	}
 
 	@Override
-	public long getRouteId(@NotNull GRoute gRoute) {
-		if (!CharUtils.isDigitsOnly(gRoute.getRouteShortName())) {
-			final Matcher matcher = DIGITS.matcher(gRoute.getRouteShortName());
-			if (matcher.find()) {
-				final long digits = Long.parseLong(matcher.group());
-				if (gRoute.getRouteShortName().endsWith(X)) {
-					return digits + RID_ENDS_WITH_X;
-				}
-			}
-			throw new MTLog.Fatal("Unexpected route ID for %s!", gRoute.toStringPlus());
-		}
-		return Long.parseLong(gRoute.getRouteShortName()); // using route short name as route ID
+	public boolean useRouteShortNameForRouteId() {
+		return true;
 	}
 
 	@NotNull
@@ -112,6 +85,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		if (mRoute.simpleMergeLongName(mRouteToMerge)) {
 			return super.mergeRouteLongName(mRoute, mRouteToMerge);
 		}
+		//noinspection ConstantConditions
 		if (true) { // isGoodEnoughAccepted()
 			return super.mergeRouteLongName(mRoute, mRouteToMerge);
 		}
@@ -138,6 +112,8 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	}
 
 	private static final Pattern BAY_AZ09 = Pattern.compile("( bay [a-z0-9]+)", Pattern.CASE_INSENSITIVE);
+
+	private static final Pattern STARTS_WITH_X_ = Pattern.compile("(^X )", Pattern.CASE_INSENSITIVE);
 
 	@NotNull
 	@Override
@@ -180,6 +156,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		tripHeadsign = CleanUtils.keepToAndRemoveVia(tripHeadsign);
 		if (!fromStopName) {
 			tripHeadsign = STARTS_WITH_RSN.matcher(tripHeadsign).replaceAll(EMPTY);
+			tripHeadsign = STARTS_WITH_X_.matcher(tripHeadsign).replaceAll(EMPTY);
 		}
 		tripHeadsign = TOWN_CENTER.matcher(tripHeadsign).replaceAll(TOWN_CENTER_REPLACEMENT);
 		tripHeadsign = SUPER_EXPRESS.matcher(tripHeadsign).replaceAll(EMPTY);
