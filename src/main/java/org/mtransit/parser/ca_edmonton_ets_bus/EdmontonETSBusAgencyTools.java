@@ -73,6 +73,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		return true;
 	}
 
+	@Nullable
+	@Override
+	public Long convertRouteIdFromShortNameNotSupported(@NotNull String routeShortName) {
+		switch(routeShortName) {
+			case "Shuttle": return 999L;
+		}
+		return super.convertRouteIdFromShortNameNotSupported(routeShortName);
+	}
+
 	@NotNull
 	@Override
 	public String cleanRouteLongName(@NotNull String gRouteLongName) {
