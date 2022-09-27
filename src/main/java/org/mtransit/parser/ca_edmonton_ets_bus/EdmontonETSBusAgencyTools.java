@@ -79,6 +79,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		switch(routeShortName) {
 			case "ValRep": return 9_073L;
 			case "Shuttle": return 999L;
+			case "CapRep": return 9_071L;
 		}
 		return super.convertRouteIdFromShortNameNotSupported(routeShortName);
 	}
