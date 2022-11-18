@@ -5,10 +5,12 @@ import static org.mtransit.commons.Constants.SPACE_;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.mtransit.commons.CharUtils;
 import org.mtransit.commons.CleanUtils;
 import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
+import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.gtfs.data.GTrip;
 import org.mtransit.parser.mt.data.MAgency;
@@ -61,6 +63,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public Integer getAgencyRouteType() {
 		return MAgency.ROUTE_TYPE_BUS;
+	}
+
+	@NotNull
+	@Override
+	public String getRouteShortName(@NotNull GRoute gRoute) {
+		//noinspection deprecation
+		return gRoute.getRouteId(); // route ID string as route short name used by real-time API
 	}
 
 	@Override
@@ -219,6 +228,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	public String getStopCode(@NotNull GStop gStop) {
 		String stopCode = super.getStopCode(gStop); // do not change, used by real-time API
 		stopCode = REMOVE_STARTING_DASH.matcher(stopCode).replaceAll(EMPTY);
+		if (!CharUtils.isDigitsOnly(stopCode)) {
+			throw new MTLog.Fatal("Unexpected stop code %s!", gStop);
+		}
 		return stopCode; // do not change, used by real-time API
 	}
 }
