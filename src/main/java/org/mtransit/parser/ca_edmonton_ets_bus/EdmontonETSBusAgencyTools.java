@@ -134,12 +134,14 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern BAY_AZ09 = Pattern.compile("( bay [a-z0-9]+)", Pattern.CASE_INSENSITIVE);
 
 	private static final Pattern STARTS_WITH_X_ = Pattern.compile("(^X )", Pattern.CASE_INSENSITIVE);
+	private static final Pattern STARTS_WITH_DASH_OWL_ = Pattern.compile("(^\\-OWL )", Pattern.CASE_INSENSITIVE);
 
 	@NotNull
 	@Override
 	public String cleanDirectionHeadsign(boolean fromStopName, @NotNull String directionHeadSign) {
 		directionHeadSign = cleanTripHeadsign(fromStopName, directionHeadSign);
 		directionHeadSign = BAY_AZ09.matcher(directionHeadSign).replaceAll(SPACE_);
+		directionHeadSign = STARTS_WITH_DASH_OWL_.matcher(directionHeadSign).replaceAll(EMPTY);
 		return directionHeadSign;
 	}
 
