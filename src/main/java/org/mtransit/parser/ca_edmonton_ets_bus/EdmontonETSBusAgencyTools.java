@@ -85,10 +85,13 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@Nullable
 	@Override
 	public Long convertRouteIdFromShortNameNotSupported(@NotNull String routeShortName) {
-		switch(routeShortName) {
-			case "ValRep": return 9_073L;
-			case "Shuttle": return 999L;
-			case "CapRep": return 9_071L;
+		switch (routeShortName) {
+		case "ValRep":
+			return 9_073L;
+		case "Shuttle":
+			return 999L;
+		case "CapRep":
+			return 9_071L;
 		}
 		return super.convertRouteIdFromShortNameNotSupported(routeShortName);
 	}
@@ -134,11 +137,11 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	private static final Pattern BAY_AZ09 = Pattern.compile("( bay [a-z0-9]+)", Pattern.CASE_INSENSITIVE);
 
 	private static final Pattern STARTS_WITH_X_ = Pattern.compile("(^X )", Pattern.CASE_INSENSITIVE);
-	private static final Pattern STARTS_WITH_DASH_OWL_ = Pattern.compile("(^\\-OWL )", Pattern.CASE_INSENSITIVE);
+	private static final Pattern STARTS_WITH_DASH_OWL_ = Pattern.compile("(^-OWL )", Pattern.CASE_INSENSITIVE);
 
 	@NotNull
 	@Override
-	public String cleanDirectionHeadsign(boolean fromStopName, @NotNull String directionHeadSign) {
+	public String cleanDirectionHeadsign(int directionId, boolean fromStopName, @NotNull String directionHeadSign) {
 		directionHeadSign = cleanTripHeadsign(fromStopName, directionHeadSign);
 		directionHeadSign = BAY_AZ09.matcher(directionHeadSign).replaceAll(SPACE_);
 		directionHeadSign = STARTS_WITH_DASH_OWL_.matcher(directionHeadSign).replaceAll(EMPTY);
@@ -165,7 +168,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	private static final Pattern SUPER_EXPRESS = CleanUtils.cleanWords("super express");
 
-	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^[\\d]+( )?)", Pattern.CASE_INSENSITIVE);
+	private static final Pattern STARTS_WITH_RSN = Pattern.compile("(^\\d+( )?)", Pattern.CASE_INSENSITIVE);
 
 	@NotNull
 	@Override
@@ -220,7 +223,27 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public int getStopId(@NotNull GStop gStop) {
-		return Math.abs(super.getStopId(gStop)); // remove negative stop IDs
+		//noinspection deprecation
+		final String stopIdS = gStop.getStopId();
+		if (!CharUtils.isDigitsOnly(stopIdS)) {
+			if (Character.isAlphabetic(stopIdS.charAt(0))) {
+				final int stopIdInt2 = Integer.parseInt(stopIdS.substring(1));
+				return getStopIdForLetter(stopIdS.substring(0, 1)) * 10_000 + stopIdInt2;
+			}
+		}
+		return Math.abs(Integer.parseInt(stopIdS)); // remove negative stop IDs
+	}
+
+	private int getStopIdForLetter(String letter) {
+		switch (letter.toUpperCase(Locale.ROOT)) {
+		// @formatter:off
+		case "A": return 1;
+		case "P": return 16;
+		case "S": return 19;
+		// @formatter:on
+		default:
+			throw new MTLog.Fatal("Unexpected letter '%s'!");
+		}
 	}
 
 	private static final Pattern REMOVE_STARTING_DASH = Pattern.compile("(^-)", Pattern.CASE_INSENSITIVE);
@@ -231,7 +254,9 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 		String stopCode = super.getStopCode(gStop); // do not change, used by real-time API
 		stopCode = REMOVE_STARTING_DASH.matcher(stopCode).replaceAll(EMPTY);
 		if (!CharUtils.isDigitsOnly(stopCode)) {
-			throw new MTLog.Fatal("Unexpected stop code %s!", gStop);
+			if (!Character.isAlphabetic(stopCode.charAt(0))) {
+				throw new MTLog.Fatal("Unexpected stop code %s!", gStop);
+			}
 		}
 		return stopCode; // do not change, used by real-time API
 	}
