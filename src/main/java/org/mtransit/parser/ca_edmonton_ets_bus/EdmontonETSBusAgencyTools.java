@@ -23,9 +23,7 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 // https://data.edmonton.ca/
-// http://www.edmonton.ca/ets/ets-data-for-developers.aspx
 // https://data.edmonton.ca/Transit/ETS-Bus-Schedule-GTFS-Data-Schedules-zipped-files/urjq-fvmq
-// https://gtfs.edmonton.ca/TMGTFSRealTimeWebService/GTFS/GTFS.zip
 public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@NotNull String[] args) {
@@ -79,7 +77,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	@Override
 	public boolean useRouteShortNameForRouteId() {
-		return true;
+		return true; // used by GTFS-RT
 	}
 
 	@Nullable
@@ -251,7 +249,7 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@NotNull
 	@Override
 	public String getStopCode(@NotNull GStop gStop) {
-		String stopCode = super.getStopCode(gStop); // do not change, used by real-time API
+		String stopCode = super.getStopCode(gStop); // do not change, used by real-time API & GTFS-RT
 		stopCode = REMOVE_STARTING_DASH.matcher(stopCode).replaceAll(EMPTY);
 		if (!CharUtils.isDigitsOnly(stopCode)) {
 			if (!Character.isAlphabetic(stopCode.charAt(0))) {
