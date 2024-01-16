@@ -23,7 +23,6 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 // https://data.edmonton.ca/
-// https://data.edmonton.ca/Transit/ETS-Bus-Schedule-GTFS-Data-Schedules-zipped-files/urjq-fvmq
 public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 
 	public static void main(@NotNull String[] args) {
@@ -46,6 +45,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getAgencyId() {
 		return AGENCY_ID;
+	}
+
+	@Override
+	public boolean excludeRoute(@NotNull GRoute gRoute) {
+		//noinspection deprecation
+		if (gRoute.getRouteId().equals("023R")) { // Classified as bus
+			return EXCLUDE;
+		}
+		return super.excludeRoute(gRoute);
 	}
 
 	@Override
