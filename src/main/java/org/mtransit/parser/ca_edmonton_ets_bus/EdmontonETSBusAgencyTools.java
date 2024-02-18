@@ -10,6 +10,7 @@ import org.mtransit.commons.CleanUtils;
 import org.mtransit.commons.StringUtils;
 import org.mtransit.parser.DefaultAgencyTools;
 import org.mtransit.parser.MTLog;
+import org.mtransit.parser.gtfs.data.GAgency;
 import org.mtransit.parser.gtfs.data.GRoute;
 import org.mtransit.parser.gtfs.data.GStop;
 import org.mtransit.parser.gtfs.data.GTrip;
@@ -45,6 +46,15 @@ public class EdmontonETSBusAgencyTools extends DefaultAgencyTools {
 	@Override
 	public String getAgencyId() {
 		return AGENCY_ID;
+	}
+
+	@Override
+	public boolean excludeAgency(@NotNull GAgency gAgency) {
+		//noinspection deprecation
+		if (gAgency.getAgencyId().equals("5")) { // Spruce Grove Transit // 1 route #560
+			return KEEP;
+		}
+		return super.excludeAgency(gAgency);
 	}
 
 	@Override
